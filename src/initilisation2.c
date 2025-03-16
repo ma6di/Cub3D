@@ -1,6 +1,6 @@
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-void	init_ray_b(t_ray *ray)
+void	init_ray(t_ray *ray)
 {
 	ray->dirx = 0;
 	ray->diry = 0;
@@ -18,10 +18,9 @@ void	init_ray_b(t_ray *ray)
 	ray->drawstart = 0;
 	ray->drawend = 0;
 	ray->camera_x = 0;
-	ray->door = 0;
 }
 
-void	init_mlx_ray_b(t_ray *ray, t_game *game, int x)
+void	init_mlx_ray(t_ray *ray, t_game *game, int x)
 {
 	ray->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	ray->dirx = game->player.dir_x + game->player.plane_x * ray->camera_x;
@@ -36,6 +35,6 @@ void	init_mlx_ray_b(t_ray *ray, t_game *game, int x)
 		ray->deltadisty = 1e30;
 	else
 		ray->deltadisty = fabs(1 / ray->diry);
-	calculate_step_b(ray, game);
+	calculate_step(ray, game);
 }
 

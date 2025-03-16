@@ -1,6 +1,6 @@
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-void	init_directions_b(int *dxy)
+void	init_directions(int *dxy)
 {
 	dxy[0] = 1;
 	dxy[1] = 0;
@@ -12,7 +12,7 @@ void	init_directions_b(int *dxy)
 	dxy[7] = -1;
 }
 
-t_stack	*init_stack_b(int size)
+t_stack	*init_stack(int size)
 {
 	t_stack	*stack;
 
@@ -34,7 +34,7 @@ t_stack	*init_stack_b(int size)
 }
 
 
-void	free_stack_b(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
 	free(stack->x);
 	free(stack->y);

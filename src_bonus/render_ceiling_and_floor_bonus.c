@@ -1,7 +1,7 @@
 #include "cub3d_bonus.h"
 
 
-void	draw_ceiling_pixel(t_game *game)
+void	draw_ceiling_pixel_b(t_game *game)
 {
 	int	x;
 	int	y;
@@ -12,14 +12,14 @@ void	draw_ceiling_pixel(t_game *game)
 		y = 0;
 		while (y < SCREEN_HEIGHT / 2)
 		{
-			my_mlx_pixel_put(game, x, y, game->color[CEILING].hex_color);
+			my_mlx_pixel_put_b(game, x, y, game->color[CEILING].hex_color);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_floor_pixel(t_game *game)
+void	draw_floor_pixel_b(t_game *game)
 {
 	int	x;
 	int	y;
@@ -30,14 +30,14 @@ void	draw_floor_pixel(t_game *game)
 		y = SCREEN_HEIGHT / 2;
 		while (y < SCREEN_HEIGHT)
 		{
-			my_mlx_pixel_put(game, x, y, game->color[FLOOR].hex_color);
+			my_mlx_pixel_put_b(game, x, y, game->color[FLOOR].hex_color);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_floor_texture(t_game *game)
+void	draw_floor_texture_b(t_game *game)
 {
 	int		y;
 	double	row_distance;
@@ -52,12 +52,12 @@ void	draw_floor_texture(t_game *game)
 			(game->player.dir_x - game->player.plane_x)) / SCREEN_WIDTH;
 		step_y = row_distance * (game->player.dir_y + game->player.plane_y - \
 			(game->player.dir_y - game->player.plane_y)) / SCREEN_WIDTH;
-		draw_floor_row(game, y, step_x, step_y);
+		draw_floor_row_b(game, y, step_x, step_y);
 		y++;
 	}
 }
 
-void	draw_ceiling_texture(t_game *game)
+void	draw_ceiling_texture_b(t_game *game)
 {
 	int		y;
 	double	row_distance;
@@ -72,25 +72,25 @@ void	draw_ceiling_texture(t_game *game)
 			(game->player.dir_x - game->player.plane_x)) / SCREEN_WIDTH;
 		step_y = row_distance * (game->player.dir_y + game->player.plane_y - \
 			(game->player.dir_y - game->player.plane_y)) / SCREEN_WIDTH;
-		draw_ceiling_row(game, y, step_x, step_y);
+		draw_ceiling_row_b(game, y, step_x, step_y);
 		y++;
 	}
 }
 
-void	draw_floor_and_ceiling(t_game *game, int index)
+void	draw_floor_and_ceiling_b(t_game *game, int index)
 {
 	if (game->color[index].mode == 1)
 	{
 		if (index == CEILING)
-			draw_ceiling_pixel(game);
+			draw_ceiling_pixel_b(game);
 		else if (index == FLOOR)
-			draw_floor_pixel(game);
+			draw_floor_pixel_b(game);
 	}
 	else
 	{
 		if (index == CEILING)
-			draw_ceiling_texture(game);
+			draw_ceiling_texture_b(game);
 		else if (index == FLOOR)
-			draw_floor_texture(game);
+			draw_floor_texture_b(game);
 	}
 }

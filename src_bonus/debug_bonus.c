@@ -1,7 +1,7 @@
 #include "cub3d_bonus.h"
 
 //prints the data parsed from the .cub file
-void print_struct(t_game *game)
+void print_struct_b(t_game *game)
 {
 	int i = 0;
 	int j = 0;

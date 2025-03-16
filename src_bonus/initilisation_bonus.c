@@ -1,6 +1,6 @@
 #include "cub3d_bonus.h"
 
-static void	init_colors(t_color *color)
+static void	init_colors_b(t_color *color)
 {
 	color[FLOOR].col_tex_str = NULL;
 	color[FLOOR].mode = 0;
@@ -24,14 +24,14 @@ static void	init_colors(t_color *color)
 	color[CEILING].img = NULL;
 }
 
-void	init_minimap(t_minimap *minimap)
+void	init_minimap_b(t_minimap *minimap)
 {
 	minimap->tile_size = 7;
 	minimap->offset_x = 10;
 	minimap->offset_y = 10;
 }
 
-static void	init_texture(t_texture *textures, int index, int dim)
+static void	init_texture_b(t_texture *textures, int index, int dim)
 {
 	textures[index].addr = NULL;
 	textures[index].img = NULL;
@@ -42,7 +42,7 @@ static void	init_texture(t_texture *textures, int index, int dim)
 	textures[index].width = dim;
 }
 
-static void	init_player(t_player *player)
+static void	init_player_b(t_player *player)
 {
 	player->x = 0;
 	player->y = 0;
@@ -53,7 +53,7 @@ static void	init_player(t_player *player)
 	player->ini_dir = NULL;
 }
 
-void	init_game(t_game *game)
+void	init_game_b(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
@@ -65,12 +65,12 @@ void	init_game(t_game *game)
 	game->map_statred = 0;
 	game->file_order = 0;
 	memset(game->keys, 0, sizeof(game->keys));
-	init_player(&game->player);
-	init_texture(game->textures, NORTH, 64);
-	init_texture(game->textures, SOUTH, 64);
-	init_texture(game->textures, WEST, 64);
-	init_texture(game->textures, EAST, 64);
-	init_texture(game->textures, DOOR, 128);
-	init_colors(game->color);
-	init_minimap(&game->minimap);
+	init_player_b(&game->player);
+	init_texture_b(game->textures, NORTH, 64);
+	init_texture_b(game->textures, SOUTH, 64);
+	init_texture_b(game->textures, WEST, 64);
+	init_texture_b(game->textures, EAST, 64);
+	init_texture_b(game->textures, DOOR, 128);
+	init_colors_b(game->color);
+	init_minimap_b(&game->minimap);
 }

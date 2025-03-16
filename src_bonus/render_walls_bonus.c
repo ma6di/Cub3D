@@ -1,6 +1,6 @@
 #include "cub3d_bonus.h"
 
-int	get_wall_texture_pixel(t_texture *texture, int x, int y, int tex_id)
+int	get_wall_texture_pixel_b(t_texture *texture, int x, int y, int tex_id)
 {
 	char	*dst;
 	int		color;
@@ -28,7 +28,7 @@ int	get_wall_texture_pixel(t_texture *texture, int x, int y, int tex_id)
 	return (color);
 }
 
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
@@ -47,7 +47,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	calculate_texture_params(t_game *game, t_ray *ray, int tex_id, \
+static void	calculate_texture_params_b(t_game *game, t_ray *ray, int tex_id, \
 									t_texture_params *params)
 {
 	double	wall_x;
@@ -67,7 +67,7 @@ static void	calculate_texture_params(t_game *game, t_ray *ray, int tex_id, \
 						ray->lineheight / 2) * params->step;
 }
 
-static void	render_wall_slice(t_game *game, t_ray *ray, int x, int tex_id)
+static void	render_wall_slice_b(t_game *game, t_ray *ray, int x, int tex_id)
 {
 	t_texture_params	params;
 	int					tex_y;
@@ -75,21 +75,21 @@ static void	render_wall_slice(t_game *game, t_ray *ray, int x, int tex_id)
 	int					y;
 
 	y = ray->drawstart;
-	calculate_texture_params(game, ray, tex_id, &params);
+	calculate_texture_params_b(game, ray, tex_id, &params);
 	while (y < ray->drawend)
 	{
 		if (y < 0 || y >= SCREEN_HEIGHT)
 			continue ;
 		tex_y = (int)fmod(params.tex_pos, game->textures[tex_id].height);
 		params.tex_pos += params.step;
-		color = get_wall_texture_pixel(game->textures, params.tex_x, \
+		color = get_wall_texture_pixel_b(game->textures, params.tex_x, \
 										tex_y, tex_id);
-		my_mlx_pixel_put(game, x, y, color);
+		my_mlx_pixel_put_b(game, x, y, color);
 		y++;
 	}
 }
 
-void	cast_rays(t_game *game)
+void	cast_rays_b(t_game *game)
 {
 	t_ray	ray;
 	int		x;
@@ -97,16 +97,16 @@ void	cast_rays(t_game *game)
 	int		color;
 	int		tex_id;
 
-	init_ray(&ray);
+	init_ray_b(&ray);
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		init_mlx_ray(&ray, game, x);
-		calculate_step(&ray, game);
-		perform_dda(&ray, game);
-		calculate_wall_height(&ray, game);
-		tex_id = select_texture(&ray, game);
-		render_wall_slice(game, &ray, x, tex_id);
+		init_mlx_ray_b(&ray, game, x);
+		calculate_step_b(&ray, game);
+		perform_dda_b(&ray, game);
+		calculate_wall_height_b(&ray, game);
+		tex_id = select_texture_b(&ray, game);
+		render_wall_slice_b(game, &ray, x, tex_id);
 		x++;
 	}
 }

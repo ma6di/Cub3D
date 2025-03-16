@@ -1,6 +1,6 @@
 #include "cub3d_bonus.h"
 
-void	init_mlx_wall_texture(t_game *game, int index, char *path)
+void	init_mlx_wall_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
@@ -14,7 +14,7 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 	{
 		print_error(RED"Texture file could not be loaded: ");
 		print_error("%s\n"RESET, path);
-		close_window(game);
+		close_window_b(game);
 	}
 	game->textures[index].addr = mlx_get_data_addr(\
 		game->textures[index].img, &game->textures[index].bpp, \
@@ -22,11 +22,11 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 	if (!game->textures[index].addr)
 	{
 		print_error(RED"Error: Texture %d address is NULL!\n"RESET, index);
-		close_window(game);
+		close_window_b(game);
 	}
 }
 
-void	init_mlx_fc_texture(t_game *game, int index, char *path)
+void	init_mlx_fc_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
@@ -40,7 +40,7 @@ void	init_mlx_fc_texture(t_game *game, int index, char *path)
 	{
 		print_error(RED"Texture file could not be loaded: ");
 		print_error("%s\n"RESET, path);
-		close_window(game);
+		close_window_b(game);
 	}
 	game->color[index].addr = mlx_get_data_addr(\
 		game->color[index].img, &game->color[index].bpp, \
@@ -48,16 +48,16 @@ void	init_mlx_fc_texture(t_game *game, int index, char *path)
 	if (!game->color[index].addr)
 	{
 		print_error(RED"Error: color %d address is NULL!\n"RESET, index);
-		close_window(game);
+		close_window_b(game);
 	}
 }
 
-void	load_player(t_game *game)
+void	load_player_b(t_game *game)
 {
 	if (!game->player.ini_dir)
 	{
 		print_error(RED"Player direction not set!\n"RESET);
-		close_window(game);
+		close_window_b(game);
 	}
 	if (ft_strncmp(game->player.ini_dir, "N", 1) == 0)
 	{
@@ -81,11 +81,11 @@ void	load_player(t_game *game)
 	}
 }
 
-void	set_colors(t_game *game, t_color *color, int index)
+void	set_colors_b(t_game *game, t_color *color, int index)
 {
 	if (color[index].mode == 1)
-		color[index].hex_color = rgb_to_hex(color[index].r, \
+		color[index].hex_color = rgb_to_hex_b(color[index].r, \
 			color[index].g, color[index].b);
 	if (color[index].mode == 2)
-		init_mlx_fc_texture(game, index, color[index].col_tex_str);
+		init_mlx_fc_texture_b(game, index, color[index].col_tex_str);
 }

@@ -1,7 +1,7 @@
 
 #include "cub3d_bonus.h"
 
-void	free_mlx(t_game *game)
+static void	free_mlx_b(t_game *game)
 {
 	int	i;
 
@@ -30,11 +30,11 @@ void	free_mlx(t_game *game)
 	}
 }
 
-int	close_window(t_game *game)
+int	close_window_b(t_game *game)
 {
-	free_mlx(game);
+	free_mlx_b(game);
 	if (game->map)
-		free_two_dim(game->map);
+		free_two_dim_b(game->map);
 	if (game->textures[NORTH].path)
 		free(game->textures[NORTH].path);
 	if (game->textures[SOUTH].path)

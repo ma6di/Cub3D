@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-void	free_two_dim(char **arr)
+void	free_two_dim_b(char **arr)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	free_two_dim(char **arr)
 	free(arr);
 }
 
-int	two_dim_len(char **arr)
+int	two_dim_len_b(char **arr)
 {
 	int	count;
 
@@ -39,7 +39,7 @@ int	two_dim_len(char **arr)
 	return (count);
 }
 
-int	select_texture(t_ray *ray, t_game *game)
+int	select_texture_b(t_ray *ray, t_game *game)
 {
 	if (ray->door == 1)
 	{
@@ -64,7 +64,7 @@ int	select_texture(t_ray *ray, t_game *game)
 }
 
 
-int	rgb_to_hex(int r, int g, int b)
+int	rgb_to_hex_b(int r, int g, int b)
 {
 	int	color;
 

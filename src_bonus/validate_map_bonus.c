@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-static int	find_player(t_game **game)
+static int	find_player_b(t_game **game)
 {
 	int	x;
 	int	y;
@@ -41,7 +41,7 @@ static int	find_player(t_game **game)
 	return (0);
 }
 
-static int	**allocate_visited(int height, int width)
+static int	**allocate_visited_b(int height, int width)
 {
 	int	y;
 	int	**visited;
@@ -55,7 +55,7 @@ static int	**allocate_visited(int height, int width)
 		visited[y] = ft_calloc(width, sizeof(int));
 		if (!visited[y])
 		{
-			free_visited(visited, y);
+			free_visited_b(visited, y);
 			return (NULL);
 		}
 		y++;
@@ -63,7 +63,7 @@ static int	**allocate_visited(int height, int width)
 	return (visited);
 }
 
-int	is_map_closed_and_accessible(t_game *game, char **map, \
+int	is_map_closed_and_accessible_b(t_game *game, char **map, \
 								int height, int width)
 {
 	int	**visited;
@@ -73,20 +73,20 @@ int	is_map_closed_and_accessible(t_game *game, char **map, \
 		print_error(RED"Error: Game or map is NULL\n"RESET);
 		return (0);
 	}
-	if (!find_player(&game) || !validate_map_chars(game))
+	if (!find_player_b(&game) || !validate_map_chars_b(game))
 		return (0);
-	visited = allocate_visited(height, width);
+	visited = allocate_visited_b(height, width);
 	if (!visited)
 		return (0);
-	flood_fill(game, visited);
-	if (!check_accessibility(game, visited) || \
-		!check_enclosure(game, map) || \
-		!check_corners(game, map))
+	flood_fill_b(game, visited);
+	if (!check_accessibility_b(game, visited) || \
+		!check_enclosure_b(game, map) || \
+		!check_corners_b(game, map))
 	{
-		free_visited(visited, height);
+		free_visited_b(visited, height);
 		return (0);
 	}
-	free_visited(visited, height);
+	free_visited_b(visited, height);
 	return (1);
 }
 

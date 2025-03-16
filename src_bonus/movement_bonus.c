@@ -2,23 +2,23 @@
 
 #include "cub3d_bonus.h"
 
-void	update_player(t_game *game)
+void	update_player_b(t_game *game)
 {
 	if (game->keys[KEY_W])
-		move_player(FORWARD, game);
+		move_player_b(FORWARD, game);
 	if (game->keys[KEY_S])
-		move_player(BACKWARD, game);
+		move_player_b(BACKWARD, game);
 	if (game->keys[KEY_A])
-		move_player(LEFT, game);
+		move_player_b(LEFT, game);
 	if (game->keys[KEY_D])
-		move_player(RIGHT, game);
+		move_player_b(RIGHT, game);
 	if (game->keys[KEY_LEFT])
-		rotate_player(LEFT_ROTATE, game);
+		rotate_player_b(LEFT_ROTATE, game);
 	if (game->keys[KEY_RIGHT])
-		rotate_player(RIGHT_ROTATE, game);
+		rotate_player_b(RIGHT_ROTATE, game);
 }
 
-void	rotate_player(int direction, t_game *game)
+void	rotate_player_b(int direction, t_game *game)
 {
 	double	rotate_speed;
 	double	old_dir_x;
@@ -42,7 +42,7 @@ void	rotate_player(int direction, t_game *game)
 							game->player.plane_y * cos(angle);
 }
 
-static void	calculate_new_position(int direction, \
+static void	calculate_new_position_b(int direction, \
 			t_game *game, double *new_x, double *new_y)
 {
 	if (direction == FORWARD)
@@ -67,14 +67,14 @@ static void	calculate_new_position(int direction, \
 	}
 }
 
-void	move_player(int direction, t_game *game)
+void	move_player_b(int direction, t_game *game)
 {
 	double	new_x;
 	double	new_y;
 
 	new_x = game->player.x;
 	new_y = game->player.y;
-	calculate_new_position(direction, game, &new_x, &new_y);
+	calculate_new_position_b(direction, game, &new_x, &new_y);
 	if (game->map[(int)new_y][(int)new_x] != '1' && \
 		game->map[(int)new_y][(int)new_x] != 'D')
 	{
@@ -90,7 +90,7 @@ void	move_player(int direction, t_game *game)
 	}
 }
 
-int	mouse_rotate(int x, int y, t_game *game)
+int	mouse_rotate_b(int x, int y, t_game *game)
 {
 	static int	last_x;
 	int			dx;

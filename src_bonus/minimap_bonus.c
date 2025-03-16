@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-static void	draw_mini(t_game *game, int x, int y, int color)
+static void	draw_mini_b(t_game *game, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -27,14 +27,14 @@ static void	draw_mini(t_game *game, int x, int y, int color)
 		{
 			screen_x = x + i + game->minimap.offset_x;
 			screen_y = y + j + game->minimap.offset_y;
-			my_mlx_pixel_put(game, screen_x, screen_y, color);
+			my_mlx_pixel_put_b(game, screen_x, screen_y, color);
 			i++;
 		}
 		j++;
 	}
 }
 
-static void	draw_minimap_tiles(t_game *game)
+static void	draw_minimap_tiles_b(t_game *game)
 {
 	int		map_y;
 	int		map_x;
@@ -52,18 +52,18 @@ static void	draw_minimap_tiles(t_game *game)
 			y = map_y * game->minimap.tile_size;
 			tile = game->map[map_y][map_x];
 			// if (tile == '1')
-			// 	draw_mini(game, x, y, 0xF00FFF);
+			//  	draw_mini_b(game, x, y, 0xF00FFF);
 			if (tile == '0' || tile == 'N' || tile == 'W' || tile == 'E' || tile == 'S')
-				draw_mini(game, x, y, 0xFFFFFF);
+				draw_mini_b(game, x, y, 0xFFFFFF);
 			else if (tile == 'D')
-				draw_mini(game, x, y, 0xFF0000);
+				draw_mini_b(game, x, y, 0xFF0000);
 			map_x++;
 		}
 		map_y++;
 	}
 }
 
-void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
+void draw_line_b(t_game *game, int x0, int y0, int x1, int y1, int color)
 {
     int dx = abs(x1 - x0);
     int dy = abs(y1 - y0);
@@ -73,7 +73,7 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
     while (1)
     {
-        draw_mini(game, x0, y0, color);
+        draw_mini_b(game, x0, y0, color);
 
         if (x0 == x1 && y0 == y1)
             break;
@@ -91,7 +91,7 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
     }
 }
 
-void draw_player_view_angle(t_game *game, int player_x, int player_y)
+void draw_player_view_angle_b(t_game *game, int player_x, int player_y)
 {
     int view_distance = 15; // Distance of the view angle
     int base_half_width = 5; // Half-width of the base of the triangle
@@ -115,14 +115,14 @@ void draw_player_view_angle(t_game *game, int player_x, int player_y)
     int base_y2 = base_center_y - perp_dir_y;
 
     // Draw the triangle
-    draw_line(game, player_x, player_y, apex_x, apex_y, LIGHTBLUE); // Light blue color
-    draw_line(game, player_x, player_y, base_x1, base_y1, LIGHTBLUE);
-    draw_line(game, player_x, player_y, base_x2, base_y2, LIGHTBLUE);
-    draw_line(game, base_x1, base_y1, apex_x, apex_y, LIGHTBLUE);
-    draw_line(game, base_x2, base_y2, apex_x, apex_y, LIGHTBLUE);
+    draw_line_b(game, player_x, player_y, apex_x, apex_y, LIGHTBLUE); // Light blue color
+    draw_line_b(game, player_x, player_y, base_x1, base_y1, LIGHTBLUE);
+    draw_line_b(game, player_x, player_y, base_x2, base_y2, LIGHTBLUE);
+    draw_line_b(game, base_x1, base_y1, apex_x, apex_y, LIGHTBLUE);
+    draw_line_b(game, base_x2, base_y2, apex_x, apex_y, LIGHTBLUE);
 }
 
-void draw_player_view_point(t_game *game, int player_x, int player_y)
+void draw_player_view_point_b(t_game *game, int player_x, int player_y)
 {
     int view_distance = 15; // Distance of the view angle
 
@@ -131,27 +131,27 @@ void draw_player_view_point(t_game *game, int player_x, int player_y)
     double y2 = player_y + (int)(view_distance * game->player.dir_y);
 
     // Draw the view angle
-	draw_line(game, player_x, player_y, x2, y2, LIGHTBLUE);
+	draw_line_b(game, player_x, player_y, x2, y2, LIGHTBLUE);
 }
 
-static void	draw_player_on_minimap(t_game *game)
+static void	draw_player_on_minimap_b(t_game *game)
 {
 	int	player_x;
 	int	player_y;
 
 	player_x = (int)(game->player.x * game->minimap.tile_size) - 3;
 	player_y = (int)(game->player.y * game->minimap.tile_size) - 3;
-	draw_player_view_angle(game, player_x, player_y);
-	draw_player_view_point(game, player_x, player_y);
+	draw_player_view_angle_b(game, player_x, player_y);
+	draw_player_view_point_b(game, player_x, player_y);
 	if (player_x >= 0 && player_y >= 0 && \
 		player_x < game->width * game->minimap.tile_size && \
 		player_y < game->height * game->minimap.tile_size)
 	{
-		draw_mini(game, player_x, player_y, 0xffd700);
+		draw_mini_b(game, player_x, player_y, 0xffd700);
 	}
 }
 
-static void	draw_walls(t_game *game)
+static void	draw_walls_b(t_game *game)
 {
 	int		map_y;
 	int		map_x;
@@ -169,7 +169,7 @@ static void	draw_walls(t_game *game)
 			y = map_y * game->minimap.tile_size;
 			tile = game->map[map_y][map_x];
 			if (tile == '1')
-				draw_mini(game, x, y, 0xF00FFF);
+				draw_mini_b(game, x, y, 0xF00FFF);
 			// else if (tile == '0' || tile == 'N' || tile == 'W' || tile == 'E' || tile == 'S')
 			// 	draw_mini(game, x, y, 0xFFFFFF);
 			// else if (tile == 'D')
@@ -180,11 +180,11 @@ static void	draw_walls(t_game *game)
 	}
 }
 
-void	minimap(t_game *game)
+void	minimap_b(t_game *game)
 {
-	draw_minimap_tiles(game);
-	draw_player_on_minimap(game);
-	draw_walls(game);
+	draw_minimap_tiles_b(game);
+	draw_player_on_minimap_b(game);
+	draw_walls_b(game);
 }
 
 

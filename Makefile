@@ -19,11 +19,15 @@ MLX_INC  = -I$(MLXDIR)
 
 # Source files
 SRCS    = src/render_ceiling_and_floor.c src/free_destroy_game.c  \
-          src/render_walls.c src/initilisation.c src/set_game_data.c  \
-          src/Key_handler.c src/tools.c src/main.c src/validate_colors.c \
-          src/map_corner_cases.c src/validate_elements.c src/validate_file.c \
-          src/movement.c src/validate_map.c src/pars_file.c src/validate_texture_path.c \
-          src/print_error.c src/window.c src/rays.c
+             src/render_walls.c src/initilisation.c src/set_game_data.c  \
+             src/Key_handler.c src/tools.c src/main.c src/validate_colors.c \
+             src/map_corner_cases.c src/validate_elements.c src/parse_file.c \
+             src/movement.c src/validate_map.c src/validate_texture_path.c \
+             src/print_error.c src/window.c src/rays.c src/initilisation2.c \
+			 src/debug.c src/map_empty_line_check.c \
+			 src/map_enclosement_check.c src/map_check_tools.c src/map_accessibility_check.c \
+			 src/flood_fill.c src/flood_fill_tool.c src/map_char_check.c
+
 
 BONUS_SRCS = src_bonus/render_ceiling_and_floor_bonus.c src_bonus/free_destroy_game_bonus.c  \
              src_bonus/render_walls_bonus.c src_bonus/initilisation_bonus.c src_bonus/set_game_data_bonus.c  \

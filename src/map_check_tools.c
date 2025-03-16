@@ -1,7 +1,7 @@
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-void	cal_map_dim_b(t_game **game)
+void	cal_map_dim(t_game **game)
 {
 	int	height;
 	int	width;
@@ -27,7 +27,7 @@ void	cal_map_dim_b(t_game **game)
 	(*game)->height = height;
 }
 
-int	first_pos_row_b(char *line)
+int	first_pos_row(char *line)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int	first_pos_row_b(char *line)
 	return (i);
 }
 
-int	last_pos_row_b(char *line)
+int	last_pos_row(char *line)
 {
 	int	i;
 	int	len;
@@ -53,7 +53,7 @@ int	last_pos_row_b(char *line)
 	return (len - 1);
 }
 
-int	first_pos_col_b(char **map, int col)
+int	first_pos_col(char **map, int col)
 {
 	int	y;
 
@@ -65,7 +65,7 @@ int	first_pos_col_b(char **map, int col)
 	return (y);
 }
 
-int	last_pos_col_b(char **map, int col, int height)
+int	last_pos_col(char **map, int col, int height)
 {
 	int	y;
 
@@ -78,8 +78,7 @@ int	last_pos_col_b(char **map, int col, int height)
 	while (y < height && map[y] && col < (int)strlen(map[y]) && map[y][col] &&
 			(map[y][col] == '1' || map[y][col] == '0' ||
 			map[y][col] == 'N' || map[y][col] == 'S' ||
-			map[y][col] == 'W' || map[y][col] == 'E' ||
-			map[y][col] == 'D'))
+			map[y][col] == 'W' || map[y][col] == 'E'))
 	{
 		y++;
 	}

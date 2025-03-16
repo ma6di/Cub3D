@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-int	is_valid_texture_path(char *path)
+int	is_valid_texture_path_b(char *path)
 {
 	int	len;
 	int	fd;

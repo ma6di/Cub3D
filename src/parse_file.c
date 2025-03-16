@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-static void	append_map_line_b(t_game *game, char *line)
+static void	append_map_line(t_game *game, char *line)
 {
 	int		i;
 	char	**new_map;
@@ -40,7 +40,7 @@ static void	append_map_line_b(t_game *game, char *line)
 	game->map = new_map;
 }
 
-char	*str_start_b(char *str)
+char	*str_start(char *str)
 {
 	while (*str == ' ' || *str == '\t')
 		str++;
@@ -48,7 +48,7 @@ char	*str_start_b(char *str)
 	return (str);
 }
 
-void	file_data_order_b(t_game *game)
+void	file_data_order(t_game *game)
 {
 	if (!game->textures[NORTH].path || \
 		!game->textures[SOUTH].path || \
@@ -62,36 +62,34 @@ void	file_data_order_b(t_game *game)
 	}
 }
 
-static int	check_line_b(char *line, t_game *game)
+static int	check_line(char *line, t_game *game)
 {
 	if (line && ft_strncmp(line, "NO ", 3) == 0)
-		game->textures[NORTH].path = ft_strdup(str_start_b(line + 2));
+		game->textures[NORTH].path = ft_strdup(str_start(line + 2));
 	else if (line && ft_strncmp(line, "SO ", 3) == 0)
-		game->textures[SOUTH].path = ft_strdup(str_start_b(line + 2));
+		game->textures[SOUTH].path = ft_strdup(str_start(line + 2));
 	else if (line && ft_strncmp(line, "WE ", 3) == 0)
-		game->textures[WEST].path = ft_strdup(str_start_b(line + 2));
+		game->textures[WEST].path = ft_strdup(str_start(line + 2));
 	else if (line && ft_strncmp(line, "EA ", 3) == 0)
-		game->textures[EAST].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "D ", 2) == 0)
-		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
+		game->textures[EAST].path = ft_strdup(str_start(line + 2));
 	else if (line && ft_strncmp(line, "F ", 2) == 0)
-		game->color[FLOOR].col_tex_str = ft_strdup(str_start_b(line + 1));
+		game->color[FLOOR].col_tex_str = ft_strdup(str_start(line + 1));
 	else if (line && ft_strncmp(line, "C ", 2) == 0)
-		game->color[CEILING].col_tex_str = ft_strdup(str_start_b(line + 1));
+		game->color[CEILING].col_tex_str = ft_strdup(str_start(line + 1));
 	else if (line && (ft_strnstr(line, "1111", ft_strlen(line))) && \
 			game->map_statred == 0)
 	{
-		file_data_order_b(game);
+		file_data_order(game);
 		game->map_statred = 1;
-		append_map_line_b(game, line);
+		append_map_line(game, line);
 	}
 	else if (line && (ft_strchr("10NSWE \t", line[0])) && \
 			game->map_statred == 1)
-		append_map_line_b(game, line);
+		append_map_line(game, line);
 	return (1);
 }
 
-int	pars_file_b(const char *filename, t_game *game, char **argv)
+int	pars_file(const char *filename, t_game *game, char **argv)
 {
 	int		fd;
 	char	*line;
@@ -102,7 +100,7 @@ int	pars_file_b(const char *filename, t_game *game, char **argv)
 		print_error(RED"Error: Could not open file %s\n"RESET, filename);
 		return (0);
 	}
-	if (!validate_file_b(argv[1]))
+	if (!validate_file(argv[1]))
 	{
 		close(fd);
 		return (1);
@@ -110,12 +108,12 @@ int	pars_file_b(const char *filename, t_game *game, char **argv)
 	line = get_next_line(fd);
 	while (line)
 	{
-		check_line_b(line, game);
+		check_line(line, game);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (game->file_order || !validate_cub_elements_b(game))
-		close_window_b(game);
+	if (game->file_order || !validate_cub_elements(game))
+		close_window(game);
 	return (1);
 }

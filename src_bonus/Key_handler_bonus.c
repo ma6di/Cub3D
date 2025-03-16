@@ -1,7 +1,7 @@
 
 #include "cub3d_bonus.h"
 
-int	is_door(t_game *game)
+int	is_door_b(t_game *game)
 {
 	int	px;
 	int	py;
@@ -24,11 +24,11 @@ int	is_door(t_game *game)
 	return (0);
 }
 
-int	press_key(int keycode, t_game *game)
+int	press_key_b(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
 	{
-		close_window(game);
+		close_window_b(game);
 		game->win = NULL;
 		exit(0);
 	}
@@ -44,16 +44,16 @@ int	press_key(int keycode, t_game *game)
 		game->keys[KEY_LEFT] = 1;
 	else if (keycode == XK_Right)
 		game->keys[KEY_RIGHT] = 1;
-	else if (keycode == XK_space && is_door(game) && \
+	else if (keycode == XK_space && is_door_b(game) && \
 		game->textures[DOOR].door_state == 1)
 		game->textures[DOOR].door_state = 0;
-	else if (keycode == XK_space && is_door(game) && \
+	else if (keycode == XK_space && is_door_b(game) && \
 				game->textures[DOOR].door_state == 0)
 		game->textures[DOOR].door_state = 1;
 	return (0);
 }
 
-int	release_key(int keycode, t_game *game)
+int	release_key_b(int keycode, t_game *game)
 {
 	if (keycode == XK_w)
 		game->keys[KEY_W] = 0;

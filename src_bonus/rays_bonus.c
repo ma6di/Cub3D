@@ -2,7 +2,7 @@
 
 #include "cub3d_bonus.h"
 
-void	calculate_step(t_ray *ray, t_game *game)
+void	calculate_step_b(t_ray *ray, t_game *game)
 {
 	if (ray->dirx < 0)
 	{
@@ -26,7 +26,7 @@ void	calculate_step(t_ray *ray, t_game *game)
 	}
 }
 
-void	perform_dda(t_ray *ray, t_game *game)
+void	perform_dda_b(t_ray *ray, t_game *game)
 {
 	while (ray->mapx >= 0 && ray->mapx < game->width && \
 	ray->mapy >= 0 && ray->mapy < game->height && \
@@ -55,7 +55,7 @@ void	perform_dda(t_ray *ray, t_game *game)
 	}
 }
 
-void	calculate_wall_height(t_ray *ray, t_game *game)
+void	calculate_wall_height_b(t_ray *ray, t_game *game)
 {
 	if (ray->side == 0)
 		ray->walldist = (ray->side_distx - ray->deltadistx);

@@ -1,27 +1,29 @@
 
-
-#include "cub3D.h"
+#include "cub3d.h"
 
 int	render(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->win);
-	draw_floor_and_ceiling(game, FLOOR);
+	draw_floor_and_ceiling(game);
 	cast_rays(game);
 	update_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (0);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_game	*game;
 
 	if (argc != 2)
-		return (print_error("Error: Please provide a map file\n"), 1);
+	{
+		print_error(RED"Error: Please provide a map file\n"RESET);
+		return (1);
+	}
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{
-		print_error("Error: Memory allocation failed\n");
+		print_error(RED"Error: Memory allocation failed\n"RESET);
 		return (1);
 	}
 	init_game(game);

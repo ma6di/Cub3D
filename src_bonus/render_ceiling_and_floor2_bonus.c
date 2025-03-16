@@ -1,6 +1,6 @@
 #include "cub3d_bonus.h"
 
-int	get_cf_texture_pixel(t_color *color, int x, int y, int tex_id)
+int	get_cf_texture_pixel_b(t_color *color, int x, int y, int tex_id)
 {
 	char	*dst;
 	int		cf_color;
@@ -27,18 +27,18 @@ int	get_cf_texture_pixel(t_color *color, int x, int y, int tex_id)
 	return (cf_color);
 }
 
-void	draw_floor_tile(t_game *game, t_tile_coords *coords)
+void	draw_floor_tile_b(t_game *game, t_tile_coords *coords)
 {
 	int	tex_color;
 
-	tex_color = get_cf_texture_pixel(game->color, \
+	tex_color = get_cf_texture_pixel_b(game->color, \
 	abs((int)(coords->tile_x * game->color[FLOOR].width)) % \
 	game->color[FLOOR].width, abs((int)(coords->tile_y * \
 	game->color[FLOOR].height)) % game->color[FLOOR].height, FLOOR);
-	my_mlx_pixel_put(game, coords->x, coords->y, tex_color);
+	my_mlx_pixel_put_b(game, coords->x, coords->y, tex_color);
 }
 
-void	draw_floor_row(t_game *game, int y, double step_x, double step_y)
+void	draw_floor_row_b(t_game *game, int y, double step_x, double step_y)
 {
 	int				x;
 	double			floor_x;
@@ -58,25 +58,25 @@ void	draw_floor_row(t_game *game, int y, double step_x, double step_y)
 		coords.y = y;
 		coords.tile_x = floor_x;
 		coords.tile_y = floor_y;
-		draw_floor_tile(game, &coords);
+		draw_floor_tile_b(game, &coords);
 		floor_x += step_x;
 		floor_y += step_y;
 		x++;
 	}
 }
 
-void	draw_ceiling_tile(t_game *game, t_tile_coords *coords)
+void	draw_ceiling_tile_b(t_game *game, t_tile_coords *coords)
 {
 	int	tex_color;
 
-	tex_color = get_cf_texture_pixel(game->color, \
+	tex_color = get_cf_texture_pixel_b(game->color, \
 	abs((int)(coords->tile_x * game->color[CEILING].width)) % \
 	game->color[CEILING].width, abs((int)(coords->tile_y * \
 	game->color[CEILING].height)) % game->color[CEILING].height, CEILING);
-	my_mlx_pixel_put(game, coords->x, coords->y, tex_color);
+	my_mlx_pixel_put_b(game, coords->x, coords->y, tex_color);
 }
 
-void	draw_ceiling_row(t_game *game, int y, double step_x, double step_y)
+void	draw_ceiling_row_b(t_game *game, int y, double step_x, double step_y)
 {
 	int				x;
 	double			ceil_x;
@@ -96,7 +96,7 @@ void	draw_ceiling_row(t_game *game, int y, double step_x, double step_y)
 		coords.y = y;
 		coords.tile_x = ceil_x;
 		coords.tile_y = ceil_y;
-		draw_ceiling_tile(game, &coords);
+		draw_ceiling_tile_b(game, &coords);
 		ceil_x += step_x;
 		ceil_y += step_y;
 		x++;

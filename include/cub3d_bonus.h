@@ -121,7 +121,7 @@ typedef struct s_player
 	double  y;		  // Player's Y position
 	double  dir_x;	  // Direction vector X
 	double  dir_y;	  // Direction vector Y
-	double  plane_x;	// Camera plane X (for FOV)
+	double  plane_x;	// Camera plane X _b(for FOV)
 	double  plane_y;	// Camera plane Y (for FOV)
 } t_player;
 
@@ -176,72 +176,72 @@ typedef struct s_game
 	t_ray		ray;
 }				t_game;
 
-int		validate_file(const char *filename);
-int		pars_file(const char *filename, t_game *game, char** argv);
-int		validate_cub_elements(t_game *game);
-int		is_valid_texture_path(char *path);
-int		validate_colors(t_color *color);
-int		is_valid_color_texture(t_color *color);
-int		is_map_closed_and_accessible(t_game *game, char **map, \
+int		validate_file_b(const char *filename);
+int		pars_file_b(const char *filename, t_game *game, char** argv);
+int		validate_cub_elements_b(t_game *game);
+int		is_valid_texture_path_b(char *path);
+int		validate_colors_b(t_color *color);
+int		is_valid_color_texture_b(t_color *color);
+int		is_map_closed_and_accessible_b(t_game *game, char **map, \
 			int height, int width);
-void	free_two_dim(char **arr);
-int		two_dim_len(char **arr);
-void	cal_map_dim(t_game **game);
-int		free_game(t_game *game);
-void	print_error(const char *format, ...);
-void	create_window(t_game *game);
-void	init_game(t_game *game);
-int		press_key(int keycode, t_game *game);
-int		close_window(t_game *game);
-void	move_player(int keycode, t_game *game);
-void	cast_rays(t_game *game);
-int		render(t_game *game);
-void	init_win(t_game *game);
-int		case_one(t_game *game, char **map, int y, int height);
-int		case_two(t_game *game, char **map, int y, int height);
-int		case_three(t_game *game, char **map, int x, int height);
-int		case_four(t_game *game, char **map, int x, int height);
-int		case_five(t_game *game, char **map, int x, int height);
-int		first_pos_row(char *line);
-int		last_pos_row(char *line);
-int		first_pos_col(char **map, int col);
-int		last_pos_col(char **map, int col, int height);
-void	init_mlx_ray(t_ray *ray, t_game *game, int x);
-void	print_struct(t_game *game);
-void	calculate_wall_height(t_ray *ray, t_game *game);
-void	perform_dda(t_ray *ray, t_game *game);
-void	calculate_step(t_ray *ray, t_game *game);
-void	load_player(t_game *game);
-void	set_dir(t_game *game);
-void	init_mlx_wall_texture(t_game *game, int index, char *path);
-void	init_mlx_fc_texture(t_game *game, int index, char *path);
-int		select_texture(t_ray *ray, t_game *game);
-void	rotate_player(int direction, t_game *game);
-void	move_player(int direction, t_game *game);
-int		rgb_to_hex(int r, int g, int b);
-void	set_colors(t_game *game, t_color *color, int index);
-void	draw_floor_and_ceiling(t_game *game, int index);
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-int		get_cf_texture_pixel(t_color *color, int x, int y, int tex_id);
-int		mouse_rotate(int x, int y, t_game *game);
-void	minimap(t_game *game);
-int		release_key(int keycode, t_game *game);
-void	update_player(t_game *game);
-void	init_ray(t_ray *ray);
-void	draw_ceiling_row(t_game *game, int y, double step_x, double step_y);
-void	draw_floor_row(t_game *game, int y, double step_x, double step_y);
-bool	is_empty_line(const char *line);
-void	remove_trailing_empty_lines(char **map);
-int		check_empty_line(char **map);
-void	flood_fill(t_game *game, int **visited);
-void	free_visited(int **visited, int height);
-int		check_accessibility(t_game *game, int **visited);
-void	free_stack(t_stack *stack);
-t_stack	*init_stack(int size);
-void	init_directions(int *dxy);
-int		check_enclosure(t_game *game, char **map);
-int		validate_map_chars(t_game *game);
-int		check_corners(t_game *game, char **map);
+void	free_two_dim_b(char **arr);
+int		two_dim_len_b(char **arr);
+void	cal_map_dim_b(t_game **game);
+int		free_game_b(t_game *game);
+void	print_error_b(const char *format, ...);
+void	create_window_b(t_game *game);
+void	init_game_b(t_game *game);
+int		press_key_b(int keycode, t_game *game);
+int		close_window_b(t_game *game);
+void	move_player_b(int keycode, t_game *game);
+void	cast_rays_b(t_game *game);
+int		render_b(t_game *game);
+void	init_win_b(t_game *game);
+int		case_one_b(t_game *game, char **map, int y, int height);
+int		case_two_b(t_game *game, char **map, int y, int height);
+int		case_three_b(t_game *game, char **map, int x, int height);
+int		case_four_b(t_game *game, char **map, int x, int height);
+int		case_five_b(t_game *game, char **map, int x, int height);
+int		first_pos_row_b(char *line);
+int		last_pos_row_b(char *line);
+int		first_pos_col_b(char **map, int col);
+int		last_pos_col_b(char **map, int col, int height);
+void	init_mlx_ray_b(t_ray *ray, t_game *game, int x);
+void	print_struct_b(t_game *game);
+void	calculate_wall_height_b(t_ray *ray, t_game *game);
+void	perform_dda_b(t_ray *ray, t_game *game);
+void	calculate_step_b(t_ray *ray, t_game *game);
+void	load_player_b(t_game *game);
+void	set_dir_b(t_game *game);
+void	init_mlx_wall_texture_b(t_game *game, int index, char *path);
+void	init_mlx_fc_texture_b(t_game *game, int index, char *path);
+int		select_texture_b(t_ray *ray, t_game *game);
+void	rotate_player_b(int direction, t_game *game);
+void	move_player_b(int direction, t_game *game);
+int		rgb_to_hex_b(int r, int g, int b);
+void	set_colors_b(t_game *game, t_color *color, int index);
+void	draw_floor_and_ceiling_b(t_game *game, int index);
+void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color);
+int		get_cf_texture_pixel_b(t_color *color, int x, int y, int tex_id);
+int		mouse_rotate_b(int x, int y, t_game *game);
+void	minimap_b(t_game *game);
+int		release_key_b(int keycode, t_game *game);
+void	update_player_b(t_game *game);
+void	init_ray_b(t_ray *ray);
+void	draw_ceiling_row_b(t_game *game, int y, double step_x, double step_y);
+void	draw_floor_row_b(t_game *game, int y, double step_x, double step_y);
+bool	is_empty_line_b(const char *line);
+void	remove_trailing_empty_lines_b(char **map);
+int		check_empty_line_b(char **map);
+void	flood_fill_b(t_game *game, int **visited);
+void	free_visited_b(int **visited, int height);
+int		check_accessibility_b(t_game *game, int **visited);
+void	free_stack_b(t_stack *stack);
+t_stack	*init_stack_b(int size);
+void	init_directions_b(int *dxy);
+int		check_enclosure_b(t_game *game, char **map);
+int		validate_map_chars_b(t_game *game);
+int		check_corners_b(t_game *game, char **map);
 
 
 
