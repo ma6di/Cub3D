@@ -14,9 +14,11 @@
 
 int check_walls_b(t_game *game, char **map)
 {
-    int height = game->height;
-    int width = game->width;
+    int height;
+    int width;
 
+	height = game->height;
+    width = game->width;
     // Controlla la penultima riga
     for (int x = 1; x < width - 1; x++)
     {
@@ -29,7 +31,6 @@ int check_walls_b(t_game *game, char **map)
             }
         }
     }
-
     // Controlla la seconda riga
     for (int x = 1; x < width - 1; x++)
     {
@@ -42,8 +43,7 @@ int check_walls_b(t_game *game, char **map)
             }
         }
     }
-
-    return 1;
+    return (1);
 }
 
 static int	find_player_b(t_game **game)

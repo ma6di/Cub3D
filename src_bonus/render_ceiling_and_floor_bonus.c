@@ -60,19 +60,11 @@ void	draw_floor_texture_b(t_game *game)
 void	draw_ceiling_texture_b(t_game *game)
 {
 	int		y;
-	double	row_distance;
-	double	step_x;
-	double	step_y;
 
 	y = 0;
 	while (y < SCREEN_HEIGHT / 2)
 	{
-		row_distance = (0.5 * SCREEN_HEIGHT) / ((SCREEN_HEIGHT / 2) - y);
-		step_x = row_distance * (game->player.dir_x + game->player.plane_x - \
-			(game->player.dir_x - game->player.plane_x)) / SCREEN_WIDTH;
-		step_y = row_distance * (game->player.dir_y + game->player.plane_y - \
-			(game->player.dir_y - game->player.plane_y)) / SCREEN_WIDTH;
-		draw_ceiling_row_b(game, y, step_x, step_y);
+		draw_ceiling_row_b(game, y);
 		y++;
 	}
 }

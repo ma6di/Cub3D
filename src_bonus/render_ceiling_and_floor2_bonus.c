@@ -65,40 +65,41 @@ void	draw_floor_row_b(t_game *game, int y, double step_x, double step_y)
 	}
 }
 
-void	draw_ceiling_tile_b(t_game *game, t_tile_coords *coords)
+void draw_ceiling_tile_b(t_game *game, t_tile_coords *coords)
 {
-	int	tex_color;
+    int tex_x, tex_y, tex_color;
+    
+    // ✅ Convert player's direction to an angle
+    double angle = atan2(game->player.dir_y, game->player.dir_x);
+    
+    // ✅ Map the rotation angle to the skybox horizontally (scale factor controls skybox width)
+    double sky_rotation_factor = 0.1;  // Adjust this to control sky scrolling speed
+    double sky_offset = (angle / (2 * M_PI)) * game->color[CEILING].width;
 
-	tex_color = get_cf_texture_pixel_b(game->color, \
-	abs((int)(coords->tile_x * game->color[CEILING].width)) % \
-	game->color[CEILING].width, abs((int)(coords->tile_y * \
-	game->color[CEILING].height)) % game->color[CEILING].height, CEILING);
-	my_mlx_pixel_put_b(game, coords->x, coords->y, tex_color);
+    // ✅ Compute texture coordinates
+    tex_x = ((int)((coords->x / (double)SCREEN_WIDTH) * game->color[CEILING].width) + (int)sky_offset) % game->color[CEILING].width;
+    if (tex_x < 0) tex_x += game->color[CEILING].width;  // Ensure positive modulo
+    
+    tex_y = (int)((coords->y / (double)(SCREEN_HEIGHT / 2)) * game->color[CEILING].height) % game->color[CEILING].height;
+
+    tex_color = get_cf_texture_pixel_b(game->color, tex_x, tex_y, CEILING);
+    my_mlx_pixel_put_b(game, coords->x, coords->y, tex_color);
 }
 
-void	draw_ceiling_row_b(t_game *game, int y, double step_x, double step_y)
-{
-	int				x;
-	double			ceil_x;
-	double			ceil_y;
-	t_tile_coords	coords;
 
-	x = 0;
-	ceil_x = game->player.x + \
-		((0.5 * SCREEN_HEIGHT) / ((SCREEN_HEIGHT / 2) - y)) * \
-		(game->player.dir_x - game->player.plane_x);
-	ceil_y = game->player.y + \
-		((0.5 * SCREEN_HEIGHT) / ((SCREEN_HEIGHT / 2) - y)) * \
-		(game->player.dir_y - game->player.plane_y);
-	while (x < SCREEN_WIDTH)
-	{
-		coords.x = x;
-		coords.y = y;
-		coords.tile_x = ceil_x;
-		coords.tile_y = ceil_y;
-		draw_ceiling_tile_b(game, &coords);
-		ceil_x += step_x;
-		ceil_y += step_y;
-		x++;
-	}
+
+void draw_ceiling_row_b(t_game *game, int y)
+{
+    int x;
+    t_tile_coords coords;
+
+    x = 0;
+    while (x < SCREEN_WIDTH)
+    {
+        coords.x = x;
+        coords.y = y;
+        draw_ceiling_tile_b(game, &coords);
+        x++;
+    }
 }
+

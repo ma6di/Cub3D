@@ -228,7 +228,7 @@ void	minimap_b(t_game *game);
 int		release_key_b(int keycode, t_game *game);
 void	update_player_b(t_game *game);
 void	init_ray_b(t_ray *ray);
-void	draw_ceiling_row_b(t_game *game, int y, double step_x, double step_y);
+void	draw_ceiling_row_b(t_game *game, int y);
 void	draw_floor_row_b(t_game *game, int y, double step_x, double step_y);
 bool	is_empty_line_b(const char *line);
 void	remove_trailing_empty_lines_b(char **map);
