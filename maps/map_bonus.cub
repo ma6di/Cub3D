@@ -1,5 +1,4 @@
 
-C assets/Night_Sky.xpm
 
 D assets/door.xpm
 NO assets/north.xpm
@@ -10,8 +9,7 @@ F assets/floor.xpm
 
 WE           assets/west.xpm
 EA assets/east.xpm
-
-SK 
+SK assets/Night_Sky.xpm
 
         111 111111111111111111111
         1011100000110000000000001

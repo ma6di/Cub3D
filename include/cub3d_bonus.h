@@ -38,6 +38,7 @@
 
 # define FLOOR	0
 # define CEILING	1
+# define SKY	2
 
 # define FORWARD 1
 # define BACKWARD 2
@@ -171,7 +172,7 @@ typedef struct s_game
 	int				keys[6];
 	t_player		player;			  // Player data
 	t_texture	  	textures[5];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
-	t_color			color[2];
+	t_color			color[3];
 	t_minimap		minimap;	 // Floor RGB color
 	t_ray		ray;
 }				t_game;
@@ -228,8 +229,6 @@ void	minimap_b(t_game *game);
 int		release_key_b(int keycode, t_game *game);
 void	update_player_b(t_game *game);
 void	init_ray_b(t_ray *ray);
-void	draw_ceiling_row_b(t_game *game, int y);
-void	draw_floor_row_b(t_game *game, int y, double step_x, double step_y);
 bool	is_empty_line_b(const char *line);
 void	remove_trailing_empty_lines_b(char **map);
 int		check_empty_line_b(char **map);
@@ -243,6 +242,11 @@ int		check_enclosure_b(t_game *game, char **map);
 int		validate_map_chars_b(t_game *game);
 int		check_corners_b(t_game *game, char **map);
 int		check_walls_b(t_game *game, char **map);
+void	draw_floor_texture_b(t_game *game);
+void	draw_floor_pixel_b(t_game *game);
+void	draw_ceiling_texture_b(t_game *game);
+void	draw_ceiling_pixel_b(t_game *game);
+void	draw_sky_texture_b(t_game *game);
 
 
 #endif

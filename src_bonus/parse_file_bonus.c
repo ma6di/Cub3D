@@ -55,7 +55,8 @@ void	file_data_order_b(t_game *game)
 		!game->textures[WEST].path || \
 		!game->textures[EAST].path || \
 		!game->color[FLOOR].col_tex_str || \
-		!game->color[CEILING].col_tex_str)
+		(!game->color[CEILING].col_tex_str && \
+		!game->color[SKY].col_tex_str))
 	{
 		print_error(RED"Error: cub file data is not in order\n"RESET);
 		game->file_order = 1;
@@ -78,6 +79,8 @@ static int	check_line_b(char *line, t_game *game)
 		game->color[FLOOR].col_tex_str = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "C ", 2) == 0)
 		game->color[CEILING].col_tex_str = ft_strdup(str_start_b(line + 1));
+	else if (line && ft_strncmp(line, "SK ", 3) == 0)
+		game->color[SKY].col_tex_str = ft_strdup(str_start_b(line + 2));
 	else if (line && (ft_strnstr(line, "1111", ft_strlen(line))) && \
 			game->map_statred == 0)
 	{

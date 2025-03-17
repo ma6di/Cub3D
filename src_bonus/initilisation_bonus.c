@@ -1,27 +1,17 @@
 #include "cub3d_bonus.h"
 
-static void	init_colors_b(t_color *color)
+static void	init_colors_b(t_color *color, int index, int dim)
 {
-	color[FLOOR].col_tex_str = NULL;
-	color[FLOOR].mode = 0;
-	color[FLOOR].r = 0;
-	color[FLOOR].g = 0;
-	color[FLOOR].b = 0;
-	color[FLOOR].hex_color = 0;
-	color[FLOOR].height = 128;
-	color[FLOOR].width = 128;
-	color[FLOOR].addr = NULL;
-	color[FLOOR].img = NULL;
-	color[CEILING].col_tex_str = NULL;
-	color[CEILING].mode = 0;
-	color[CEILING].r = 0;
-	color[CEILING].g = 0;
-	color[CEILING].b = 0;
-	color[CEILING].hex_color = 0;
-	color[CEILING].height = 128;
-	color[CEILING].width = 128;
-	color[CEILING].addr = NULL;
-	color[CEILING].img = NULL;
+	color[index].col_tex_str = NULL;
+	color[index].mode = 0;
+	color[index].r = 0;
+	color[index].g = 0;
+	color[index].b = 0;
+	color[index].hex_color = 0;
+	color[index].height = dim;
+	color[index].width = dim;
+	color[index].addr = NULL;
+	color[index].img = NULL;
 }
 
 void	init_minimap_b(t_minimap *minimap)
@@ -71,6 +61,10 @@ void	init_game_b(t_game *game)
 	init_texture_b(game->textures, WEST, 64);
 	init_texture_b(game->textures, EAST, 64);
 	init_texture_b(game->textures, DOOR, 128);
-	init_colors_b(game->color);
+	init_colors_b(game->color, FLOOR, 128);
+	if (game->color[CEILING].col_tex_str)
+		init_colors_b(game->color, CEILING, 128);
+	else
+		init_colors_b(game->color, SKY, 128);
 	init_minimap_b(&game->minimap);
 }

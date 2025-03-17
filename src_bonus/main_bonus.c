@@ -5,7 +5,10 @@
 int	render_b(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->win);
-	draw_floor_and_ceiling_b(game, CEILING);
+	if (game->color[CEILING].col_tex_str)
+		draw_floor_and_ceiling_b(game, CEILING);
+	else
+		draw_floor_and_ceiling_b(game, SKY);
 	draw_floor_and_ceiling_b(game, FLOOR);
 	cast_rays_b(game);
 	minimap_b(game);

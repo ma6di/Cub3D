@@ -28,18 +28,23 @@ int	validate_file_b(const char *filename)
 
 int	validate_colors_b(t_color *color)
 {
-	if (!color[FLOOR].col_tex_str || !color[CEILING].col_tex_str)
+	if (!color[FLOOR].col_tex_str || (!color[CEILING].col_tex_str && \
+	!color[SKY].col_tex_str))
 	{
 		print_error(RED"Error: Missing floor or ceiling color (F, C)\n"RESET);
 		return (0);
 	}
 	if (!is_valid_color_texture_b(&color[FLOOR]))
 		return (0);
-	if (!is_valid_color_texture_b(&color[CEILING]))
-	{
-		print_error(RED"Error: Invalid ceiling color\n"RESET);
-		return (0);
-	}
+	if(color[CEILING].col_tex_str)
+		!is_valid_color_texture_b(&color[CEILING]);
+	else
+		!is_valid_color_texture_b(&color[SKY]);
+	// if (!is_valid_color_texture_b(&color[CEILING]) && !is_valid_color_texture_b(&color[SKY]))
+	// {
+	// 	print_error(RED"Error: Invalid ceiling color\n"RESET);
+	// 	return (0);
+	// }
 	return (1);
 }
 

@@ -26,6 +26,7 @@ int	is_valid_texture_path_b(char *path)
 	if (len < 5 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
 	{
 		print_error(RED"Error: Texture file must be a .xpm file\n"RESET);
+		print_error(RED"%s\n"RESET, path);
 		return (0);
 	}
 	return (1);
