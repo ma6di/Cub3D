@@ -3,15 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:12:24 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:01:22 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:36:55 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+int check_walls(t_game *game, char **map)
+{
+    int height = game->height;
+    int width = game->width;
+
+    // Controlla la penultima riga
+    for (int x = 1; x < width - 1; x++)
+    {
+        if (map[height - 2][x] == '0')
+        {
+            if (map[height - 1][x - 1] != '1' || map[height - 1][x] != '1' || map[height - 1][x + 1] != '1')
+            {
+                print_error("Error: Map not enclosed at the last line near (%d, %d)\n", x, height - 1);
+                return 0;
+            }
+        }
+    }
+
+    // Controlla la seconda riga
+    for (int x = 1; x < width - 1; x++)
+    {
+        if (map[1][x] == '0')
+        {
+            if (map[0][x - 1] != '1' || map[0][x] != '1' || map[0][x + 1] != '1')
+            {
+                print_error("Error: Map not enclosed at the first line near (%d, %d)\n", x, 0);
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
 
 //calculate map dimentions and fills the struct width and height
 void cal_map_dim(t_game **game)
@@ -353,7 +386,8 @@ int is_map_closed_and_accessible(t_game *game, char **map, int height, int width
 	}
     flood_fill(game, visited);
     if (!check_accessibility(game, visited) || !check_enclosure(game, map) || 
-		!check_corners(game, map))
+		!check_corners(game, map) || \
+		!check_walls(game, map))
     {
         free_visited(visited, height);
         return (0);

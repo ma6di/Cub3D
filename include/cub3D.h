@@ -198,5 +198,6 @@ void	minimap(t_game *game);
 int		release_key(int keycode, t_game *game);
 void	update_player(t_game *game);
 void	init_ray(t_ray *ray);
+int		check_walls(t_game *game, char **map);
 
 #endif

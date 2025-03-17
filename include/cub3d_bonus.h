@@ -242,7 +242,7 @@ void	init_directions(int *dxy);
 int		check_enclosure(t_game *game, char **map);
 int		validate_map_chars(t_game *game);
 int		check_corners(t_game *game, char **map);
-
+int		check_walls_b(t_game *game, char **map);
 
 
 #endif

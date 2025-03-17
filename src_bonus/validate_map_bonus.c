@@ -3,14 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:12:24 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 16:22:23 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:36:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+int check_walls_b(t_game *game, char **map)
+{
+    int height = game->height;
+    int width = game->width;
+
+    // Controlla la penultima riga
+    for (int x = 1; x < width - 1; x++)
+    {
+        if (map[height - 2][x] == '0')
+        {
+            if (map[height - 1][x - 1] != '1' || map[height - 1][x] != '1' || map[height - 1][x + 1] != '1')
+            {
+                print_error("Error: Map not enclosed at the last line near (%d, %d)\n", x, height - 1);
+                return 0;
+            }
+        }
+    }
+
+    // Controlla la seconda riga
+    for (int x = 1; x < width - 1; x++)
+    {
+        if (map[1][x] == '0')
+        {
+            if (map[0][x - 1] != '1' || map[0][x] != '1' || map[0][x + 1] != '1')
+            {
+                print_error("Error: Map not enclosed at the first line near (%d, %d)\n", x, 0);
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
 
 static int	find_player(t_game **game)
 {
@@ -81,7 +115,8 @@ int	is_map_closed_and_accessible(t_game *game, char **map, \
 	flood_fill(game, visited);
 	if (!check_accessibility(game, visited) || \
 		!check_enclosure(game, map) || \
-		!check_corners(game, map))
+		!check_corners_b(game, map) || \
+		!check_walls_b(game, map))
 	{
 		free_visited(visited, height);
 		return (0);
@@ -89,4 +124,5 @@ int	is_map_closed_and_accessible(t_game *game, char **map, \
 	free_visited(visited, height);
 	return (1);
 }
+
 
