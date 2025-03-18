@@ -19,6 +19,7 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_wall_texture_b(game, WEST, game->textures[WEST].path);
 	init_mlx_wall_texture_b(game, EAST, game->textures[EAST].path);
 	init_mlx_wall_texture_b(game, DOOR, game->textures[DOOR].path);
+	init_mlx_gun_texture_b(game, game->gun.path);
 	set_colors_b(game, game->color, FLOOR);
 	if (game->color[CEILING].col_tex_str)
 		set_colors_b(game, game->color, CEILING);

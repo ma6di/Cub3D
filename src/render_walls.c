@@ -6,9 +6,9 @@ int	get_wall_texture_pixel(t_texture *texture, int x, int y, int tex_id)
 	char	*dst;
 	int		color;
 
-	if (!texture || tex_id < 0 || tex_id >= 5)
+	if (!texture || tex_id < 0 || tex_id >= 6)
 	{
-		print_error(RED"Error: Invalid texture ID %d\nRESET", tex_id);
+		print_error(RED"Error: Invalid texture ID %d\n"RESET, tex_id);
 		return (-1);
 	}
 	if (!texture[tex_id].addr)

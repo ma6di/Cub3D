@@ -33,7 +33,7 @@ BONUS_SRCS = src_bonus/render_ceiling_and_floor_bonus.c src_bonus/free_destroy_g
              src_bonus/render_walls_bonus.c src_bonus/initilisation_bonus.c src_bonus/set_game_data_bonus.c  \
              src_bonus/Key_handler_bonus.c src_bonus/tools_bonus.c src_bonus/main_bonus.c src_bonus/validate_colors_bonus.c \
              src_bonus/map_corner_cases_bonus.c src_bonus/validate_elements_bonus.c src_bonus/minimap_bonus.c src_bonus/parse_file_bonus.c \
-             src_bonus/movement_bonus.c src_bonus/validate_map_bonus.c src_bonus/validate_texture_path_bonus.c \
+             src_bonus/movement_bonus.c src_bonus/validate_map_bonus.c src_bonus/validate_texture_path_bonus.c src_bonus/gun_bonus.c \
              src_bonus/print_error_bonus.c src_bonus/window_bonus.c src_bonus/rays_bonus.c src_bonus/initilisation2_bonus.c \
 			 src_bonus/render_ceiling_bonus.c src_bonus/render_floor_bonus.c src_bonus/debug_bonus.c src_bonus/map_empty_line_check_bonus.c \
 			 src_bonus/map_enclosement_check_bonus.c src_bonus/map_check_tools_bonus.c src_bonus/map_accessibility_check_bonus.c \

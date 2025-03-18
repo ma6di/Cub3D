@@ -54,6 +54,9 @@
 # define KEY_RIGHT 4
 # define KEY_LEFT 5
 # define KEY_SPACE 6
+# define KEY_CTRL 7
+
+
 
 # define PUSH 1
 # define POP 0
@@ -110,8 +113,6 @@ typedef struct s_texture
 	int	 	bpp;		// Bits per pixel
 	int	 	line_len;   // Bytes per line
 	int	 	endian;	 // Endian format
-	int		door_state;
-	int		**door_pos;
 }			t_texture;
 
 
@@ -142,6 +143,20 @@ typedef struct s_minimap
     int offset_x;
     int offset_y;
 }       t_minimap;
+
+typedef struct s_gun
+{
+    int screen_x;
+    int screen_y;
+	int gun_height;
+    int gun_width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_gun;
 
 typedef struct	s_ray
 {
@@ -180,13 +195,14 @@ typedef struct s_game
 	void			*win;				// Window pointer
 	void			*img;
 	void			*addr;
-	int				keys[6];
+	int				keys[7];
 	t_player		player;			  // Player data
-	t_texture	  	textures[5];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
+	t_texture	  	textures[6];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
 	t_color			color[3];
 	t_minimap		minimap;
 	t_door			*door;	 // Floor RGB color
-	t_ray		ray;
+	t_ray			ray;
+	t_gun			gun;
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -261,7 +277,10 @@ void	draw_ceiling_pixel_b(t_game *game);
 void	draw_sky_texture_b(t_game *game);
 void	set_doors(t_game *game);
 int		is_door_b(t_game *game);
-int which_door(t_game *game, double world_y, double world_x);
+int		which_door(t_game *game, double world_y, double world_x);
+void	draw_gun_b(t_game *game);
+void	init_gun_b(t_gun *gun, int dim);
+void	init_mlx_gun_texture_b(t_game *game, char *path);
 
 
 #endif

@@ -39,3 +39,15 @@ void	init_mlx_ray_b(t_ray *ray, t_game *game, int x)
 	calculate_step_b(ray, game);
 }
 
+void init_gun_b(t_gun *gun, int dim)
+{
+	gun->addr = NULL;
+	gun->img = NULL;
+	gun->path = NULL;
+	gun->gun_height = dim;
+	gun->gun_width = dim;
+    gun->screen_x = 0;
+    gun->screen_y = 0;
+	gun->screen_x = (SCREEN_WIDTH / 2) - (gun->gun_width / 2);  // ✅ Center horizontally
+    gun->screen_y = SCREEN_HEIGHT - gun->gun_height;           // ✅ Position at bottom
+}

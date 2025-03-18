@@ -7,7 +7,7 @@ int	get_wall_texture_pixel_b(t_texture *texture, int x, int y, int tex_id)
 
 	if (!texture || tex_id < 0 || tex_id >= 5)
 	{
-		print_error(RED"Error: Invalid texture ID %d\nRESET", tex_id);
+		print_error(RED"Error: Invalid texture ID %d\n"RESET, tex_id);
 		return (-1);
 	}
 	if (!texture[tex_id].addr)
@@ -34,7 +34,7 @@ void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color)
 
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 	{
-		print_error(RED"Error: Pixel (%d, %d) out of bounds!\n"RESET, x, y);
+		//print_error(RED"Error: Pixel (%d, %d) out of bounds!\n"RESET, x, y);
 		return ;
 	}
 
