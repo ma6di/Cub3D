@@ -4,7 +4,7 @@ D assets/door.xpm
 NO assets/north.xpm
 SO assets/south.xpm
 G assets/gun.xpm
-
+GS assets/gun_shut.xpm
 F assets/floor.xpm
 
 WE           assets/west.xpm

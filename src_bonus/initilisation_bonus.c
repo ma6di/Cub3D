@@ -60,7 +60,8 @@ void	init_game_b(t_game *game)
 	init_texture_b(game->textures, WEST, 64);
 	init_texture_b(game->textures, EAST, 64);
 	init_texture_b(game->textures, DOOR, 128);
-	init_gun_b(&game->gun, 150);
+	init_gun_b(&game->gun, 150, GUN);
+	init_gun_b(&game->gun, 40, GUN_SHUT);
 	init_colors_b(game->color, FLOOR, 128);
 	if (game->color[CEILING].col_tex_str)
 		init_colors_b(game->color, CEILING, 128);

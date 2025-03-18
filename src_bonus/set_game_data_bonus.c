@@ -26,26 +26,26 @@ void	init_mlx_wall_texture_b(t_game *game, int index, char *path)
 	}
 }
 
-void	init_mlx_gun_texture_b(t_game *game, char *path)
+void	init_mlx_gun_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
 		print_error(RED"Texture path is NULL\n"RESET);
 		return ;
 	}
-	game->gun.img = mlx_xpm_file_to_image(\
-		game->mlx, path, &(game->gun.gun_width), \
-		&(game->gun.gun_height));
-	if (!game->gun.img)
+	game->gun[index].img = mlx_xpm_file_to_image(\
+		game->mlx, path, &(game->gun[index].width), \
+		&(game->gun[index].height));
+	if (!game->gun[index].img)
 	{
 		print_error(RED"Texture file could not be loaded: ");
 		print_error("%s\n"RESET, path);
 		close_window_b(game);
 	}
-	game->gun.addr = mlx_get_data_addr(\
-		game->gun.img, &game->gun.bpp, \
-		&game->gun.line_len, &game->gun.endian);
-	if (!game->gun.addr)
+	game->gun[index].addr = mlx_get_data_addr(\
+		game->gun[index].img, &game->gun[index].bpp, \
+		&game->gun[index].line_len, &game->gun[index].endian);
+	if (!game->gun[index].addr)
 	{
 		print_error(RED"Error: Texture %d address is NULL!\n"RESET, index);
 		close_window_b(game);

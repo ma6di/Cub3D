@@ -65,6 +65,11 @@ int press_key_b(int keycode, t_game *game)
         game->keys[KEY_LEFT] = 1;
     else if (keycode == XK_Right)
         game->keys[KEY_RIGHT] = 1;
+	else if (keycode == XK_Control_L)
+	{
+        render_gun_shut_b(game);
+		render_gun_shut_b(game);
+	}
     else if (keycode == XK_space)
     {
         door_index = is_door_b(game);  // ✅ Avoid multiple calls
