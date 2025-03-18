@@ -114,6 +114,16 @@ typedef struct s_texture
 	int		**door_pos;
 }			t_texture;
 
+
+/* 🚶 Player */
+typedef struct s_door
+{
+	int	x;		  // Door's X position
+	int	y;		  // Door's Y position
+	int	door_state; // 0 (close), 1, 2, 3, 4, 5(open)
+} t_door;
+
+
 /* 🚶 Player */
 typedef struct s_player
 {
@@ -165,6 +175,7 @@ typedef struct s_game
 	char			**map;			  // 2D array for the map
 	int				width;			   // Map width
 	int				height;
+	int				door_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
@@ -173,7 +184,8 @@ typedef struct s_game
 	t_player		player;			  // Player data
 	t_texture	  	textures[5];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
 	t_color			color[3];
-	t_minimap		minimap;	 // Floor RGB color
+	t_minimap		minimap;
+	t_door			*door;	 // Floor RGB color
 	t_ray		ray;
 }				t_game;
 
@@ -247,6 +259,9 @@ void	draw_floor_pixel_b(t_game *game);
 void	draw_ceiling_texture_b(t_game *game);
 void	draw_ceiling_pixel_b(t_game *game);
 void	draw_sky_texture_b(t_game *game);
+void	set_doors(t_game *game);
+int		is_door_b(t_game *game);
+int which_door(t_game *game, double world_y, double world_x);
 
 
 #endif

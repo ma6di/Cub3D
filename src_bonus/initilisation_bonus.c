@@ -26,8 +26,8 @@ static void	init_texture_b(t_texture *textures, int index, int dim)
 	textures[index].addr = NULL;
 	textures[index].img = NULL;
 	textures[index].path = NULL;
-	if (index == DOOR)
-		textures[index].door_state = 0;
+	// if (index == DOOR)
+	// 	textures[index].door_state = 0;
 	textures[index].height = dim;
 	textures[index].width = dim;
 }
@@ -54,6 +54,7 @@ void	init_game_b(t_game *game)
 	game->addr = NULL;
 	game->map_statred = 0;
 	game->file_order = 0;
+	game->door_count = 0;
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_texture_b(game->textures, NORTH, 64);

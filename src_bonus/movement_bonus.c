@@ -67,27 +67,29 @@ static void	calculate_new_position_b(int direction, \
 	}
 }
 
-void	move_player_b(int direction, t_game *game)
+void move_player_b(int direction, t_game *game)
 {
-	double	new_x;
-	double	new_y;
+    double new_x;
+    double new_y;
+    int door_index;
 
-	new_x = game->player.x;
-	new_y = game->player.y;
-	calculate_new_position_b(direction, game, &new_x, &new_y);
-	if (game->map[(int)new_y][(int)new_x] != '1' && \
-		game->map[(int)new_y][(int)new_x] != 'D')
-	{
-		game->player.x = new_x;
-		game->player.y = new_y;
-	}
-	else if (game->map[(int)new_y][(int)new_x] != '1' && \
-			game->map[(int)new_y][(int)new_x] == 'D' && \
-			game->textures[DOOR].door_state == 1)
-	{
-		game->player.x = new_x;
-		game->player.y = new_y;
-	}
+    new_x = game->player.x;
+    new_y = game->player.y;
+
+    calculate_new_position_b(direction, game, &new_x, &new_y);
+
+    // ✅ First check if it's a wall
+    if (game->map[(int)new_y][(int)new_x] == '1')
+        return;
+
+    // ✅ Check if it's a door and whether it's open
+    door_index = which_door(game, (int)new_y, (int)new_x);
+    if (game->map[(int)new_y][(int)new_x] == 'D' && (door_index == -1 || game->door[door_index].door_state == 0))
+        return;
+
+    // ✅ Move the player if it's a valid position
+    game->player.x = new_x;
+    game->player.y = new_y;
 }
 
 int	mouse_rotate_b(int x, int y, t_game *game)

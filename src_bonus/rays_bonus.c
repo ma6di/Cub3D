@@ -25,35 +25,45 @@ void	calculate_step_b(t_ray *ray, t_game *game)
 		ray->side_disty = (ray->mapy + 1.0 - game->player.y) * ray->deltadisty;
 	}
 }
-
-void	perform_dda_b(t_ray *ray, t_game *game)
+void perform_dda_b(t_ray *ray, t_game *game)
 {
-	while (ray->mapx >= 0 && ray->mapx < game->width && \
-	ray->mapy >= 0 && ray->mapy < game->height && \
-	(game->map[ray->mapy][ray->mapx] != '1' && \
-	(game->map[ray->mapy][ray->mapx] != 'D' || \
-	game->textures[DOOR].door_state == 1)))
-	{
-		if (ray->side_distx < ray->side_disty)
-		{
-			ray->side_distx += ray->deltadistx;
-			ray->mapx += ray->stepx;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_disty += ray->deltadisty;
-			ray->mapy += ray->stepy;
-			ray->side = 1;
-		}
-	}
-	if (ray->mapx >= 0 && ray->mapx < game->width && ray->mapy >= 0 && \
-		ray->mapy < game->height && game->map[ray->mapy][ray->mapx] == 'D' \
-		&& game->textures[DOOR].door_state == 0)
-	{
-		ray->door = 1;
-	}
+    int door_index;
+
+    while (ray->mapx >= 0 && ray->mapx < game->width &&
+           ray->mapy >= 0 && ray->mapy < game->height &&
+           game->map[ray->mapy][ray->mapx] != '1')
+    {
+        door_index = which_door(game, ray->mapy, ray->mapx);
+        if (game->map[ray->mapy][ray->mapx] == 'D')
+        {
+            if (door_index != -1 && game->door[door_index].door_state == 0)
+                break;
+        }
+
+        if (ray->side_distx < ray->side_disty)
+        {
+            ray->side_distx += ray->deltadistx;
+            ray->mapx += ray->stepx;
+            ray->side = 0;
+        }
+        else
+        {
+            ray->side_disty += ray->deltadisty;
+            ray->mapy += ray->stepy;
+            ray->side = 1;
+        }
+    }
+
+    door_index = which_door(game, ray->mapy, ray->mapx);
+    if (door_index != -1 && game->door[door_index].door_state == 0)
+    {
+        ray->door = 1;
+    }
 }
+
+
+
+
 
 void	calculate_wall_height_b(t_ray *ray, t_game *game)
 {

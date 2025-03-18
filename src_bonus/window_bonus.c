@@ -51,5 +51,6 @@ void	create_window_b(t_game *game)
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_len, \
 									&game->endian);
 	init_all_mlx_textures_b(game);
+	set_doors(game);
 	loop_hook_b(game);
 }

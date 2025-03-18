@@ -29,7 +29,7 @@ SRCS    = src/render_ceiling_and_floor.c src/free_destroy_game.c  \
 			 src/flood_fill.c src/flood_fill_tool.c src/map_char_check.c
 
 
-BONUS_SRCS = src_bonus/render_ceiling_and_floor_bonus.c src_bonus/free_destroy_game_bonus.c  \
+BONUS_SRCS = src_bonus/render_ceiling_and_floor_bonus.c src_bonus/free_destroy_game_bonus.c src_bonus/set_doors_data_bonus.c \
              src_bonus/render_walls_bonus.c src_bonus/initilisation_bonus.c src_bonus/set_game_data_bonus.c  \
              src_bonus/Key_handler_bonus.c src_bonus/tools_bonus.c src_bonus/main_bonus.c src_bonus/validate_colors_bonus.c \
              src_bonus/map_corner_cases_bonus.c src_bonus/validate_elements_bonus.c src_bonus/minimap_bonus.c src_bonus/parse_file_bonus.c \
