@@ -79,7 +79,7 @@ int	last_pos_col_b(char **map, int col, int height)
 			(map[y][col] == '1' || map[y][col] == '0' ||
 			map[y][col] == 'N' || map[y][col] == 'S' ||
 			map[y][col] == 'W' || map[y][col] == 'E' ||
-			map[y][col] == 'D'))
+			map[y][col] == 'D' || map[y][col] == 'Z'))
 	{
 		y++;
 	}

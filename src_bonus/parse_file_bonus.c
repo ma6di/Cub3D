@@ -57,7 +57,8 @@ void	file_data_order_b(t_game *game)
 		!game->color[FLOOR].col_tex_str || \
 		(!game->color[CEILING].col_tex_str && \
 		!game->color[SKY].col_tex_str) ||
-		!game->gun[GUN].path)
+		!game->gun[GUN].path || 
+		!game->textures[ZOMBIE].path)
 	{
 		print_error(RED"Error: cub file data is not in order\n"RESET);
 		game->file_order = 1;
@@ -76,6 +77,8 @@ static int	check_line_b(char *line, t_game *game)
 		game->textures[EAST].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "D ", 2) == 0)
 		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
+	else if (line && ft_strncmp(line, "Z ", 2) == 0)
+		game->textures[ZOMBIE].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "G ", 2) == 0)
 		game->gun[GUN].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "GS ", 3) == 0)
@@ -93,7 +96,7 @@ static int	check_line_b(char *line, t_game *game)
 		game->map_statred = 1;
 		append_map_line_b(game, line);
 	}
-	else if (line && (ft_strchr("10NSWE \t", line[0])) && \
+	else if (line && (ft_strchr("10NSWEDZ \t", line[0])) && \
 			game->map_statred == 1)
 		append_map_line_b(game, line);
 	return (1);

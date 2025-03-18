@@ -13,7 +13,7 @@ LIBFTDIR = libft
 # Libraries
 LIBFT    = $(LIBFTDIR)/libft.a
 MLX      = $(MLXDIR)/libmlx.a
-MLX_FLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lm
+MLX_FLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lXrender -lm
 LIBFT_INC = -I$(LIBFTDIR)/include
 MLX_INC  = -I$(MLXDIR)
 
@@ -55,6 +55,7 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
 
 $(MLX):
+	@chmod +x $(MLXDIR)/configure
 	@$(MAKE) -C $(MLXDIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)

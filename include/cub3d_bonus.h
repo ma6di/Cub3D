@@ -35,6 +35,7 @@
 # define WEST	2
 # define EAST	3
 # define DOOR	4
+# define ZOMBIE 5
 
 # define FLOOR	0
 # define CEILING	1
@@ -193,6 +194,7 @@ typedef struct	s_ray
 	int		drawstart;
 	int		drawend;
 	int		door;
+	int		zombie;
 }				t_ray;
 /* 🎮 Game Structure */
 

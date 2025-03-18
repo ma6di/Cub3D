@@ -12,6 +12,7 @@ static void	loop_hook_b(t_game *game)
 	mlx_loop(game->mlx);
 }
 
+
 static void	init_all_mlx_textures_b(t_game *game)
 {
 	init_mlx_wall_texture_b(game, NORTH, game->textures[NORTH].path);
@@ -19,6 +20,7 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_wall_texture_b(game, WEST, game->textures[WEST].path);
 	init_mlx_wall_texture_b(game, EAST, game->textures[EAST].path);
 	init_mlx_wall_texture_b(game, DOOR, game->textures[DOOR].path);
+	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
 	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
 	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);
 	set_colors_b(game, game->color, FLOOR);

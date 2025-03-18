@@ -59,8 +59,9 @@ static int	validate_textures_b(t_texture *textures)
 	if (!is_valid_texture_path_b(textures[NORTH].path) || \
 		!is_valid_texture_path_b(textures[SOUTH].path) \
 		|| !is_valid_texture_path_b(textures[WEST].path) \
-		|| !is_valid_texture_path_b(textures[EAST].path)
-		|| !is_valid_texture_path_b(textures[DOOR].path))
+		|| !is_valid_texture_path_b(textures[EAST].path) \
+		|| !is_valid_texture_path_b(textures[DOOR].path) \
+		|| !is_valid_texture_path_b(textures[ZOMBIE].path))
 		return (0);
 	return (1);
 }

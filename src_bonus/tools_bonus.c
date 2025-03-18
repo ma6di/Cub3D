@@ -46,6 +46,11 @@ int	select_texture_b(t_ray *ray, t_game *game)
 		ray->door = 0;
 		return (DOOR);
 	}
+	if (ray->zombie == 1)
+	{
+		ray->zombie = 0;
+		return (ZOMBIE);
+	}
 	if (ray->side == 0)
 	{
 		if (ray->dirx > 0)
