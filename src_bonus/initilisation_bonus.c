@@ -53,6 +53,7 @@ void	init_game_b(t_game *game)
 	game->map_statred = 0;
 	game->file_order = 0;
 	game->door_count = 0;
+	game->sprite_count = 0;
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_texture_b(game->textures, NORTH, 64);

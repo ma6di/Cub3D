@@ -127,6 +127,16 @@ typedef struct s_door
 	int	door_state; // 0 (close), 1, 2, 3, 4, 5(open)
 } t_door;
 
+typedef struct s_sprite
+{
+    double x;   // Sprite world X position
+    double y;   // Sprite world Y position
+    double distance;  // Distance from player (for sorting)
+    int visible;  // If the sprite is visible in the player's view
+    double speed;     // ✅ Speed of movement
+    int active;       // ✅ 1 = moving, 0 = idle
+} t_sprite;
+
 
 /* 🚶 Player */
 typedef struct s_player
@@ -209,6 +219,7 @@ typedef struct s_game
 	int				width;			   // Map width
 	int				height;
 	int				door_count;
+	int				sprite_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
@@ -221,6 +232,8 @@ typedef struct s_game
 	t_door			*door;	 // Floor RGB color
 	t_ray			ray;
 	t_gun			gun[2];
+	t_sprite		*sprites;
+	double			*z_buffer;
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -255,7 +268,7 @@ int		first_pos_col_b(char **map, int col);
 int		last_pos_col_b(char **map, int col, int height);
 void	init_mlx_ray_b(t_ray *ray, t_game *game, int x);
 void	print_struct_b(t_game *game);
-void	calculate_wall_height_b(t_ray *ray, t_game *game);
+void	calculate_wall_height_b(t_ray *ray, t_game *game, int x);
 void	perform_dda_b(t_ray *ray, t_game *game);
 void	calculate_step_b(t_ray *ray, t_game *game);
 void	load_player_b(t_game *game);
@@ -300,6 +313,9 @@ void	draw_gun_b(t_game *game);
 void	init_gun_b(t_gun *gun, int dim, int index);
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path);
 void	render_gun_shut_b(t_game *game);
-
+void	render_sprites(t_game *game);
+void	set_sprites(t_game *game);
+void	set_sprites_cords(t_game *game);
+void	move_sprites(t_game *game);
 
 #endif

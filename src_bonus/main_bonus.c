@@ -12,9 +12,11 @@ int	render_b(t_game *game)
 	draw_floor_and_ceiling_b(game, FLOOR);
 	cast_rays_b(game);
 	minimap_b(game);
-	draw_gun_b(game);
 	update_player_b(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	render_sprites(game);
+	move_sprites(game);
+	draw_gun_b(game);
 	return (0);
 }
 

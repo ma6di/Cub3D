@@ -49,7 +49,6 @@ int	select_texture_b(t_ray *ray, t_game *game)
 	if (ray->zombie == 1)
 	{
 		ray->zombie = 0;
-		return (ZOMBIE);
 	}
 	if (ray->side == 0)
 	{

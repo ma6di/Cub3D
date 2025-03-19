@@ -23,6 +23,8 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
 	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
 	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);
+	set_sprites_cords(game);
+	set_doors(game);
 	set_colors_b(game, game->color, FLOOR);
 	if (game->color[CEILING].col_tex_str)
 		set_colors_b(game, game->color, CEILING);
@@ -55,6 +57,5 @@ void	create_window_b(t_game *game)
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_len, \
 									&game->endian);
 	init_all_mlx_textures_b(game);
-	set_doors(game);
 	loop_hook_b(game);
 }

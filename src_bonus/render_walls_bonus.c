@@ -90,60 +90,6 @@ static void	render_wall_slice_b(t_game *game, t_ray *ray, int x, int tex_id)
 	}
 }
 
-// void render_zombie(t_game *game, t_ray *ray)
-// {
-//     int x, y;
-//     int tex_x, tex_y;
-//     int color;
-//     int width = game->textures[ZOMBIE].width;
-//     int height = game->textures[ZOMBIE].height;
-
-//     // ✅ Calculate distance from player to zombie (avoid division by zero)
-//     double distance = sqrt(pow(ray->mapx - game->player.x, 2) + pow(ray->mapy - game->player.y, 2));
-//     if (distance < 0.1)  // Prevent extreme close rendering issues
-//         return;
-
-//     // ✅ Scale sprite size based on distance
-//     int sprite_size = (int)(TILE_SIZE / distance * 10); // Adjust 150 for proper scaling
-//     if (sprite_size < 10) // ✅ Prevent rendering when too small
-//         return;
-
-//     // ✅ Convert world coordinates to screen coordinates
-//     int screen_x = (ray->mapx - game->player.x) * TILE_SIZE + SCREEN_WIDTH / 2;
-//     int screen_y = (ray->mapy - game->player.y) * TILE_SIZE + SCREEN_HEIGHT / 2;
-
-//     // ✅ Ensure sprite is centered
-//     screen_x -= sprite_size / 2;
-//     screen_y -= sprite_size / 2;
-
-//     for (y = 0; y < sprite_size; y++)
-//     {
-//         int draw_y = screen_y + y;
-//         if (draw_y < 0 || draw_y >= SCREEN_HEIGHT) // ✅ Prevent out-of-bounds drawing
-//             continue;
-
-//         for (x = 0; x < sprite_size; x++)
-//         {
-//             int draw_x = screen_x + x;
-//             if (draw_x < 0 || draw_x >= SCREEN_WIDTH) // ✅ Prevent out-of-bounds drawing
-//                 continue;
-
-//             // ✅ Scale texture coordinates
-//             tex_x = (x * width) / sprite_size;
-//             tex_y = (y * height) / sprite_size;
-
-//             color = *((int *)(game->textures[ZOMBIE].addr +
-//                     (tex_y * game->textures[ZOMBIE].line_len + tex_x * (game->textures[ZOMBIE].bpp / 8))));
-
-//             // ✅ Check transparency correctly
-//            if ((color & 0xFF000000) != 0xFF000000)  // If NOT fully transparent
-//                 my_mlx_pixel_put_b(game, draw_x, draw_y, color);
-//         }
-//     }
-// }
-
-
-
 void	cast_rays_b(t_game *game)
 {
 	t_ray	ray;
@@ -159,12 +105,9 @@ void	cast_rays_b(t_game *game)
 		init_mlx_ray_b(&ray, game, x);
 		calculate_step_b(&ray, game);
 		perform_dda_b(&ray, game);
-		calculate_wall_height_b(&ray, game);
+		calculate_wall_height_b(&ray, game, x);
 		tex_id = select_texture_b(&ray, game);
-		// if(tex_id == ZOMBIE)
-		// 	render_zombie(game, &ray);
-		// else
-			render_wall_slice_b(game, &ray, x, tex_id);
+		render_wall_slice_b(game, &ray, x, tex_id);
 		x++;
 	}
 }
