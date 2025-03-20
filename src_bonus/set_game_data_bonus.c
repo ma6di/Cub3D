@@ -96,6 +96,42 @@ void	init_mlx_armor_bar_texture_b(t_game *game)
 	}
 }
 
+
+void	init_mlx_heart_texture_b(t_game *game)
+{
+	int index;
+	char *path;
+
+	index = 0;
+	while (index < 12)
+	{
+		if (!game->heart_tex[index].path)
+		{
+			print_error(RED"heart Texture %d path is NULL\n"RESET, index);
+			return ;
+		}
+		path = game->heart_tex[index].path;
+		game->heart_tex[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->heart_tex[index].width), \
+			&(game->heart_tex[index].height));
+		if (!game->heart_tex[index].img)
+		{
+			print_error(RED"Error: heart Texture file could not be loaded: ");
+			print_error("%s\n"RESET, path);
+			close_window_b(game);
+		}
+		game->heart_tex[index].addr = mlx_get_data_addr(\
+			game->heart_tex[index].img, &game->heart_tex[index].bpp, \
+			&game->heart_tex[index].line_len, &game->heart_tex[index].endian);
+		if (!game->armor[index].addr)
+		{
+			print_error(RED"Error: heart texture %d address is NULL!\n"RESET, index);
+			close_window_b(game);
+		}
+		index++;
+	}
+}
+
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)

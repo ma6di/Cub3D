@@ -85,3 +85,19 @@ void init_armor_b(t_armor *armor, int width, int height)
 		i++;
 	}
 }
+
+void init_heart_tex_b(t_heart_tex *heart_tex, int dim)
+{
+	int	i;
+
+	i = 0;
+	while(i < 0)
+	{
+		heart_tex[i].addr = NULL;
+		heart_tex[i].img = NULL;
+		heart_tex[i].path = NULL;
+		heart_tex[i].height = dim;
+		heart_tex[i].width = dim;
+		i++;
+	}
+}

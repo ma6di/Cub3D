@@ -31,7 +31,7 @@ static int	is_not_enclosed_b(t_game *game, char **map, int x, int y, int row_len
 	char	tile;
 
 	tile = map[y][x];
-	if ((tile == '0' || tile == 'N' || tile == 'S' || tile == 'E' || \
+	if ((tile == '0' || tile == 'N' || tile == 'S' || tile == 'E' || tile == 'H' ||\
 		tile == 'W' || tile == 'D' || tile == 'Z') && (x == 0 || y == 0 || \
 		x == row_len - 1 || y == game->height - 1 || \
 		map[y - 1][x] == ' ' || map[y + 1][x] == ' ' || \

@@ -99,6 +99,30 @@ static int	check_line_b(char *line, t_game *game)
 		game->armor[5].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "A6 ", 3) == 0)
 		game->armor[6].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R1 ", 3) == 0)
+		game->heart_tex[0].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R2 ", 3) == 0)
+		game->heart_tex[1].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R3 ", 3) == 0)
+		game->heart_tex[2].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R4 ", 3) == 0)
+		game->heart_tex[3].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R5 ", 3) == 0)
+		game->heart_tex[4].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R6 ", 3) == 0)
+		game->heart_tex[5].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R7 ", 3) == 0)
+		game->heart_tex[6].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R8 ", 3) == 0)
+		game->heart_tex[7].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R9 ", 3) == 0)
+		game->heart_tex[8].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "R10 ", 3) == 0)
+		game->heart_tex[9].path = ft_strdup(str_start_b(line + 3));
+	else if (line && ft_strncmp(line, "R11 ", 4) == 0)
+		game->heart_tex[10].path = ft_strdup(str_start_b(line + 3));
+	else if (line && ft_strncmp(line, "R12 ", 4) == 0)
+		game->heart_tex[11].path = ft_strdup(str_start_b(line + 3));
 	else if (line && ft_strncmp(line, "D ", 2) == 0)
 		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "Z ", 2) == 0)

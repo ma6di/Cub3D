@@ -202,7 +202,7 @@ typedef struct s_heath
 	int	 	endian;	 // Endian format
 }       t_health;
 
-typedef struct s_heart
+typedef struct s_heart_tex
 {
     int screen_x;
     int screen_y;
@@ -214,7 +214,19 @@ typedef struct s_heart
 	int	 	bpp;		// Bits per pixel
 	int	 	line_len;   // Bytes per line
 	int	 	endian;	 // Endian format
-}       t_heart;
+}       t_heart_tex;
+
+typedef struct s_heart
+{
+    double x;          // World X position
+    double y;          // World Y position
+    double distance;   // Distance from player
+    int visible;       // 1 = visible, 0 = not visible
+    int active;        // 1 = exists, 0 = collected
+    int animation_index;  // 🔄 Current frame of animation (0-11)
+    int animation_timer;  // ⏳ Counts frames to control animation speed
+} t_heart;
+
 
 typedef struct	s_ray
 {
@@ -251,6 +263,7 @@ typedef struct s_game
 	int				height;
 	int				door_count;
 	int				sprite_count;
+	int				heart_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
@@ -267,7 +280,8 @@ typedef struct s_game
 	double			*z_buffer;
 	t_health		health_bar[5];
 	t_armor			armor[7];
-	t_heart			heart[12];
+	t_heart			*heart;
+	t_heart_tex		heart_tex[12];
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -360,5 +374,11 @@ void	init_mlx_health_bar_texture_b(t_game *game);
 void	render_armor_bar_b(t_game *game);
 void	init_mlx_armor_bar_texture_b(t_game *game);
 void	init_armor_b(t_armor *armor, int width, int height);
+void	render_hearts(t_game *game);
+void	set_heart_cords(t_game *game);
+void	check_collect_hearts(t_game *game);
+void	init_mlx_heart_texture_b(t_game *game);
+void	init_heart_tex_b(t_heart_tex *heart_tex, int dim);
+
 
 #endif

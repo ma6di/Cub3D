@@ -89,6 +89,8 @@ void move_player_b(int direction, t_game *game)
     // ✅ Move the player if it's a valid position
     game->player.x = new_x;
     game->player.y = new_y;
+	check_collect_hearts(game); // ✅ Check if player collects a heart
+
 }
 
 int	mouse_rotate_b(int x, int y, t_game *game)
