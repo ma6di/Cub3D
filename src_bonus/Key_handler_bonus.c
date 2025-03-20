@@ -67,8 +67,12 @@ int press_key_b(int keycode, t_game *game)
         game->keys[KEY_RIGHT] = 1;
 	else if (keycode == XK_Control_L)
 	{
-        render_gun_shut_b(game);
-		render_gun_shut_b(game);
+		if(game->player.armor != 0)
+		{
+			game->player.armor -= 1;
+			render_gun_shut_b(game);
+			render_gun_shut_b(game);
+		}
 		t_sprite *zombie = get_zombie_in_front(game);
 		if (zombie)
 		{

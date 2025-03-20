@@ -2,29 +2,6 @@
 
 #include "cub3d_bonus.h"
 
-
-int is_sprite_b(t_game *game, double player_x, double player_y)
-{
-    int index;
-    double tolerance = 0.5;  // ✅ Allow slight overlap (adjust as needed)
-
-    index = 0;
-    while (index < game->sprite_count)
-    {
-        double sprite_x = game->sprites[index].x;
-        double sprite_y = game->sprites[index].y;
-
-        // ✅ Check if the player's position is close enough to the sprite
-        if (fabs(sprite_x - player_x) < tolerance && fabs(sprite_y - player_y) < tolerance)
-        {
-            return index;  // ✅ Collision detected
-        }
-        index++;
-    }
-    return -1;  // ✅ No collision
-}
-
-
 void	update_player_b(t_game *game)
 {
 	if (game->keys[KEY_W])
@@ -109,18 +86,6 @@ void move_player_b(int direction, t_game *game)
     door_index = which_door(game, (int)new_y, (int)new_x);
     if (game->map[(int)new_y][(int)new_x] == 'D' && (door_index == -1 || game->door[door_index].door_state == 0))
         return;
-	if (is_sprite_b(game, game->player.x, game->player.y) != -1)
-		game->player.health -= 5;
-	if (game->player.health < 2)
-	{
-		printf(RED
-		"\r\n"
-		"\r     🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆\n"
-		"\r     🍆        YOU ARE DEAD      🍆\n"
-		"\r     🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆\n"
-		RESET);
-		close_window_b(game);
-	}
     // ✅ Move the player if it's a valid position
     game->player.x = new_x;
     game->player.y = new_y;

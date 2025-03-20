@@ -1,16 +1,34 @@
 
 
-D assets/door.xpm
 NO assets/north.xpm
 SO assets/south.xpm
+WE assets/west.xpm
+EA assets/east.xpm
+
+SK assets/Night_Sky.xpm
+F assets/floor.xpm
+
 G assets/gun.xpm
 GS assets/gun_shut.xpm
-F assets/floor.xpm
+
 Z assets/zombie.xpm
 
-WE           assets/west.xpm
-EA assets/east.xpm
-SK assets/Night_Sky.xpm
+D assets/door.xpm
+
+H1 assets/health/h100.xpm
+H2 assets/health/h80.xpm
+H3 assets/health/h60.xpm
+H4 assets/health/h40.xpm
+H5 assets/health/h20.xpm
+
+A6 assets/armor/am6.xpm
+A5 assets/armor/am5.xpm
+A4 assets/armor/am4.xpm
+A3 assets/armor/am3.xpm
+A2 assets/armor/am2.xpm
+A1 assets/armor/am1.xpm
+A0 assets/armor/am0.xpm
+
 
         111 111111111111111111111
         10111000001100000000000Z1

@@ -40,6 +40,7 @@ static void	init_player_b(t_player *player)
 	player->plane_y = 0;
 	player->ini_dir = NULL;
 	player->health = 100;
+	player->armor = 6;
 }
 
 void	init_game_b(t_game *game)
@@ -65,6 +66,8 @@ void	init_game_b(t_game *game)
 	init_texture_b(game->textures, ZOMBIE, 220);
 	init_gun_b(game->gun, 150, GUN);
 	init_gun_b(game->gun, 40, GUN_SHUT);
+	init_health_bar_b(game->health_bar, 128, 32);
+	init_armor_b(game->armor, 128, 32);
 	init_colors_b(game->color, FLOOR, 128);
 	if (game->color[CEILING].col_tex_str)
 		init_colors_b(game->color, CEILING, 128);

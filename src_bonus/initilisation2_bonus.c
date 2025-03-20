@@ -47,8 +47,41 @@ void init_gun_b(t_gun *gun, int dim, int index)
 	gun[index].path = NULL;
 	gun[index].height = dim;
 	gun[index].width = dim;
-    gun[index].screen_x = 0;
-    gun[index].screen_y = 0;
 	gun[index].screen_x = (SCREEN_WIDTH / 2) - (gun[index].width / 2);  // ✅ Center horizontally
     gun[index].screen_y = SCREEN_HEIGHT - gun[index].height;           // ✅ Position at bottom
+}
+
+void init_health_bar_b(t_health *health_bar, int width, int height)
+{
+	int	i;
+
+	i = 0;
+	while(i < 5)
+	{
+		health_bar[i].addr = NULL;
+		health_bar[i].img = NULL;
+		health_bar[i].path = NULL;
+		health_bar[i].height = height;
+		health_bar[i].width = width;
+		health_bar[i].screen_x = 20; 
+		health_bar[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 8;
+		i++;
+	}
+}
+void init_armor_b(t_armor *armor, int width, int height)
+{
+	int	i;
+
+	i = 0;
+	while(i < 7)
+	{
+		armor[i].addr = NULL;
+		armor[i].img = NULL;
+		armor[i].path = NULL;
+		armor[i].height = height;
+		armor[i].width = width;
+		armor[i].screen_x = 20; 
+		armor[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 13;
+		i++;
+	}
 }

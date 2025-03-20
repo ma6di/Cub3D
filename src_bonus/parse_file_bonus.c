@@ -75,6 +75,30 @@ static int	check_line_b(char *line, t_game *game)
 		game->textures[WEST].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "EA ", 3) == 0)
 		game->textures[EAST].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "H1 ", 3) == 0)
+		game->health_bar[0].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "H2 ", 3) == 0)
+		game->health_bar[1].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "H3 ", 3) == 0)
+		game->health_bar[2].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "H4 ", 3) == 0)
+		game->health_bar[3].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "H5 ", 3) == 0)
+		game->health_bar[4].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A0 ", 3) == 0)
+		game->armor[0].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A1 ", 3) == 0)
+		game->armor[1].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A2 ", 3) == 0)
+		game->armor[2].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A3 ", 3) == 0)
+		game->armor[3].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A4 ", 3) == 0)
+		game->armor[4].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A5 ", 3) == 0)
+		game->armor[5].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "A6 ", 3) == 0)
+		game->armor[6].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "D ", 2) == 0)
 		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "Z ", 2) == 0)

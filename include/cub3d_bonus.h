@@ -150,6 +150,7 @@ typedef struct s_player
 	double  plane_x;	// Camera plane X _b(for FOV)
 	double  plane_y;	// Camera plane Y (for FOV)
 	int		health;
+	int		armor;
 } t_player;
 
 typedef struct s_minimap
@@ -173,19 +174,47 @@ typedef struct s_gun
 	int	 	endian;	 // Endian format
 }       t_gun;
 
-// typedef struct s_gun_shut
-// {
-//     int screen_x;
-//     int screen_y;
-// 	int height;
-//     int width;
-// 	char	*path;
-// 	void	*img;	   // Pointer to MiniLibX image
-// 	char	*addr;	  // Image data address
-// 	int	 	bpp;		// Bits per pixel
-// 	int	 	line_len;   // Bytes per line
-// 	int	 	endian;	 // Endian format
-// }       t_gun_shut;
+typedef struct s_armor
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_armor;
+
+typedef struct s_heath
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_health;
+
+typedef struct s_heart
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_heart;
 
 typedef struct	s_ray
 {
@@ -236,6 +265,9 @@ typedef struct s_game
 	t_gun			gun[2];
 	t_sprite		*sprites;
 	double			*z_buffer;
+	t_health		health_bar[5];
+	t_armor			armor[7];
+	t_heart			heart[12];
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -321,6 +353,12 @@ void	set_sprites_cords(t_game *game);
 void	move_sprites(t_game *game);
 void	ft_player_health_b(t_game *game);
 t_sprite *get_zombie_in_front(t_game *game);
-void remove_zombie(t_game *game, int index);
+void	remove_zombie(t_game *game, int index);
+void	init_health_bar_b(t_health *health_bar, int width, int height);
+void	render_health_bar_b(t_game *game);
+void	init_mlx_health_bar_texture_b(t_game *game);
+void	render_armor_bar_b(t_game *game);
+void	init_mlx_armor_bar_texture_b(t_game *game);
+void	init_armor_b(t_armor *armor, int width, int height);
 
 #endif

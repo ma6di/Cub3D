@@ -5,7 +5,7 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
-		print_error(RED"Texture path is NULL\n"RESET);
+		print_error(RED"Wall Texture path is NULL\n"RESET);
 		return ;
 	}
 	game->textures[index].img = mlx_xpm_file_to_image(\

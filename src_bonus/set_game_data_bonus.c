@@ -4,7 +4,7 @@ void	init_mlx_wall_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
-		print_error(RED"Texture path is NULL\n"RESET);
+		print_error(RED"WALL Texture path is NULL\n"RESET);
 		return ;
 	}
 	game->textures[index].img = mlx_xpm_file_to_image(\
@@ -26,11 +26,81 @@ void	init_mlx_wall_texture_b(t_game *game, int index, char *path)
 	}
 }
 
+void	init_mlx_health_bar_texture_b(t_game *game)
+{
+	int index;
+	char *path;
+
+	index = 0;
+	while (index < 5)
+	{
+		if (!game->health_bar[index].path)
+		{
+			print_error(RED"Health bar Texture %d path is NULL\n"RESET, index);
+			return ;
+		}
+		path = game->health_bar[index].path;
+		game->health_bar[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->health_bar[index].width), \
+			&(game->health_bar[index].height));
+		if (!game->health_bar[index].img)
+		{
+			print_error(RED"Error: health bar Texture file could not be loaded: ");
+			print_error("%s\n"RESET, path);
+			close_window_b(game);
+		}
+		game->health_bar[index].addr = mlx_get_data_addr(\
+			game->health_bar[index].img, &game->health_bar[index].bpp, \
+			&game->health_bar[index].line_len, &game->health_bar[index].endian);
+		if (!game->health_bar[index].addr)
+		{
+			print_error(RED"Error: Health bar texture %d address is NULL!\n"RESET, index);
+			close_window_b(game);
+		}
+		index++;
+	}
+}
+
+void	init_mlx_armor_bar_texture_b(t_game *game)
+{
+	int index;
+	char *path;
+
+	index = 0;
+	while (index < 7)
+	{
+		if (!game->armor[index].path)
+		{
+			print_error(RED"ARMOR bar Texture %d path is NULL\n"RESET, index);
+			return ;
+		}
+		path = game->armor[index].path;
+		game->armor[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->armor[index].width), \
+			&(game->armor[index].height));
+		if (!game->armor[index].img)
+		{
+			print_error(RED"Error: ARMOR bar Texture file could not be loaded: ");
+			print_error("%s\n"RESET, path);
+			close_window_b(game);
+		}
+		game->armor[index].addr = mlx_get_data_addr(\
+			game->armor[index].img, &game->armor[index].bpp, \
+			&game->armor[index].line_len, &game->armor[index].endian);
+		if (!game->armor[index].addr)
+		{
+			print_error(RED"Error: ARMOR bar texture %d address is NULL!\n"RESET, index);
+			close_window_b(game);
+		}
+		index++;
+	}
+}
+
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
-		print_error(RED"Texture path is NULL\n"RESET);
+		print_error(RED"GUN Texture path is NULL\n"RESET);
 		return ;
 	}
 	game->gun[index].img = mlx_xpm_file_to_image(\
@@ -47,7 +117,7 @@ void	init_mlx_gun_texture_b(t_game *game, int index, char *path)
 		&game->gun[index].line_len, &game->gun[index].endian);
 	if (!game->gun[index].addr)
 	{
-		print_error(RED"Error: Texture %d address is NULL!\n"RESET, index);
+		print_error(RED"Error: GUN Texture %d address is NULL!\n"RESET, index);
 		close_window_b(game);
 	}
 }
@@ -56,7 +126,7 @@ void	init_mlx_fc_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
-		print_error(RED"Texture path is NULL\n"RESET);
+		print_error(RED"Color Texture path is NULL\n"RESET);
 		return ;
 	}
 	game->color[index].img = mlx_xpm_file_to_image(\

@@ -23,6 +23,8 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
 	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
 	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);
+	init_mlx_health_bar_texture_b(game);
+	init_mlx_armor_bar_texture_b(game);
 	set_sprites_cords(game);
 	set_doors(game);
 	set_colors_b(game, game->color, FLOOR);

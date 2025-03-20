@@ -37,7 +37,8 @@ BONUS_SRCS = src_bonus/render_ceiling_and_floor_bonus.c src_bonus/free_destroy_g
              src_bonus/print_error_bonus.c src_bonus/window_bonus.c src_bonus/rays_bonus.c src_bonus/initilisation2_bonus.c \
 			 src_bonus/render_ceiling_bonus.c src_bonus/render_floor_bonus.c src_bonus/debug_bonus.c src_bonus/map_empty_line_check_bonus.c \
 			 src_bonus/map_enclosement_check_bonus.c src_bonus/map_check_tools_bonus.c src_bonus/map_accessibility_check_bonus.c \
-			 src_bonus/flood_fill_bonus.c src_bonus/flood_fill_tool_bonus.c src_bonus/map_char_check_bonus.c src_bonus/render_sky_bonus.c
+			 src_bonus/flood_fill_bonus.c src_bonus/flood_fill_tool_bonus.c src_bonus/map_char_check_bonus.c src_bonus/render_sky_bonus.c \
+			 src_bonus/health_bar_bonus.c src_bonus/armor_bar_bonus.c
 
 OBJS    = $(SRCS:src/%.c=$(OBJDIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:src_bonus/%.c=$(OBJDIR)/%.o)
