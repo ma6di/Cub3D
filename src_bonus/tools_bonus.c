@@ -76,3 +76,18 @@ int	rgb_to_hex_b(int r, int g, int b)
 	return (color);
 }
 
+void	ft_player_health_b(t_game *game)
+{
+	char	*health;
+	char	*phrase;
+
+	health = ft_itoa(game->player.health);
+	phrase = ft_strjoin("Health : ", health);
+	mlx_string_put(game->mlx, game->win, 20, SCREEN_HEIGHT - SCREEN_HEIGHT / 10, 0xFFFFFF, phrase);
+	mlx_string_put(game->mlx, game->win, 21, SCREEN_HEIGHT - SCREEN_HEIGHT / 10, 0xFFFFFF, phrase);
+	mlx_string_put(game->mlx, game->win, 20, SCREEN_HEIGHT - SCREEN_HEIGHT / 13, 0xFFFFFF, "Shoot with left control");
+	mlx_string_put(game->mlx, game->win, 21, SCREEN_HEIGHT - SCREEN_HEIGHT / 13, 0xFFFFFF, "Shoot with left control");
+
+	free(health);
+	free(phrase);
+}

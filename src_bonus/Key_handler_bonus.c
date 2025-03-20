@@ -69,7 +69,17 @@ int press_key_b(int keycode, t_game *game)
 	{
         render_gun_shut_b(game);
 		render_gun_shut_b(game);
-	}
+		t_sprite *zombie = get_zombie_in_front(game);
+		if (zombie)
+		{
+			zombie->health -= 50; // ✅ Reduce health by 50%
+			if (zombie->health <= 0)
+			{
+				int index = zombie - game->sprites;  // ✅ Find index
+				remove_zombie(game, index);  // ❌ Remove from array
+			}
+		}
+    }
     else if (keycode == XK_space)
     {
         door_index = is_door_b(game);  // ✅ Avoid multiple calls

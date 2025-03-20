@@ -45,6 +45,8 @@ void set_sprites_cords(t_game *game)
                 game->sprites[index].y = y + 0.5;
 				game->sprites[index].distance = 0;
 				game->sprites[index].visible = 0;
+				game->sprites[index].health = 100;
+				game->sprites[index].active = 1;
                 index++;
             }
         }
@@ -233,6 +235,44 @@ void move_sprites(t_game *game)
     }
 }
 
+t_sprite *get_zombie_in_front(t_game *game)
+{
+    double dir_x = game->player.dir_x;
+    double dir_y = game->player.dir_y;
+    double range = 2.0; // ✅ Shooting range
+    double min_shoot_angle = 0.3; // ✅ Adjust this for a wider cone (1.0 = perfect front, lower = wider)
+
+    for (int i = 0; i < game->sprite_count; i++)
+    {
+        t_sprite *zombie = &game->sprites[i];
+
+        if (!zombie->active) // ✅ Skip dead zombies
+            continue;
+
+        double dx = zombie->x - game->player.x;
+        double dy = zombie->y - game->player.y;
+        double distance = sqrt(dx * dx + dy * dy);
+
+        if (distance < range)
+        {
+            double dot = (dx * dir_x + dy * dir_y) / (distance); // ✅ Cosine of angle
+            if (dot > min_shoot_angle) // ✅ If within shooting angle
+                return zombie;
+        }
+    }
+    return NULL; // ❌ No zombie in front
+}
 
 
+void remove_zombie(t_game *game, int index)
+{
+    if (index < 0 || index >= game->sprite_count)
+        return;
+
+    // ✅ Shift all zombies after the index forward
+    for (int i = index; i < game->sprite_count - 1; i++)
+       		game->sprites[i] = game->sprites[i + 1];
+
+    game->sprite_count--;  // ✅ Reduce total count
+}
 

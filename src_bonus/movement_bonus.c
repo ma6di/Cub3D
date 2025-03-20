@@ -17,11 +17,11 @@ int is_sprite_b(t_game *game, double player_x, double player_y)
         // ✅ Check if the player's position is close enough to the sprite
         if (fabs(sprite_x - player_x) < tolerance && fabs(sprite_y - player_y) < tolerance)
         {
-            return 1;  // ✅ Collision detected
+            return index;  // ✅ Collision detected
         }
         index++;
     }
-    return 0;  // ✅ No collision
+    return -1;  // ✅ No collision
 }
 
 
@@ -109,8 +109,10 @@ void move_player_b(int direction, t_game *game)
     door_index = which_door(game, (int)new_y, (int)new_x);
     if (game->map[(int)new_y][(int)new_x] == 'D' && (door_index == -1 || game->door[door_index].door_state == 0))
         return;
-	if (is_sprite_b(game, game->player.x, game->player.y))
-    {
+	if (is_sprite_b(game, game->player.x, game->player.y) != -1)
+		game->player.health -= 5;
+	if (game->player.health < 2)
+	{
 		printf(RED
 		"\r\n"
 		"\r     🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆\n"
@@ -119,7 +121,6 @@ void move_player_b(int direction, t_game *game)
 		RESET);
 		close_window_b(game);
 	}
-
     // ✅ Move the player if it's a valid position
     game->player.x = new_x;
     game->player.y = new_y;

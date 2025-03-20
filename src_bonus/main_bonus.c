@@ -17,6 +17,7 @@ int	render_b(t_game *game)
 	render_sprites(game);
 	move_sprites(game);
 	draw_gun_b(game);
+	ft_player_health_b(game);
 	return (0);
 }
 

@@ -25,7 +25,7 @@
 # define RESET "\033[0m"
 
 # define BUFFER			1024
-# define SCREEN_WIDTH	800
+# define SCREEN_WIDTH	1000
 # define SCREEN_HEIGHT	600
 # define MOVE_SPEED		0.04
 # define ROTATE_SPEED	0.05
@@ -135,6 +135,7 @@ typedef struct s_sprite
     int visible;  // If the sprite is visible in the player's view
     double speed;     // ✅ Speed of movement
     int active;       // ✅ 1 = moving, 0 = idle
+	int    health;
 } t_sprite;
 
 
@@ -148,6 +149,7 @@ typedef struct s_player
 	double  dir_y;	  // Direction vector Y
 	double  plane_x;	// Camera plane X _b(for FOV)
 	double  plane_y;	// Camera plane Y (for FOV)
+	int		health;
 } t_player;
 
 typedef struct s_minimap
@@ -317,5 +319,8 @@ void	render_sprites(t_game *game);
 void	set_sprites(t_game *game);
 void	set_sprites_cords(t_game *game);
 void	move_sprites(t_game *game);
+void	ft_player_health_b(t_game *game);
+t_sprite *get_zombie_in_front(t_game *game);
+void remove_zombie(t_game *game, int index);
 
 #endif

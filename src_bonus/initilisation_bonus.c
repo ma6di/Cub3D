@@ -39,6 +39,7 @@ static void	init_player_b(t_player *player)
 	player->plane_x = 0;
 	player->plane_y = 0;
 	player->ini_dir = NULL;
+	player->health = 100;
 }
 
 void	init_game_b(t_game *game)
