@@ -21,13 +21,13 @@ H3 assets/health/h60.xpm
 H4 assets/health/h40.xpm
 H5 assets/health/h20.xpm
 
-A6 assets/armor/am6.xpm
-A5 assets/armor/am5.xpm
-A4 assets/armor/am4.xpm
-A3 assets/armor/am3.xpm
-A2 assets/armor/am2.xpm
-A1 assets/armor/am1.xpm
-A0 assets/armor/am0.xpm
+A6 assets/ammo/am6.xpm
+A5 assets/ammo/am5.xpm
+A4 assets/ammo/am4.xpm
+A3 assets/ammo/am3.xpm
+A2 assets/ammo/am2.xpm
+A1 assets/ammo/am1.xpm
+A0 assets/ammo/am0.xpm
 
 R1 assets/heart/he1.xpm
 R2 assets/heart/he2.xpm
@@ -42,20 +42,33 @@ R10 assets/heart/he10.xpm
 R11 assets/heart/he11.xpm
 R12 assets/heart/he12.xpm
 
+CA1 assets/c_ammo/c_ammo1.xpm
+CA2 assets/c_ammo/c_ammo2.xpm
+CA3 assets/c_ammo/c_ammo3.xpm
+CA4 assets/c_ammo/c_ammo4.xpm
+CA5 assets/c_ammo/c_ammo5.xpm
+CA6 assets/c_ammo/c_ammo6.xpm
+CA7 assets/c_ammo/c_ammo7.xpm
+CA8 assets/c_ammo/c_ammo8.xpm
+CA9 assets/c_ammo/c_ammo9.xpm
+CA10 assets/c_ammo/c_ammo10.xpm
+CA11 assets/c_ammo/c_ammo11.xpm
+CA12 assets/c_ammo/c_ammo12.xpm
+
 
         111 1111111111111111111111
-        10111000001100000000000Z11
+        101110000011000AA000000Z11
         1011000001110E0H0000000011
         10000000000000000D00000011
-1111111110110000011100000000000Z1
-110000000011000000000111111111111
+1111111110110000011100000000000Z11
+1100000000110000000001111111111111
 111001111111111111000000100111
 111001111111   111010100D00111
 110000001111111111000D00D00001
 100000000000000011000100100011
-10000000000000001101000000011
-1100000111010101111101111000111
-11110001 1111101 100011000001
-11111111 111 111 111111111111
+100000000000000011010000000111
+110000011101010111110111DDD111
+11110001 1111101 1000110000011
+11111111 111 111 1111111111111
 
 

@@ -90,6 +90,7 @@ void move_player_b(int direction, t_game *game)
     game->player.x = new_x;
     game->player.y = new_y;
 	check_collect_hearts(game); // ✅ Check if player collects a heart
+	check_collect_ammo(game);
 
 }
 

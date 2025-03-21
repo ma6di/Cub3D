@@ -68,20 +68,20 @@ void init_health_bar_b(t_health *health_bar, int width, int height)
 		i++;
 	}
 }
-void init_armor_b(t_armor *armor, int width, int height)
+void init_ammo_b(t_ammo *ammo, int width, int height)
 {
 	int	i;
 
 	i = 0;
 	while(i < 7)
 	{
-		armor[i].addr = NULL;
-		armor[i].img = NULL;
-		armor[i].path = NULL;
-		armor[i].height = height;
-		armor[i].width = width;
-		armor[i].screen_x = 20; 
-		armor[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 13;
+		ammo[i].addr = NULL;
+		ammo[i].img = NULL;
+		ammo[i].path = NULL;
+		ammo[i].height = height;
+		ammo[i].width = width;
+		ammo[i].screen_x = 20; 
+		ammo[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 13;
 		i++;
 	}
 }
@@ -98,6 +98,22 @@ void init_heart_tex_b(t_heart_tex *heart_tex, int dim)
 		heart_tex[i].path = NULL;
 		heart_tex[i].height = dim;
 		heart_tex[i].width = dim;
+		i++;
+	}
+}
+
+void init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim)
+{
+	int	i;
+
+	i = 0;
+	while(i < 0)
+	{
+		c_ammo_tex[i].addr = NULL;
+		c_ammo_tex[i].img = NULL;
+		c_ammo_tex[i].path = NULL;
+		c_ammo_tex[i].height = dim;
+		c_ammo_tex[i].width = dim;
 		i++;
 	}
 }

@@ -16,8 +16,9 @@ int	render_b(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	render_sprites(game);
 	render_hearts(game);
+	render_c_ammo(game);
 	move_sprites(game);
-	render_armor_bar_b(game);
+	render_ammo_bar_b(game);
 	render_health_bar_b(game);
 	draw_gun_b(game);
 	return (0);

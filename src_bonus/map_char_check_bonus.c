@@ -2,7 +2,7 @@
 
 static int	is_valid_char_b(char c)
 {
-	return (ft_strchr("01NSEWDZH ", c) != NULL);
+	return (ft_strchr("01NSEWDZHA ", c) != NULL);
 }
 
 static int	check_chars_and_count_players_b(t_game *game, int *player_count)

@@ -150,7 +150,7 @@ typedef struct s_player
 	double  plane_x;	// Camera plane X _b(for FOV)
 	double  plane_y;	// Camera plane Y (for FOV)
 	int		health;
-	int		armor;
+	int		ammo;
 } t_player;
 
 typedef struct s_minimap
@@ -174,7 +174,7 @@ typedef struct s_gun
 	int	 	endian;	 // Endian format
 }       t_gun;
 
-typedef struct s_armor
+typedef struct s_ammo
 {
     int screen_x;
     int screen_y;
@@ -186,7 +186,7 @@ typedef struct s_armor
 	int	 	bpp;		// Bits per pixel
 	int	 	line_len;   // Bytes per line
 	int	 	endian;	 // Endian format
-}       t_armor;
+}       t_ammo;
 
 typedef struct s_heath
 {
@@ -227,6 +227,30 @@ typedef struct s_heart
     int animation_timer;  // ⏳ Counts frames to control animation speed
 } t_heart;
 
+typedef struct s_c_ammo
+{
+    double x;          // World X position
+    double y;          // World Y position
+    double distance;   // Distance from player
+    int visible;       // 1 = visible, 0 = not visible
+    int active;        // 1 = exists, 0 = collected
+    int animation_index;  // 🔄 Current frame of animation (0-11)
+    int animation_timer;  // ⏳ Counts frames to control animation speed
+} t_c_ammo;
+
+typedef struct s_c_ammo_tex
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_c_ammo_tex;
 
 typedef struct	s_ray
 {
@@ -264,6 +288,7 @@ typedef struct s_game
 	int				door_count;
 	int				sprite_count;
 	int				heart_count;
+	int				c_ammo_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
@@ -279,9 +304,11 @@ typedef struct s_game
 	t_sprite		*sprites;
 	double			*z_buffer;
 	t_health		health_bar[5];
-	t_armor			armor[7];
+	t_ammo			ammo[7];
 	t_heart			*heart;
 	t_heart_tex		heart_tex[12];
+	t_c_ammo		*c_ammo;
+	t_c_ammo_tex	c_ammo_tex[12];
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -371,14 +398,19 @@ void	remove_zombie(t_game *game, int index);
 void	init_health_bar_b(t_health *health_bar, int width, int height);
 void	render_health_bar_b(t_game *game);
 void	init_mlx_health_bar_texture_b(t_game *game);
-void	render_armor_bar_b(t_game *game);
-void	init_mlx_armor_bar_texture_b(t_game *game);
-void	init_armor_b(t_armor *armor, int width, int height);
+void	render_ammo_bar_b(t_game *game);
+void	init_mlx_ammo_bar_texture_b(t_game *game);
+void	init_ammo_b(t_ammo *ammo, int width, int height);
 void	render_hearts(t_game *game);
 void	set_heart_cords(t_game *game);
 void	check_collect_hearts(t_game *game);
 void	init_mlx_heart_texture_b(t_game *game);
 void	init_heart_tex_b(t_heart_tex *heart_tex, int dim);
+void	init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim);
+void	init_mlx_c_ammo_texture_b(t_game *game);
+void	set_c_ammo_cords(t_game *game);
+void	render_c_ammo(t_game *game);
+void	check_collect_ammo(t_game *game);
 
 
 #endif

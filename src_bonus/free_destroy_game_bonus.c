@@ -51,6 +51,9 @@ static void	free_mlx_wall_tex_color_b(t_game *game)
 }
 static void free_textures_path_b(t_game *game)
 {
+	int i;
+	
+	i = 0;
 	if (game->textures[NORTH].path)
 		free(game->textures[NORTH].path);
 	if (game->textures[SOUTH].path)
@@ -73,6 +76,75 @@ static void free_textures_path_b(t_game *game)
 		free(game->gun[GUN].path);
 	if (game->gun[GUN_SHUT].path)
 		free(game->gun[GUN_SHUT].path);
+	
+	while (i < 5)
+	{
+		if (game->health_bar[i].path)
+			free(game->health_bar[i].path);
+		i++;
+	}
+	i = 0;
+	while (i < 12)
+	{
+		if (game->heart_tex[i].path)
+			free(game->heart_tex[i].path);
+		i++;
+	}
+	i = 0;
+	while (i < 7)
+	{
+		if (game->ammo[i].path)
+			free(game->ammo[i].path);
+		i++;
+	}
+	i = 0;
+	while (i < 12)
+	{
+		if (game->c_ammo_tex[i].path)
+			free(game->c_ammo_tex[i].path);
+		i++;
+	}
+}
+
+static void free_mlx_heart_health_b(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (game->health_bar[i].img)
+			mlx_destroy_image(game->mlx, game->health_bar[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < 12)
+	{
+		if (game->heart_tex[i].img)
+			mlx_destroy_image(game->mlx, game->heart_tex[i].img);
+		i++;
+	}
+
+}
+static void	free_mlx_ammo_b(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+	{
+		if (game->ammo[i].img)
+			mlx_destroy_image(game->mlx, game->ammo[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < 12)
+	{
+		if (game->c_ammo_tex[i].img)
+			mlx_destroy_image(game->mlx, game->c_ammo_tex[i].img);
+		i++;
+	}
+
 }
 
 int	close_window_b(t_game *game)
@@ -81,9 +153,14 @@ int	close_window_b(t_game *game)
 		free_two_dim_b(game->map);
 	free_textures_path_b(game);
 	free_mlx_wall_tex_color_b(game);
+	free_mlx_heart_health_b(game);
+	free_mlx_ammo_b(game);
+	//free_mlx_key_b(game);
 	free_mlx_gun_sprite_b(game);
 	free(game->door);
 	free(game->sprites);
+	free(game->c_ammo);
+	free(game->heart);
 	free_mlx_b(game);
 	if ((game->player.ini_dir))
 		free(game->player.ini_dir);

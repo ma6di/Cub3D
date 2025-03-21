@@ -61,7 +61,7 @@ void	init_mlx_health_bar_texture_b(t_game *game)
 	}
 }
 
-void	init_mlx_armor_bar_texture_b(t_game *game)
+void	init_mlx_ammo_bar_texture_b(t_game *game)
 {
 	int index;
 	char *path;
@@ -69,27 +69,27 @@ void	init_mlx_armor_bar_texture_b(t_game *game)
 	index = 0;
 	while (index < 7)
 	{
-		if (!game->armor[index].path)
+		if (!game->ammo[index].path)
 		{
-			print_error(RED"ARMOR bar Texture %d path is NULL\n"RESET, index);
+			print_error(RED"ammo bar Texture %d path is NULL\n"RESET, index);
 			return ;
 		}
-		path = game->armor[index].path;
-		game->armor[index].img = mlx_xpm_file_to_image(\
-			game->mlx, path, &(game->armor[index].width), \
-			&(game->armor[index].height));
-		if (!game->armor[index].img)
+		path = game->ammo[index].path;
+		game->ammo[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->ammo[index].width), \
+			&(game->ammo[index].height));
+		if (!game->ammo[index].img)
 		{
-			print_error(RED"Error: ARMOR bar Texture file could not be loaded: ");
+			print_error(RED"Error: ammo bar Texture file could not be loaded: ");
 			print_error("%s\n"RESET, path);
 			close_window_b(game);
 		}
-		game->armor[index].addr = mlx_get_data_addr(\
-			game->armor[index].img, &game->armor[index].bpp, \
-			&game->armor[index].line_len, &game->armor[index].endian);
-		if (!game->armor[index].addr)
+		game->ammo[index].addr = mlx_get_data_addr(\
+			game->ammo[index].img, &game->ammo[index].bpp, \
+			&game->ammo[index].line_len, &game->ammo[index].endian);
+		if (!game->ammo[index].addr)
 		{
-			print_error(RED"Error: ARMOR bar texture %d address is NULL!\n"RESET, index);
+			print_error(RED"Error: ammo bar texture %d address is NULL!\n"RESET, index);
 			close_window_b(game);
 		}
 		index++;
@@ -123,9 +123,44 @@ void	init_mlx_heart_texture_b(t_game *game)
 		game->heart_tex[index].addr = mlx_get_data_addr(\
 			game->heart_tex[index].img, &game->heart_tex[index].bpp, \
 			&game->heart_tex[index].line_len, &game->heart_tex[index].endian);
-		if (!game->armor[index].addr)
+		if (!game->ammo[index].addr)
 		{
 			print_error(RED"Error: heart texture %d address is NULL!\n"RESET, index);
+			close_window_b(game);
+		}
+		index++;
+	}
+}
+
+void	init_mlx_c_ammo_texture_b(t_game *game)
+{
+	int index;
+	char *path;
+
+	index = 0;
+	while (index < 12)
+	{
+		if (!game->c_ammo_tex[index].path)
+		{
+			print_error(RED"c_ammo Texture %d path is NULL\n"RESET, index);
+			return ;
+		}
+		path = game->c_ammo_tex[index].path;
+		game->c_ammo_tex[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->c_ammo_tex[index].width), \
+			&(game->c_ammo_tex[index].height));
+		if (!game->c_ammo_tex[index].img)
+		{
+			print_error(RED"Error: c_ammo Texture file could not be loaded: ");
+			print_error("%s\n"RESET, path);
+			close_window_b(game);
+		}
+		game->c_ammo_tex[index].addr = mlx_get_data_addr(\
+			game->c_ammo_tex[index].img, &game->c_ammo_tex[index].bpp, \
+			&game->c_ammo_tex[index].line_len, &game->c_ammo_tex[index].endian);
+		if (!game->ammo[index].addr)
+		{
+			print_error(RED"Error: c_ammo texture %d address is NULL!\n"RESET, index);
 			close_window_b(game);
 		}
 		index++;

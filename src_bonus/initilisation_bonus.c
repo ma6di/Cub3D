@@ -40,7 +40,7 @@ static void	init_player_b(t_player *player)
 	player->plane_y = 0;
 	player->ini_dir = NULL;
 	player->health = 100;
-	player->armor = 6;
+	player->ammo = 6;
 }
 
 void	init_game_b(t_game *game)
@@ -57,6 +57,7 @@ void	init_game_b(t_game *game)
 	game->door_count = 0;
 	game->sprite_count = 0;
 	game->heart_count = 0;
+	game->c_ammo_count = 0;
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_texture_b(game->textures, NORTH, 64);
@@ -68,8 +69,9 @@ void	init_game_b(t_game *game)
 	init_gun_b(game->gun, 150, GUN);
 	init_gun_b(game->gun, 40, GUN_SHUT);
 	init_health_bar_b(game->health_bar, 128, 32);
-	init_armor_b(game->armor, 128, 32);
+	init_ammo_b(game->ammo, 128, 32);
 	init_heart_tex_b(game->heart_tex, 50);
+	init_c_ammo_tex_b(game->c_ammo_tex, 32);
 	init_colors_b(game->color, FLOOR, 128);
 	if (game->color[CEILING].col_tex_str)
 		init_colors_b(game->color, CEILING, 128);

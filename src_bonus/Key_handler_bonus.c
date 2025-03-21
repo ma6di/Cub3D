@@ -67,9 +67,9 @@ int press_key_b(int keycode, t_game *game)
         game->keys[KEY_RIGHT] = 1;
 	else if (keycode == XK_Control_L)
 	{
-		if(game->player.armor != 0)
+		if(game->player.ammo != 0)
 		{
-			game->player.armor -= 1;
+			game->player.ammo -= 1;
 			render_gun_shut_b(game);
 			render_gun_shut_b(game);
 		}

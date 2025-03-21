@@ -125,14 +125,20 @@ void render_hearts(t_game *game)
         if (transform_y <= 0)  // ✅ Skip hearts behind the player
             continue;
 
-        sprite_screen_x = (int)((SCREEN_WIDTH / 2) * (1 + transform_x / transform_y));
-        sprite_height = abs((int)(SCREEN_HEIGHT / transform_y)) / 3;
-        sprite_width = abs((int)(SCREEN_WIDTH / transform_y)) / 3;
+// Adjust this scaling factor to control the heart size
+		double scale = 0.15; // 50% smaller
 
-        draw_start_y = SCREEN_HEIGHT / 2 + 10;
-        draw_end_y = draw_start_y + sprite_height;
-        draw_start_x = sprite_screen_x - sprite_width / 2;
-        draw_end_x = sprite_screen_x + sprite_width / 2;
+		sprite_screen_x = (int)((SCREEN_WIDTH / 2) * (1 + transform_x / transform_y));
+
+		// Scale the height and width to make the heart smaller
+		sprite_height = abs((int)(SCREEN_HEIGHT / transform_y)) * scale;
+		sprite_width = abs((int)(SCREEN_WIDTH / transform_y)) * scale;
+
+        draw_start_y = SCREEN_HEIGHT / 2 + 20;
+		draw_end_y = draw_start_y + sprite_height;
+		draw_start_x = sprite_screen_x - sprite_width / 2;
+		draw_end_x = sprite_screen_x + sprite_width / 2;
+
 
         for (x = draw_start_x; x < draw_end_x; x++)
         {
