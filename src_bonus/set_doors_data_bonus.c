@@ -22,8 +22,6 @@ void set_doors_cords(int count, t_door **door, char **map)
     }
 }
 
-
-
 int count_doors(char **map)
 {
 	int count;

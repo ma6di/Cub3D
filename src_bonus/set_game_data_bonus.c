@@ -167,6 +167,41 @@ void	init_mlx_c_ammo_texture_b(t_game *game)
 	}
 }
 
+void	init_mlx_key_texture_b(t_game *game)
+{
+	int index;
+	char *path;
+
+	index = 0;
+	while (index < 7)
+	{
+		if (!game->key_tex[index].path)
+		{
+			print_error(RED"key Texture %d path is NULL\n"RESET, index);
+			return ;
+		}
+		path = game->key_tex[index].path;
+		game->key_tex[index].img = mlx_xpm_file_to_image(\
+			game->mlx, path, &(game->key_tex[index].width), \
+			&(game->key_tex[index].height));
+		if (!game->key_tex[index].img)
+		{
+			print_error(RED"Error: key Texture file could not be loaded: ");
+			print_error("%s\n"RESET, path);
+			close_window_b(game);
+		}
+		game->key_tex[index].addr = mlx_get_data_addr(\
+			game->key_tex[index].img, &game->key_tex[index].bpp, \
+			&game->key_tex[index].line_len, &game->key_tex[index].endian);
+		if (!game->ammo[index].addr)
+		{
+			print_error(RED"Error: key texture %d address is NULL!\n"RESET, index);
+			close_window_b(game);
+		}
+		index++;
+	}
+}
+
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path)
 {
 	if (!path)

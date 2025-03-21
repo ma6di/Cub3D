@@ -104,6 +104,13 @@ static void free_textures_path_b(t_game *game)
 			free(game->c_ammo_tex[i].path);
 		i++;
 	}
+	i = 0;
+	while (i < 7)
+	{
+		if (game->key_tex[i].path)
+			free(game->key_tex[i].path);
+		i++;
+	}
 }
 
 static void free_mlx_heart_health_b(t_game *game)
@@ -126,7 +133,7 @@ static void free_mlx_heart_health_b(t_game *game)
 	}
 
 }
-static void	free_mlx_ammo_b(t_game *game)
+static void	free_mlx_ammo_key_b(t_game *game)
 {
 	int	i;
 
@@ -144,6 +151,13 @@ static void	free_mlx_ammo_b(t_game *game)
 			mlx_destroy_image(game->mlx, game->c_ammo_tex[i].img);
 		i++;
 	}
+	i = 0;
+	while (i < 7)
+	{
+		if (game->key_tex[i].img)
+			mlx_destroy_image(game->mlx, game->key_tex[i].img);
+		i++;
+	}
 
 }
 
@@ -154,13 +168,13 @@ int	close_window_b(t_game *game)
 	free_textures_path_b(game);
 	free_mlx_wall_tex_color_b(game);
 	free_mlx_heart_health_b(game);
-	free_mlx_ammo_b(game);
-	//free_mlx_key_b(game);
+	free_mlx_ammo_key_b(game);
 	free_mlx_gun_sprite_b(game);
 	free(game->door);
 	free(game->sprites);
 	free(game->c_ammo);
 	free(game->heart);
+	free(game->key);
 	free_mlx_b(game);
 	if ((game->player.ini_dir))
 		free(game->player.ini_dir);

@@ -55,11 +55,18 @@ CA10 assets/c_ammo/c_ammo10.xpm
 CA11 assets/c_ammo/c_ammo11.xpm
 CA12 assets/c_ammo/c_ammo12.xpm
 
+K1 assets/key/key1.xpm
+K2 assets/key/key2.xpm
+K3 assets/key/key3.xpm
+K4 assets/key/key4.xpm
+K5 assets/key/key5.xpm
+K6 assets/key/key6.xpm
+K7 assets/key/key7.xpm
 
         111 1111111111111111111111
         101110000011000AA000000Z11
         1011000001110E0H0000000011
-        10000000000000000D00000011
+        100000000000000K0D00000011
 1111111110110000011100000000000Z11
 1100000000110000000001111111111111
 111001111111111111000000100111

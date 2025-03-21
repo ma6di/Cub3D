@@ -27,10 +27,12 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_ammo_bar_texture_b(game);
 	init_mlx_heart_texture_b(game);
 	init_mlx_c_ammo_texture_b(game);
+	init_mlx_key_texture_b(game);
 	set_heart_cords(game);
 	set_c_ammo_cords(game);
 	set_sprites_cords(game);
 	set_doors(game);
+	set_key_cords(game);
 	set_colors_b(game, game->color, FLOOR);
 	if (game->color[CEILING].col_tex_str)
 		set_colors_b(game, game->color, CEILING);

@@ -147,6 +147,20 @@ static int	check_line_b(char *line, t_game *game)
 		game->c_ammo_tex[10].path = ft_strdup(str_start_b(line + 4));
 	else if (line && ft_strncmp(line, "CA12 ", 5) == 0)
 		game->c_ammo_tex[11].path = ft_strdup(str_start_b(line + 4));
+	else if (line && ft_strncmp(line, "K1 ", 3) == 0)
+		game->key_tex[0].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K2 ", 3) == 0)
+		game->key_tex[1].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K3 ", 3) == 0)
+		game->key_tex[2].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K4 ", 3) == 0)
+		game->key_tex[3].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K5 ", 3) == 0)
+		game->key_tex[4].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K6 ", 3) == 0)
+		game->key_tex[5].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "K7 ", 3) == 0)
+		game->key_tex[6].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "D ", 2) == 0)
 		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "Z ", 2) == 0)

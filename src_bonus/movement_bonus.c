@@ -91,6 +91,7 @@ void move_player_b(int direction, t_game *game)
     game->player.y = new_y;
 	check_collect_hearts(game); // ✅ Check if player collects a heart
 	check_collect_ammo(game);
+	check_collect_key(game);
 
 }
 

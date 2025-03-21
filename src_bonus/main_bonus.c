@@ -21,6 +21,7 @@ int	render_b(t_game *game)
 	render_ammo_bar_b(game);
 	render_health_bar_b(game);
 	draw_gun_b(game);
+	render_key(game);
 	return (0);
 }
 

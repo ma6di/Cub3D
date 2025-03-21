@@ -151,6 +151,7 @@ typedef struct s_player
 	double  plane_y;	// Camera plane Y (for FOV)
 	int		health;
 	int		ammo;
+	int		key;
 } t_player;
 
 typedef struct s_minimap
@@ -252,6 +253,31 @@ typedef struct s_c_ammo_tex
 	int	 	endian;	 // Endian format
 }       t_c_ammo_tex;
 
+typedef struct s_ckey
+{
+    double x;          // World X position
+    double y;          // World Y position
+    double distance;   // Distance from player
+    int visible;       // 1 = visible, 0 = not visible
+    int active;        // 1 = exists, 0 = collected
+    int animation_index;  // 🔄 Current frame of animation (0-11)
+    int animation_timer;  // ⏳ Counts frames to control animation speed
+} t_key;
+
+typedef struct s_key_tex
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_key_tex;
+
 typedef struct	s_ray
 {
 	double	camera_x;
@@ -289,6 +315,7 @@ typedef struct s_game
 	int				sprite_count;
 	int				heart_count;
 	int				c_ammo_count;
+	int				key_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
@@ -309,6 +336,8 @@ typedef struct s_game
 	t_heart_tex		heart_tex[12];
 	t_c_ammo		*c_ammo;
 	t_c_ammo_tex	c_ammo_tex[12];
+	t_key			*key;
+	t_key_tex		key_tex[7];
 }				t_game;
 
 int		validate_file_b(const char *filename);
@@ -411,6 +440,11 @@ void	init_mlx_c_ammo_texture_b(t_game *game);
 void	set_c_ammo_cords(t_game *game);
 void	render_c_ammo(t_game *game);
 void	check_collect_ammo(t_game *game);
+void	init_key_tex_b(t_key_tex *key_tex, int width, int height);
+void	init_mlx_key_texture_b(t_game *game);
+void	set_key_cords(t_game *game);
+void	render_key(t_game *game);
+void	check_collect_key(t_game *game);
 
 
 #endif
