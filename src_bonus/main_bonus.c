@@ -2,15 +2,24 @@
 
 #include "cub3d_bonus.h"
 
-int	render(t_game *game)
+int	render_b(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->win);
-	draw_floor_and_ceiling(game, CEILING);
-	draw_floor_and_ceiling(game, FLOOR);
-	cast_rays(game);
-	minimap(game);
-	update_player(game);
+	if (game->color[CEILING].col_tex_str)
+		draw_floor_and_ceiling_b(game, CEILING);
+	else
+		draw_floor_and_ceiling_b(game, SKY);
+	draw_floor_and_ceiling_b(game, FLOOR);
+	cast_rays_b(game);
+	minimap_b(game);
+	update_player_b(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	render_sprites(game);
+	render_hearts(game);
+	move_sprites(game);
+	render_armor_bar_b(game);
+	render_health_bar_b(game);
+	draw_gun_b(game);
 	return (0);
 }
 
@@ -29,14 +38,14 @@ int	main(int argc, char **argv)
 		print_error(RED"Error: Memory allocation failed\n"RESET);
 		return (1);
 	}
-	init_game(game);
-	if (!pars_file(argv[1], game, argv))
+	init_game_b(game);
+	if (!pars_file_b(argv[1], game, argv))
 	{
-		close_window(game);
+		close_window_b(game);
 		return (1);
 	}
-	print_struct(game);
-	create_window(game);
-	close_window(game);
+	print_struct_b(game);
+	create_window_b(game);
+	close_window_b(game);
 	return (0);
 }

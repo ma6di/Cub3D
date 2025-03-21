@@ -1,0 +1,13 @@
+
+Mandatory part:
+	- No wall colosion
+	- Only color for sky and floor
+
+Bonus part:
+	- Texture for SKY with sky feeling renderin -> in .cub file expm file for sky rendering should have "SK" identifier
+	- Texture for Ceiling with ceiling feeling renderin -> in .cub file expm file for ceiling rendering should have "C" identifier
+	- Texture for Floor
+	- Weapon with shooting small visual working with left control tht can cause damaze to Sprites
+	- 2D Sprties that can move toward player and cause health damage to player
+	- Print of player total heath at lower left side of screen.
+

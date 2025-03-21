@@ -25,7 +25,7 @@
 # define RESET "\033[0m"
 
 # define BUFFER			1024
-# define SCREEN_WIDTH	800
+# define SCREEN_WIDTH	1000
 # define SCREEN_HEIGHT	600
 # define MOVE_SPEED		0.04
 # define ROTATE_SPEED	0.05
@@ -35,9 +35,11 @@
 # define WEST	2
 # define EAST	3
 # define DOOR	4
+# define ZOMBIE 5
 
 # define FLOOR	0
 # define CEILING	1
+# define SKY	2
 
 # define FORWARD 1
 # define BACKWARD 2
@@ -53,6 +55,11 @@
 # define KEY_RIGHT 4
 # define KEY_LEFT 5
 # define KEY_SPACE 6
+# define KEY_CTRL 7
+
+# define GUN 0
+# define GUN_SHUT 1
+
 
 # define PUSH 1
 # define POP 0
@@ -109,9 +116,28 @@ typedef struct s_texture
 	int	 	bpp;		// Bits per pixel
 	int	 	line_len;   // Bytes per line
 	int	 	endian;	 // Endian format
-	int		door_state;
-	int		**door_pos;
 }			t_texture;
+
+
+/* 🚶 Player */
+typedef struct s_door
+{
+	int	x;		  // Door's X position
+	int	y;		  // Door's Y position
+	int	door_state; // 0 (close), 1, 2, 3, 4, 5(open)
+} t_door;
+
+typedef struct s_sprite
+{
+    double x;   // Sprite world X position
+    double y;   // Sprite world Y position
+    double distance;  // Distance from player (for sorting)
+    int visible;  // If the sprite is visible in the player's view
+    double speed;     // ✅ Speed of movement
+    int active;       // ✅ 1 = moving, 0 = idle
+	int    health;
+} t_sprite;
+
 
 /* 🚶 Player */
 typedef struct s_player
@@ -121,8 +147,10 @@ typedef struct s_player
 	double  y;		  // Player's Y position
 	double  dir_x;	  // Direction vector X
 	double  dir_y;	  // Direction vector Y
-	double  plane_x;	// Camera plane X (for FOV)
+	double  plane_x;	// Camera plane X _b(for FOV)
 	double  plane_y;	// Camera plane Y (for FOV)
+	int		health;
+	int		armor;
 } t_player;
 
 typedef struct s_minimap
@@ -131,6 +159,74 @@ typedef struct s_minimap
     int offset_x;
     int offset_y;
 }       t_minimap;
+
+typedef struct s_gun
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_gun;
+
+typedef struct s_armor
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_armor;
+
+typedef struct s_heath
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_health;
+
+typedef struct s_heart_tex
+{
+    int screen_x;
+    int screen_y;
+	int height;
+    int width;
+	char	*path;
+	void	*img;	   // Pointer to MiniLibX image
+	char	*addr;	  // Image data address
+	int	 	bpp;		// Bits per pixel
+	int	 	line_len;   // Bytes per line
+	int	 	endian;	 // Endian format
+}       t_heart_tex;
+
+typedef struct s_heart
+{
+    double x;          // World X position
+    double y;          // World Y position
+    double distance;   // Distance from player
+    int visible;       // 1 = visible, 0 = not visible
+    int active;        // 1 = exists, 0 = collected
+    int animation_index;  // 🔄 Current frame of animation (0-11)
+    int animation_timer;  // ⏳ Counts frames to control animation speed
+} t_heart;
+
 
 typedef struct	s_ray
 {
@@ -151,6 +247,7 @@ typedef struct	s_ray
 	int		drawstart;
 	int		drawend;
 	int		door;
+	int		zombie;
 }				t_ray;
 /* 🎮 Game Structure */
 
@@ -164,26 +261,38 @@ typedef struct s_game
 	char			**map;			  // 2D array for the map
 	int				width;			   // Map width
 	int				height;
+	int				door_count;
+	int				sprite_count;
+	int				heart_count;
 	void			*mlx;				// MiniLibX connection
 	void			*win;				// Window pointer
 	void			*img;
 	void			*addr;
-	int				keys[6];
+	int				keys[7];
 	t_player		player;			  // Player data
-	t_texture	  	textures[5];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
-	t_color			color[2];
-	t_minimap		minimap;	 // Floor RGB color
-	t_ray		ray;
+	t_texture	  	textures[6];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
+	t_color			color[3];
+	t_minimap		minimap;
+	t_door			*door;	 // Floor RGB color
+	t_ray			ray;
+	t_gun			gun[2];
+	t_sprite		*sprites;
+	double			*z_buffer;
+	t_health		health_bar[5];
+	t_armor			armor[7];
+	t_heart			*heart;
+	t_heart_tex		heart_tex[12];
 }				t_game;
 
-int		validate_file(const char *filename);
-int		pars_file(const char *filename, t_game *game, char** argv);
-int		validate_cub_elements(t_game *game);
-int		is_valid_texture_path(char *path);
-int		validate_colors(t_color *color);
-int		is_valid_color_texture(t_color *color);
-int		is_map_closed_and_accessible(t_game *game, char **map, \
+int		validate_file_b(const char *filename);
+int		pars_file_b(const char *filename, t_game *game, char** argv);
+int		validate_cub_elements_b(t_game *game);
+int		is_valid_texture_path_b(char *path);
+int		validate_colors_b(t_color *color);
+int		is_valid_color_texture_b(t_color *color);
+int		is_map_closed_and_accessible_b(t_game *game, char **map, \
 			int height, int width);
+<<<<<<< HEAD
 void	free_two_dim(char **arr);
 int		two_dim_len(char **arr);
 void	cal_map_dim(t_game **game);
@@ -243,6 +352,96 @@ int		check_enclosure(t_game *game, char **map);
 int		validate_map_chars(t_game *game);
 int		check_corners(t_game *game, char **map);
 int		check_walls_b(t_game *game, char **map);
+=======
+void	free_two_dim_b(char **arr);
+int		two_dim_len_b(char **arr);
+void	cal_map_dim_b(t_game **game);
+int		free_game_b(t_game *game);
+void	print_error_b(const char *format, ...);
+void	create_window_b(t_game *game);
+void	init_game_b(t_game *game);
+int		press_key_b(int keycode, t_game *game);
+int		close_window_b(t_game *game);
+void	move_player_b(int keycode, t_game *game);
+void	cast_rays_b(t_game *game);
+int		render_b(t_game *game);
+void	init_win_b(t_game *game);
+int		case_one_b(t_game *game, char **map, int y, int height);
+int		case_two_b(t_game *game, char **map, int y, int height);
+int		case_three_b(t_game *game, char **map, int x, int height);
+int		case_four_b(t_game *game, char **map, int x, int height);
+int		case_five_b(t_game *game, char **map, int x, int height);
+int		first_pos_row_b(char *line);
+int		last_pos_row_b(char *line);
+int		first_pos_col_b(char **map, int col);
+int		last_pos_col_b(char **map, int col, int height);
+void	init_mlx_ray_b(t_ray *ray, t_game *game, int x);
+void	print_struct_b(t_game *game);
+void	calculate_wall_height_b(t_ray *ray, t_game *game, int x);
+void	perform_dda_b(t_ray *ray, t_game *game);
+void	calculate_step_b(t_ray *ray, t_game *game);
+void	load_player_b(t_game *game);
+void	set_dir_b(t_game *game);
+void	init_mlx_wall_texture_b(t_game *game, int index, char *path);
+void	init_mlx_fc_texture_b(t_game *game, int index, char *path);
+int		select_texture_b(t_ray *ray, t_game *game);
+void	rotate_player_b(int direction, t_game *game);
+void	move_player_b(int direction, t_game *game);
+int		rgb_to_hex_b(int r, int g, int b);
+void	set_colors_b(t_game *game, t_color *color, int index);
+void	draw_floor_and_ceiling_b(t_game *game, int index);
+void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color);
+int		get_cf_texture_pixel_b(t_color *color, int x, int y, int tex_id);
+int		mouse_rotate_b(int x, int y, t_game *game);
+void	minimap_b(t_game *game);
+int		release_key_b(int keycode, t_game *game);
+void	update_player_b(t_game *game);
+void	init_ray_b(t_ray *ray);
+bool	is_empty_line_b(const char *line);
+void	remove_trailing_empty_lines_b(char **map);
+int		check_empty_line_b(char **map);
+void	flood_fill_b(t_game *game, int **visited);
+void	free_visited_b(int **visited, int height);
+int		check_accessibility_b(t_game *game, int **visited);
+void	free_stack_b(t_stack *stack);
+t_stack	*init_stack_b(int size);
+void	init_directions_b(int *dxy);
+int		check_enclosure_b(t_game *game, char **map);
+int		validate_map_chars_b(t_game *game);
+int		check_corners_b(t_game *game, char **map);
+int		check_walls_b(t_game *game, char **map);
+void	draw_floor_texture_b(t_game *game);
+void	draw_floor_pixel_b(t_game *game);
+void	draw_ceiling_texture_b(t_game *game);
+void	draw_ceiling_pixel_b(t_game *game);
+void	draw_sky_texture_b(t_game *game);
+void	set_doors(t_game *game);
+int		is_door_b(t_game *game);
+int		which_door(t_game *game, double world_y, double world_x);
+void	draw_gun_b(t_game *game);
+void	init_gun_b(t_gun *gun, int dim, int index);
+void	init_mlx_gun_texture_b(t_game *game, int index, char *path);
+void	render_gun_shut_b(t_game *game);
+void	render_sprites(t_game *game);
+void	set_sprites(t_game *game);
+void	set_sprites_cords(t_game *game);
+void	move_sprites(t_game *game);
+void	ft_player_health_b(t_game *game);
+t_sprite *get_zombie_in_front(t_game *game);
+void	remove_zombie(t_game *game, int index);
+void	init_health_bar_b(t_health *health_bar, int width, int height);
+void	render_health_bar_b(t_game *game);
+void	init_mlx_health_bar_texture_b(t_game *game);
+void	render_armor_bar_b(t_game *game);
+void	init_mlx_armor_bar_texture_b(t_game *game);
+void	init_armor_b(t_armor *armor, int width, int height);
+void	render_hearts(t_game *game);
+void	set_heart_cords(t_game *game);
+void	check_collect_hearts(t_game *game);
+void	init_mlx_heart_texture_b(t_game *game);
+void	init_heart_tex_b(t_heart_tex *heart_tex, int dim);
+void	update_door_state(t_game *game, int door_index);
+>>>>>>> mandatory
 
 
 #endif

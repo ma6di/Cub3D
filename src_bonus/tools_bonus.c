@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:08 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:48:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	free_two_dim(char **arr)
+void	free_two_dim_b(char **arr)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	free_two_dim(char **arr)
 	free(arr);
 }
 
-int	two_dim_len(char **arr)
+int	two_dim_len_b(char **arr)
 {
 	int	count;
 
@@ -39,12 +39,30 @@ int	two_dim_len(char **arr)
 	return (count);
 }
 
-int	select_texture(t_ray *ray, t_game *game)
+int	select_texture_b(t_ray *ray, t_game *game)
 {
-	if (ray->door == 1)
+	t_door *door;
+
+    if (ray->door == 1)
+    {
+        door = &game->door; // Get the door by index
+
+        if (door->door_state == 0) // Closed
+            return (DOOR_CLOSED_TEXTURE);
+        else if (door->door_state == 2) // Intermediate state 1
+            return (DOOR_OPENING_TEXTURE_1);
+        else if (door->door_state == 3) // Intermediate state 2
+            return (DOOR_OPENING_TEXTURE_2);
+        else if (door->door_state == 4) // Intermediate state 3
+            return (DOOR_OPENING_TEXTURE_3);
+        else if (door->door_state == 1) // Fully open
+            return (DOOR_OPEN_TEXTURE);
+
+        ray->door = 0; // Reset the door flag after rendering
+    }
+	if (ray->zombie == 1)
 	{
-		ray->door = 0;
-		return (DOOR);
+		ray->zombie = 0;
 	}
 	if (ray->side == 0)
 	{
@@ -64,7 +82,7 @@ int	select_texture(t_ray *ray, t_game *game)
 }
 
 
-int	rgb_to_hex(int r, int g, int b)
+int	rgb_to_hex_b(int r, int g, int b)
 {
 	int	color;
 
@@ -72,3 +90,18 @@ int	rgb_to_hex(int r, int g, int b)
 	return (color);
 }
 
+void	ft_player_health_b(t_game *game)
+{
+	char	*health;
+	char	*phrase;
+
+	health = ft_itoa(game->player.health);
+	phrase = ft_strjoin("Health : ", health);
+	mlx_string_put(game->mlx, game->win, 20, SCREEN_HEIGHT - SCREEN_HEIGHT / 10, 0xFFFFFF, phrase);
+	mlx_string_put(game->mlx, game->win, 21, SCREEN_HEIGHT - SCREEN_HEIGHT / 10, 0xFFFFFF, phrase);
+	mlx_string_put(game->mlx, game->win, 20, SCREEN_HEIGHT - SCREEN_HEIGHT / 13, 0xFFFFFF, "Shoot with left control");
+	mlx_string_put(game->mlx, game->win, 21, SCREEN_HEIGHT - SCREEN_HEIGHT / 13, 0xFFFFFF, "Shoot with left control");
+
+	free(health);
+	free(phrase);
+}

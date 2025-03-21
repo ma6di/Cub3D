@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-static int	is_valid_number(char *str)
+static int	is_valid_number_b(char *str)
 {
 	int	i;
 
@@ -26,25 +26,25 @@ static int	is_valid_number(char *str)
 	return (1);
 }
 
-static int	check_rgb_str(char **rgb)
+static int	check_rgb_str_b(char **rgb)
 {
-	if (!rgb || two_dim_len(rgb) != 3)
+	if (!rgb || two_dim_len_b(rgb) != 3)
 	{
 		print_error(RED"Error: Invalid color format\n"RESET);
-		free_two_dim(rgb);
+		free_two_dim_b(rgb);
 		return (0);
 	}
-	if (!is_valid_number(rgb[0]) || !is_valid_number(rgb[1]) || \
-		!is_valid_number(rgb[2]))
+	if (!is_valid_number_b(rgb[0]) || !is_valid_number_b(rgb[1]) || \
+		!is_valid_number_b(rgb[2]))
 	{
 		print_error(RED"Error: Color values must be numbers\n"RESET);
-		free_two_dim(rgb);
+		free_two_dim_b(rgb);
 		return (0);
 	}
 	return (1);
 }
 
-static int	parse_rgb(t_color *color)
+static int	parse_rgb_b(t_color *color)
 {
 	char	**rgb;
 	int		r;
@@ -53,12 +53,12 @@ static int	parse_rgb(t_color *color)
 
 	color->mode = 1;
 	rgb = ft_split(color->col_tex_str, ',');
-	if (!check_rgb_str(rgb))
+	if (!check_rgb_str_b(rgb))
 		return (0);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-	free_two_dim(rgb);
+	free_two_dim_b(rgb);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		print_error(RED"Error: Color values must be between 0 and 255\n"RESET);
@@ -70,18 +70,18 @@ static int	parse_rgb(t_color *color)
 	return (1);
 }
 
-int	is_valid_color_texture(t_color *color)
+int	is_valid_color_texture_b(t_color *color)
 {
 	if (ft_strchr(color->col_tex_str, '/') != NULL && \
 		ft_strncmp(color->col_tex_str, ".xpm", ft_strlen(color->col_tex_str)))
 	{
-		if (!is_valid_texture_path(color->col_tex_str))
+		if (!is_valid_texture_path_b(color->col_tex_str))
 			return (0);
 		color->mode = 2;
 	}
 	else
 	{
-		if (!parse_rgb(color))
+		if (!parse_rgb_b(color))
 			return (0);
 	}
 	return (1);

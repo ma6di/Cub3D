@@ -1,7 +1,7 @@
 
 #include "cub3d_bonus.h"
 
-void	free_visited(int **visited, int height)
+void	free_visited_b(int **visited, int height)
 {
 	int	i;
 
@@ -14,13 +14,13 @@ void	free_visited(int **visited, int height)
 	free(visited);
 }
 
-static int	is_inaccessible_tile(t_game *game, int **visited, int x, int y)
+static int	is_inaccessible_tile_b(t_game *game, int **visited, int x, int y)
 {
 	char	tile;
 
 	tile = game->map[y][x];
 	if ((tile == '0' || tile == 'N' || tile == 'S' || \
-			tile == 'E' || tile == 'W') && !visited[y][x])
+			tile == 'E' || tile == 'W' || tile == 'D') && !visited[y][x])
 	{
 		print_error(RED"Error: Inaccessible area found at ");
 		print_error("(%d, %d)\n"RESET, x, game->height - y - 1);
@@ -29,7 +29,7 @@ static int	is_inaccessible_tile(t_game *game, int **visited, int x, int y)
 	return (0);
 }
 
-int	check_accessibility(t_game *game, int **visited)
+int	check_accessibility_b(t_game *game, int **visited)
 {
 	int	y;
 	int	x;
@@ -44,7 +44,7 @@ int	check_accessibility(t_game *game, int **visited)
 		x = 0;
 		while (x < row_len)
 		{
-			if (is_inaccessible_tile(game, visited, x, y))
+			if (is_inaccessible_tile_b(game, visited, x, y))
 				return (0);
 			x++;
 		}

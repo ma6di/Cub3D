@@ -1,31 +1,44 @@
 
 #include "cub3d_bonus.h"
 
-static void	loop_hook(t_game *game)
+static void	loop_hook_b(t_game *game)
 {
-	mlx_hook(game->win, KeyPress, KeyPressMask, press_key, game);
-	mlx_hook(game->win, KeyRelease, KeyReleaseMask, release_key, game);
-	mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_rotate, game);
-	mlx_hook(game->win, DestroyNotify, ButtonPressMask, &close_window, game);
-	mlx_hook(game->win, 17, 0, &close_window, game);
-	mlx_loop_hook(game->mlx, &render, game);
+	mlx_hook(game->win, KeyPress, KeyPressMask, press_key_b, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, release_key_b, game);
+	mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_rotate_b, game);
+	mlx_hook(game->win, DestroyNotify, ButtonPressMask, &close_window_b, game);
+	mlx_hook(game->win, 17, 0, &close_window_b, game);
+	mlx_loop_hook(game->mlx, &render_b, game);
 	mlx_loop(game->mlx);
 }
 
-static void	init_all_mlx_textures(t_game *game)
+
+static void	init_all_mlx_textures_b(t_game *game)
 {
-	init_mlx_wall_texture(game, NORTH, game->textures[NORTH].path);
-	init_mlx_wall_texture(game, SOUTH, game->textures[SOUTH].path);
-	init_mlx_wall_texture(game, WEST, game->textures[WEST].path);
-	init_mlx_wall_texture(game, EAST, game->textures[EAST].path);
-	init_mlx_wall_texture(game, DOOR, game->textures[DOOR].path);
-	set_colors(game, game->color, CEILING);
-	set_colors(game, game->color, FLOOR);
+	init_mlx_wall_texture_b(game, NORTH, game->textures[NORTH].path);
+	init_mlx_wall_texture_b(game, SOUTH, game->textures[SOUTH].path);
+	init_mlx_wall_texture_b(game, WEST, game->textures[WEST].path);
+	init_mlx_wall_texture_b(game, EAST, game->textures[EAST].path);
+	init_mlx_wall_texture_b(game, DOOR, game->textures[DOOR].path);
+	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
+	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
+	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);
+	init_mlx_health_bar_texture_b(game);
+	init_mlx_armor_bar_texture_b(game);
+	init_mlx_heart_texture_b(game);
+	set_heart_cords(game);
+	set_sprites_cords(game);
+	set_doors(game);
+	set_colors_b(game, game->color, FLOOR);
+	if (game->color[CEILING].col_tex_str)
+		set_colors_b(game, game->color, CEILING);
+	else
+		set_colors_b(game, game->color, SKY);
 }
 
-void	create_window(t_game *game)
+void	create_window_b(t_game *game)
 {
-	load_player(game);
+	load_player_b(game);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
@@ -47,6 +60,6 @@ void	create_window(t_game *game)
 	}
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_len, \
 									&game->endian);
-	init_all_mlx_textures(game);
-	loop_hook(game);
+	init_all_mlx_textures_b(game);
+	loop_hook_b(game);
 }

@@ -6,7 +6,11 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:12:24 by mcheragh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/17 15:36:40 by stdi-pum         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/21 15:32:31 by stdi-pum         ###   ########.fr       */
+>>>>>>> mandatory
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +18,17 @@
 
 int check_walls_b(t_game *game, char **map)
 {
+<<<<<<< HEAD
     int height = game->height;
     int width = game->width;
 
+=======
+    int height;
+    int width;
+
+	height = game->height;
+    width = game->width;
+>>>>>>> mandatory
     // Controlla la penultima riga
     for (int x = 1; x < width - 1; x++)
     {
@@ -29,7 +41,10 @@ int check_walls_b(t_game *game, char **map)
             }
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> mandatory
     // Controlla la seconda riga
     for (int x = 1; x < width - 1; x++)
     {
@@ -42,11 +57,18 @@ int check_walls_b(t_game *game, char **map)
             }
         }
     }
+<<<<<<< HEAD
 
     return 1;
 }
 
 static int	find_player(t_game **game)
+=======
+    return (1);
+}
+
+static int	find_player_b(t_game **game)
+>>>>>>> mandatory
 {
 	int	x;
 	int	y;
@@ -75,7 +97,7 @@ static int	find_player(t_game **game)
 	return (0);
 }
 
-static int	**allocate_visited(int height, int width)
+static int	**allocate_visited_b(int height, int width)
 {
 	int	y;
 	int	**visited;
@@ -89,7 +111,7 @@ static int	**allocate_visited(int height, int width)
 		visited[y] = ft_calloc(width, sizeof(int));
 		if (!visited[y])
 		{
-			free_visited(visited, y);
+			free_visited_b(visited, y);
 			return (NULL);
 		}
 		y++;
@@ -97,7 +119,7 @@ static int	**allocate_visited(int height, int width)
 	return (visited);
 }
 
-int	is_map_closed_and_accessible(t_game *game, char **map, \
+int	is_map_closed_and_accessible_b(t_game *game, char **map, \
 								int height, int width)
 {
 	int	**visited;
@@ -107,11 +129,12 @@ int	is_map_closed_and_accessible(t_game *game, char **map, \
 		print_error(RED"Error: Game or map is NULL\n"RESET);
 		return (0);
 	}
-	if (!find_player(&game) || !validate_map_chars(game))
+	if (!find_player_b(&game) || !validate_map_chars_b(game))
 		return (0);
-	visited = allocate_visited(height, width);
+	visited = allocate_visited_b(height, width);
 	if (!visited)
 		return (0);
+<<<<<<< HEAD
 	flood_fill(game, visited);
 	if (!check_accessibility(game, visited) || \
 		!check_enclosure(game, map) || \
@@ -122,6 +145,18 @@ int	is_map_closed_and_accessible(t_game *game, char **map, \
 		return (0);
 	}
 	free_visited(visited, height);
+=======
+	flood_fill_b(game, visited);
+	// if (!check_accessibility_b(game, visited) || \
+	// 	!check_enclosure_b(game, map) || \
+	// 	!check_corners_b(game, map) || \
+	// 	!check_walls_b(game, map))
+	// {
+	// 	free_visited_b(visited, height);
+	// 	return (0);
+	// }
+	free_visited_b(visited, height);
+>>>>>>> mandatory
 	return (1);
 }
 

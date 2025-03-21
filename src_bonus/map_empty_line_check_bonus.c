@@ -1,7 +1,7 @@
 
 #include "cub3d_bonus.h"
 
-bool	is_empty_line(const char *line)
+bool	is_empty_line_b(const char *line)
 {
 	int	i;
 
@@ -18,7 +18,7 @@ bool	is_empty_line(const char *line)
 	return (true);
 }
 
-void	remove_trailing_empty_lines(char **map)
+void	remove_trailing_empty_lines_b(char **map)
 {
 	int	last_non_empty;
 	int	i;
@@ -29,7 +29,7 @@ void	remove_trailing_empty_lines(char **map)
 		return ;
 	while (map[i])
 	{
-		if (!is_empty_line(map[i]))
+		if (!is_empty_line_b(map[i]))
 			last_non_empty = i;
 		i++;
 	}
@@ -40,7 +40,7 @@ void	remove_trailing_empty_lines(char **map)
 	}
 }
 
-int	check_empty_line(char **map)
+int	check_empty_line_b(char **map)
 {
 	int	x;
 	int	y;

@@ -1,7 +1,6 @@
-/* ************************************************************************** */
 
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	update_player(t_game *game)
 {
@@ -21,17 +20,17 @@ void	update_player(t_game *game)
 
 void	rotate_player(int direction, t_game *game)
 {
-	double rotate_speed;
-	double old_dir_x;
-	double old_plane_x;
-	double angle;
+	double	rotate_speed;
+	double	old_dir_x;
+	double	old_plane_x;
+	double	angle;
 
 	rotate_speed = 0.05;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
-	if (direction == LEFT_ROTATE) 
+	if (direction == LEFT_ROTATE)
 		angle = -rotate_speed;
-	else 
+	else
 		angle = rotate_speed;
 	game->player.dir_x = game->player.dir_x * cos(angle) - \
 							game->player.dir_y * sin(angle);
@@ -76,33 +75,9 @@ void	move_player(int direction, t_game *game)
 	new_x = game->player.x;
 	new_y = game->player.y;
 	calculate_new_position(direction, game, &new_x, &new_y);
-	game->player.x = new_x;
-	game->player.y = new_y;
+	if (game->map[(int)new_y][(int)new_x] != '1')
+	{
+		game->player.x = new_x;
+		game->player.y = new_y;
+	}
 }
-
-int	mouse_rotate(int x, int y, t_game *game)
-{
-	static	int	last_x;
-	int			dx;
-	double		rotation_speed;
-	double		old_dir_x;
-	double		old_plane_x;
-
-	last_x = SCREEN_WIDTH / 2;
-	dx = x - last_x;
-	rotation_speed = ROTATE_SPEED * 0.5 * dx / 60.0;
-	old_dir_x = game->player.dir_x;
-	old_plane_x = game->player.plane_x;
-	game->player.dir_x = game->player.dir_x * cos(rotation_speed) - \
-						game->player.dir_y * sin(rotation_speed);
-	game->player.dir_y = old_dir_x * sin(rotation_speed) + game->player.dir_y * \
-						cos(rotation_speed);
-	game->player.plane_x = game->player.plane_x * cos(rotation_speed) - \
-						game->player.plane_y * sin(rotation_speed);
-	game->player.plane_y = old_plane_x * sin(rotation_speed) + game->player.plane_y * \
-						cos(rotation_speed);
-	last_x = SCREEN_WIDTH / 2;
-	(void)y;
-	return (0);
-}
- 
