@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:08 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:48:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,25 @@ int	two_dim_len_b(char **arr)
 
 int	select_texture_b(t_ray *ray, t_game *game)
 {
-	if (ray->door == 1)
-	{
-		ray->door = 0;
-		return (DOOR);
-	}
+	t_door *door;
+
+    if (ray->door == 1)
+    {
+        door = &game->door; // Get the door by index
+
+        if (door->door_state == 0) // Closed
+            return (DOOR_CLOSED_TEXTURE);
+        else if (door->door_state == 2) // Intermediate state 1
+            return (DOOR_OPENING_TEXTURE_1);
+        else if (door->door_state == 3) // Intermediate state 2
+            return (DOOR_OPENING_TEXTURE_2);
+        else if (door->door_state == 4) // Intermediate state 3
+            return (DOOR_OPENING_TEXTURE_3);
+        else if (door->door_state == 1) // Fully open
+            return (DOOR_OPEN_TEXTURE);
+
+        ray->door = 0; // Reset the door flag after rendering
+    }
 	if (ray->zombie == 1)
 	{
 		ray->zombie = 0;

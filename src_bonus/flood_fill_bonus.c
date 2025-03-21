@@ -26,7 +26,7 @@ static int	is_valid_b(t_game *game, int **visited, int x, int y)
 	if (!visited[y] || !game->map[y])
 		return (0);
 	if (visited[y][x] || (game->map[y][x] && game->map[y][x] == '1' ) \
-		|| (game->map[y][x] && game->map[y][x] == 'D'))
+		|| (game->map[y][x]))//&& game->map[y][x] == 'D'
 		return (0);
 	return (1);
 }

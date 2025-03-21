@@ -379,6 +379,7 @@ void	set_heart_cords(t_game *game);
 void	check_collect_hearts(t_game *game);
 void	init_mlx_heart_texture_b(t_game *game);
 void	init_heart_tex_b(t_heart_tex *heart_tex, int dim);
+void	update_door_state(t_game *game, int door_index);
 
 
 #endif

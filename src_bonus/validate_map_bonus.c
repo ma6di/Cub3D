@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:12:24 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/17 15:41:31 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:32:31 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,14 @@ int	is_map_closed_and_accessible_b(t_game *game, char **map, \
 	if (!visited)
 		return (0);
 	flood_fill_b(game, visited);
-	if (!check_accessibility_b(game, visited) || \
-		!check_enclosure_b(game, map) || \
-		!check_corners_b(game, map) || \
-		!check_walls_b(game, map))
-	{
-		free_visited_b(visited, height);
-		return (0);
-	}
+	// if (!check_accessibility_b(game, visited) || \
+	// 	!check_enclosure_b(game, map) || \
+	// 	!check_corners_b(game, map) || \
+	// 	!check_walls_b(game, map))
+	// {
+	// 	free_visited_b(visited, height);
+	// 	return (0);
+	// }
 	free_visited_b(visited, height);
 	return (1);
 }

@@ -46,6 +46,23 @@ int is_door_b(t_game *game)
     return -1;
 }
 
+void update_door_state(t_game *game, int door_index)
+{
+    if (door_index < 0 || door_index >= game->door_count)
+        return; // Verifica che l'indice della porta sia valido
+
+    t_door *door = &game->door[door_index];
+
+    // Cambia lo stato della porta
+    if (door->door_state == 0) // Porta chiusa
+        door->door_state = 2; // Inizia l'apertura
+    else if (door->door_state == 2) // Stato intermedio 1
+        door->door_state = 3;
+    else if (door->door_state == 3) // Stato intermedio 2
+        door->door_state = 4;
+    else if (door->door_state == 4) // Stato intermedio 3
+        door->door_state = 1; // Porta completamente aperta
+}
 
 int press_key_b(int keycode, t_game *game)
 {
@@ -88,7 +105,12 @@ int press_key_b(int keycode, t_game *game)
     {
         door_index = is_door_b(game);  // ✅ Avoid multiple calls
         if (door_index != -1)
-            game->door[door_index].door_state = !game->door[door_index].door_state; // ✅ Toggle door state
+		{
+			if (game->door[door_index].door_state = 0)
+				game->door[door_index].door_state = !game->door[door_index].door_state; // ✅ Toggle door state
+			//me->door[door_index].door_state = slide_door(game->door[door_index]);
+
+		}
     }
     return (0);
 }

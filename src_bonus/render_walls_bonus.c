@@ -107,6 +107,7 @@ void	cast_rays_b(t_game *game)
 		perform_dda_b(&ray, game);
 		calculate_wall_height_b(&ray, game, x);
 		tex_id = select_texture_b(&ray, game);
+		update_doors(game);
 		render_wall_slice_b(game, &ray, x, tex_id);
 		x++;
 	}
