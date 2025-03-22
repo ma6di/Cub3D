@@ -236,7 +236,7 @@ void move_sprites(t_game *game)
 
 t_sprite *get_zombie_in_front(t_game *game)
 {
-    double range = 2.0; // ✅ Shooting range
+    double range = 7.0; // ✅ Shooting range
     double min_shoot_angle = 0.3; // ✅ Adjust this for a wider cone
 
     for (int i = 0; i < game->sprite_count; i++)

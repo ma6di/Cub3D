@@ -128,8 +128,8 @@ void init_key_tex_b(t_key_tex *key_tex, int width, int height)
 		key_tex[i].addr = NULL;
 		key_tex[i].img = NULL;
 		key_tex[i].path = NULL;
-		key_tex[i].height = width;
-		key_tex[i].width = height;
+		key_tex[i].height = height;
+		key_tex[i].width = width;
 		i++;
 	}
 }

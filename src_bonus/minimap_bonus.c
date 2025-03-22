@@ -53,7 +53,8 @@ static void	draw_minimap_tiles_b(t_game *game)
 			tile = game->map[map_y][map_x];
 			// if (tile == '1')
 			//  	draw_mini_b(game, x, y, 0xF00FFF);
-			if (tile == '0' || tile == 'N' || tile == 'W' || tile == 'E' || tile == 'S')
+			if (tile == '0' || tile == 'N' || tile == 'W' || tile == 'E' || tile == 'S' || \
+			tile == 'Z' || tile == 'A' || tile == 'K' || tile == 'H')
 				draw_mini_b(game, x, y, 0xFFFFFF);
 			else if (tile == 'D')
 				draw_mini_b(game, x, y, 0xFF0000);

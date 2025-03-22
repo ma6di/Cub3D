@@ -101,7 +101,7 @@ int	case_four_b(t_game *game, char **map, int x, int height)
 				if (map[last_x_next][x] != '1' || \
 					map[last_x_next][x + 1] != '1')
 				{
-					print_error(RED"Error: Map not enclosed\n"RESET);
+					print_error(RED"Error: Map not enclosed.\n"RESET);
 					return (0);
 				}
 			}
