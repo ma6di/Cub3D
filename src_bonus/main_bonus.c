@@ -4,8 +4,11 @@
 
 int compare_renderables(const void *a, const void *b)
 {
-    double dist_a = ((t_renderable *)a)->distance;
-    double dist_b = ((t_renderable *)b)->distance;
+	double dist_a;
+	double dist_b;
+
+    dist_a = ((t_renderable *)a)->distance;
+    dist_b = ((t_renderable *)b)->distance;
     return (dist_b - dist_a);  // Sort by descending distance
 }
 

@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	which_door(t_game *game, double world_y, double world_x)
@@ -7,11 +6,11 @@ int	which_door(t_game *game, double world_y, double world_x)
 	int	map_y;
 	int	i;
 
-	i = 0;
-	map_x = (int)world_x;
-	map_y = (int)world_y;
 	if (!game || !game->door)
 		return (-1);
+	map_x = (int)world_x;
+	map_y = (int)world_y;
+	i = 0;
 	while (i < game->door_count)
 	{
 		if (game->door[i].x == map_x && game->door[i].y == map_y)
@@ -36,6 +35,30 @@ static int	check_door(t_game *game, int new_x, int new_y)
 		}
 	}
 	return (-1);
+}
+
+static int	is_zombie_inside_door(t_game *game, int index)
+{
+	int	i;
+	int	z_x;
+	int	z_y;
+
+	i = 0;
+	while (i < game->sprite_count)
+	{
+		if (!game->sprites[i].active)
+		{
+			i++;
+			continue ;
+		}
+		z_x = (int)game->sprites[i].x;
+		z_y = (int)game->sprites[i].y;
+		if (z_x == game->door[index].x && \
+			z_y == game->door[index].y)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int	is_door_b(t_game *game)
@@ -89,6 +112,8 @@ static void	shoot_gun(t_game *game)
 
 int	press_key_b(int keycode, t_game *game)
 {
+	int	index;
+
 	if (keycode == XK_Escape)
 		close_window_b(game);
 	else if (keycode == XK_w)
@@ -107,9 +132,9 @@ int	press_key_b(int keycode, t_game *game)
 		shoot_gun(game);
 	else if (keycode == XK_space)
 	{
-		if (is_door_b(game) != -1)
-			game->door[is_door_b(game)].door_state = \
-			!game->door[is_door_b(game)].door_state;
+		index = is_door_b(game);
+		if (index != -1 && !is_zombie_inside_door(game, index))
+			game->door[index].door_state = !game->door[index].door_state;
 	}
 	return (0);
 }

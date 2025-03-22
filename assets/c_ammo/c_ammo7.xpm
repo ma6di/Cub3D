@@ -3,8 +3,8 @@ static char *c_ammo71742566004[] = {
 /* columns rows colors chars-per-pixel */
 "33 32 9 1 ",
 "  c black",
-". c #AE2334",
-"X c #E83B3B",
+". c #cd7f32",
+"X c #804A00",
 "o c #FB6B1D",
 "O c #7F708A",
 "+ c #9BABB2",
