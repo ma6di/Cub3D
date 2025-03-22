@@ -15,6 +15,7 @@ int compare_renderables(const void *a, const void *b)
     double dist_b = ((t_renderable *)b)->distance;
     return (dist_b - dist_a);  // Sort by descending distance
 }
+
 int render_b(t_game *game)
 {
     mlx_clear_window(game->mlx, game->win);
