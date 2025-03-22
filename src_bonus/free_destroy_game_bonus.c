@@ -49,11 +49,9 @@ static void	free_mlx_wall_tex_color_b(t_game *game)
 		i++;
 	}
 }
-static void free_textures_path_b(t_game *game)
+
+static void	free_tex1(t_game *game)
 {
-	int i;
-	
-	i = 0;
 	if (game->textures[NORTH].path)
 		free(game->textures[NORTH].path);
 	if (game->textures[SOUTH].path)
@@ -76,7 +74,35 @@ static void free_textures_path_b(t_game *game)
 		free(game->gun[GUN].path);
 	if (game->gun[GUN_SHUT].path)
 		free(game->gun[GUN_SHUT].path);
-	
+}
+
+static void	free_tex2(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 12)
+	{
+		if (game->c_ammo_tex[i].path)
+			free(game->c_ammo_tex[i].path);
+		i++;
+	}
+	i = 0;
+	while (i < 7)
+	{
+		if (game->key_tex[i].path)
+			free(game->key_tex[i].path);
+		i++;
+	}
+}
+
+static void	free_textures_path_b(t_game *game)
+{
+	int	i;
+
+	free_tex1(game);
+	free_tex2(game);
+	i = 0;
 	while (i < 5)
 	{
 		if (game->health_bar[i].path)
@@ -97,23 +123,9 @@ static void free_textures_path_b(t_game *game)
 			free(game->ammo[i].path);
 		i++;
 	}
-	i = 0;
-	while (i < 12)
-	{
-		if (game->c_ammo_tex[i].path)
-			free(game->c_ammo_tex[i].path);
-		i++;
-	}
-	i = 0;
-	while (i < 7)
-	{
-		if (game->key_tex[i].path)
-			free(game->key_tex[i].path);
-		i++;
-	}
 }
 
-static void free_mlx_heart_health_b(t_game *game)
+static void	free_mlx_heart_health_b(t_game *game)
 {
 	int	i;
 
@@ -170,11 +182,16 @@ int	close_window_b(t_game *game)
 	free_mlx_heart_health_b(game);
 	free_mlx_ammo_key_b(game);
 	free_mlx_gun_sprite_b(game);
-	free(game->door);
-	free(game->sprites);
-	free(game->c_ammo);
-	free(game->heart);
-	free(game->key);
+	if (game->door)
+		free(game->door);
+	if (game->sprites)
+		free(game->sprites);
+	if (game->c_ammo)
+		free(game->c_ammo);
+	if (game->heart)
+		free(game->heart);
+	if (game->key)
+		free(game->key);
 	free_mlx_b(game);
 	if ((game->player.ini_dir))
 		free(game->player.ini_dir);

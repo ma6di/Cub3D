@@ -44,7 +44,7 @@ static void	init_player_b(t_player *player)
 	player->key = 0;
 }
 
-void	init_game_b(t_game *game)
+static void	init_game_vars(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
@@ -53,6 +53,11 @@ void	init_game_b(t_game *game)
 	game->map = NULL;
 	game->img = NULL;
 	game->addr = NULL;
+	game->door = NULL;
+	game->sprites = NULL;
+	game->heart = NULL;
+	game->c_ammo = NULL;
+	game->key = NULL;
 	game->map_statred = 0;
 	game->file_order = 0;
 	game->door_count = 0;
@@ -60,6 +65,12 @@ void	init_game_b(t_game *game)
 	game->heart_count = 0;
 	game->c_ammo_count = 0;
 	game->key_count = 0;
+
+}
+
+void	init_game_b(t_game *game)
+{
+	init_game_vars(game);
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_texture_b(game->textures, NORTH, 64);

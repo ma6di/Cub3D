@@ -67,6 +67,24 @@
 
 #define SAFE_DISTANCE 0.5
 
+typedef struct s_renderable
+{
+    double distance;  // Distance from player
+    int type;         // Type: 0 = wall, 1 = sprite, 2 = heart, 3 = ammo, etc.
+    void *object;     // Pointer to the actual object (sprite, wall, etc.)
+} t_renderable;
+
+typedef struct s_draw
+{
+    int screen_x;  // Screen X coordinate for the sprite
+    int start_x;   // Start X position for drawing
+    int end_x;     // End X position for drawing
+    int start_y;   // Start Y position for drawing
+    int end_y;     // End Y position for drawing
+    int width;     // Width of the sprite on screen
+    int height;    // Height of the sprite on screen
+} t_draw;
+
 
 typedef struct s_stack
 {
@@ -230,6 +248,7 @@ typedef struct s_heart
     int active;        // 1 = exists, 0 = collected
     int animation_index;  // 🔄 Current frame of animation (0-11)
     int animation_timer;  // ⏳ Counts frames to control animation speed
+	t_draw	draw;
 } t_heart;
 
 typedef struct s_c_ammo
@@ -241,6 +260,7 @@ typedef struct s_c_ammo
     int active;        // 1 = exists, 0 = collected
     int animation_index;  // 🔄 Current frame of animation (0-11)
     int animation_timer;  // ⏳ Counts frames to control animation speed
+	t_draw	draw;
 } t_c_ammo;
 
 typedef struct s_c_ammo_tex
@@ -266,6 +286,7 @@ typedef struct s_ckey
     int active;        // 1 = exists, 0 = collected
     int animation_index;  // 🔄 Current frame of animation (0-11)
     int animation_timer;  // ⏳ Counts frames to control animation speed
+	t_draw	draw;
 } t_key;
 
 typedef struct s_key_tex
@@ -345,7 +366,7 @@ typedef struct s_game
 }				t_game;
 
 int		validate_file_b(const char *filename);
-int		pars_file_b(const char *filename, t_game *game, char** argv);
+int		pars_file_b(const char *filename, t_game *game, char **argv);
 int		validate_cub_elements_b(t_game *game);
 int		is_valid_texture_path_b(char *path);
 int		validate_colors_b(t_color *color);
@@ -421,7 +442,7 @@ void	draw_gun_b(t_game *game);
 void	init_gun_b(t_gun *gun, int dim, int index);
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path);
 void	render_gun_shut_b(t_game *game);
-void render_sprites(t_game *game, t_sprite *sprites);
+void 	render_sprites(t_game *game, t_sprite *sprites);
 void	set_sprites(t_game *game);
 void	set_sprites_cords(t_game *game);
 void	move_sprites(t_game *game);
@@ -434,7 +455,7 @@ void	init_mlx_health_bar_texture_b(t_game *game);
 void	render_ammo_bar_b(t_game *game);
 void	init_mlx_ammo_bar_texture_b(t_game *game);
 void	init_ammo_b(t_ammo *ammo, int width, int height);
-void render_hearts(t_game *game, t_heart *heart);
+void 	render_hearts(t_game *game, t_heart *heart);
 void	set_heart_cords(t_game *game);
 void	check_collect_hearts(t_game *game);
 void	init_mlx_heart_texture_b(t_game *game);
@@ -447,9 +468,10 @@ void	check_collect_ammo(t_game *game);
 void	init_key_tex_b(t_key_tex *key_tex, int width, int height);
 void	init_mlx_key_texture_b(t_game *game);
 void	set_key_cords(t_game *game);
-void render_key(t_game *game, t_key *key);
+void 	render_key(t_game *game, t_key *key);
 void	check_collect_key(t_game *game);
 int		is_zombie_near(t_game *game, double new_x, double new_y);
 int		is_player_near(t_game *game, double new_x, double new_y);
+int		update_distance(t_game *game, double x, double y);
 
 #endif

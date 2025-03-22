@@ -40,58 +40,59 @@ void	init_mlx_ray_b(t_ray *ray, t_game *game, int x)
 	calculate_step_b(ray, game);
 }
 
-void init_gun_b(t_gun *gun, int dim, int index)
+void	init_gun_b(t_gun *gun, int dim, int index)
 {
 	gun[index].addr = NULL;
 	gun[index].img = NULL;
 	gun[index].path = NULL;
 	gun[index].height = dim;
 	gun[index].width = dim;
-	gun[index].screen_x = (SCREEN_WIDTH / 2) - (gun[index].width / 2);  // ✅ Center horizontally
-    gun[index].screen_y = SCREEN_HEIGHT - gun[index].height;           // ✅ Position at bottom
+	gun[index].screen_x = (SCREEN_WIDTH / 2) - (gun[index].width / 2);
+	gun[index].screen_y = SCREEN_HEIGHT - gun[index].height;
 }
 
-void init_health_bar_b(t_health *health_bar, int width, int height)
+void	init_health_bar_b(t_health *health_bar, int width, int height)
 {
 	int	i;
 
 	i = 0;
-	while(i < 5)
+	while (i < 5)
 	{
 		health_bar[i].addr = NULL;
 		health_bar[i].img = NULL;
 		health_bar[i].path = NULL;
 		health_bar[i].height = height;
 		health_bar[i].width = width;
-		health_bar[i].screen_x = 20; 
+		health_bar[i].screen_x = 20;
 		health_bar[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 8;
 		i++;
 	}
 }
-void init_ammo_b(t_ammo *ammo, int width, int height)
+
+void	init_ammo_b(t_ammo *ammo, int width, int height)
 {
 	int	i;
 
 	i = 0;
-	while(i < 7)
+	while (i < 7)
 	{
 		ammo[i].addr = NULL;
 		ammo[i].img = NULL;
 		ammo[i].path = NULL;
 		ammo[i].height = height;
 		ammo[i].width = width;
-		ammo[i].screen_x = 20; 
+		ammo[i].screen_x = 20;
 		ammo[i].screen_y = SCREEN_HEIGHT - SCREEN_HEIGHT / 13;
 		i++;
 	}
 }
 
-void init_heart_tex_b(t_heart_tex *heart_tex, int dim)
+void	init_heart_tex_b(t_heart_tex *heart_tex, int dim)
 {
 	int	i;
 
 	i = 0;
-	while(i < 12)
+	while (i < 12)
 	{
 		heart_tex[i].addr = NULL;
 		heart_tex[i].img = NULL;
@@ -102,12 +103,12 @@ void init_heart_tex_b(t_heart_tex *heart_tex, int dim)
 	}
 }
 
-void init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim)
+void	init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim)
 {
 	int	i;
 
 	i = 0;
-	while(i < 12)
+	while (i < 12)
 	{
 		c_ammo_tex[i].addr = NULL;
 		c_ammo_tex[i].img = NULL;
@@ -118,12 +119,12 @@ void init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim)
 	}
 }
 
-void init_key_tex_b(t_key_tex *key_tex, int width, int height)
+void	init_key_tex_b(t_key_tex *key_tex, int width, int height)
 {
 	int	i;
 
 	i = 0;
-	while(i < 7)
+	while (i < 7)
 	{
 		key_tex[i].addr = NULL;
 		key_tex[i].img = NULL;

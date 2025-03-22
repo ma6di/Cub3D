@@ -2,13 +2,6 @@
 
 #include "cub3d_bonus.h"
 
-typedef struct s_renderable
-{
-    double distance;  // Distance from player
-    int type;         // Type: 0 = wall, 1 = sprite, 2 = heart, 3 = ammo, etc.
-    void *object;     // Pointer to the actual object (sprite, wall, etc.)
-} t_renderable;
-
 int compare_renderables(const void *a, const void *b)
 {
     double dist_a = ((t_renderable *)a)->distance;

@@ -91,3 +91,10 @@ void	ft_player_health_b(t_game *game)
 	free(health);
 	free(phrase);
 }
+
+int	update_distance(t_game *game, double x, double y)
+{
+	return (pow(game->player.x - x, 2) + \
+		pow(game->player.y - y, 2));
+
+}
