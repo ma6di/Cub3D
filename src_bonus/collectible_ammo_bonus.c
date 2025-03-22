@@ -73,7 +73,7 @@ void sort_c_ammos(t_game *game)
     }
 }
 
-void render_c_ammo(t_game *game)
+void render_c_ammo(t_game *game, t_c_ammo *c_ammo)
 {
     int i, x, y;
     int tex_x, tex_y, color;
@@ -88,42 +88,39 @@ void render_c_ammo(t_game *game)
     }
 
     // ✅ Update animation every few frames
-    for (i = 0; i < game->c_ammo_count; i++)
-    {
-        if (!game->c_ammo[i].active)  // Skip collected hearts
-            continue;
+  
+        if (!c_ammo->active)  // Skip collected hearts
+            return;
 
         // 🔄 Increment animation timer
-        game->c_ammo[i].animation_timer++;
+        c_ammo->animation_timer++;
 
         // 🔄 Change frame every 10 game ticks (adjust as needed)
-        if (game->c_ammo[i].animation_timer >= 10)
+        if (c_ammo->animation_timer >= 10)
         {
-            game->c_ammo[i].animation_index = (game->c_ammo[i].animation_index + 1) % 12;
-            game->c_ammo[i].animation_timer = 0;  // Reset timer
+            c_ammo->animation_index = (c_ammo->animation_index + 1) % 12;
+            c_ammo->animation_timer = 0;  // Reset timer
         }
 
         // ✅ Update distance for rendering order
-        game->c_ammo[i].distance = pow(game->player.x - game->c_ammo[i].x, 2) +
-                                  pow(game->player.y - game->c_ammo[i].y, 2);
-    }
+        c_ammo->distance = pow(game->player.x - c_ammo->x, 2) +
+                                  pow(game->player.y - c_ammo->y, 2);
 
-    sort_c_ammos(game);  // ✅ Sort c_ammos by distance (farther ones first)
 
-    for (i = 0; i < game->c_ammo_count; i++)
-    {
-        if (!game->c_ammo[i].active) // ✅ Skip collected c_ammos
-            continue;
+    // sort_c_ammos(game);  // ✅ Sort c_ammos by distance (farther ones first)
 
-        sprite_x = game->c_ammo[i].x - game->player.x;
-        sprite_y = game->c_ammo[i].y - game->player.y;
+        if (!c_ammo->active) // ✅ Skip collected c_ammos
+            return;
+
+        sprite_x = c_ammo->x - game->player.x;
+        sprite_y = c_ammo->y - game->player.y;
 
         inv_det = 1.0 / (game->player.plane_x * game->player.dir_y - game->player.dir_x * game->player.plane_y);
         transform_x = inv_det * (game->player.dir_y * sprite_x - game->player.dir_x * sprite_y);
         transform_y = inv_det * (-game->player.plane_y * sprite_x + game->player.plane_x * sprite_y);
 
         if (transform_y <= 0)  // ✅ Skip c_ammos behind the player
-            continue;
+            return;
 
 // Adjust this scaling factor to control the c_ammo size
 		double scale = 0.15; // 50% smaller
@@ -159,7 +156,7 @@ void render_c_ammo(t_game *game)
                     continue;
 
                 // ✅ Use the current animated frame
-                int frame = game->c_ammo[i].animation_index;
+                int frame = c_ammo->animation_index;
                 char *pixel = game->c_ammo_tex[frame].addr +
                               (tex_y * game->c_ammo_tex[frame].line_len) +
                               (tex_x * (game->c_ammo_tex[frame].bpp / 8));
@@ -171,7 +168,6 @@ void render_c_ammo(t_game *game)
                     my_mlx_pixel_put_b(game, x, y, color);
             }
         }
-    }
 }
 
 

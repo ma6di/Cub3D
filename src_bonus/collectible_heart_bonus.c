@@ -73,7 +73,7 @@ void sort_hearts(t_game *game)
     }
 }
 
-void render_hearts(t_game *game)
+void render_hearts(t_game *game, t_heart *heart)
 {
     int i, x, y;
     int tex_x, tex_y, color;
@@ -88,42 +88,39 @@ void render_hearts(t_game *game)
     }
 
     // ✅ Update animation every few frames
-    for (i = 0; i < game->heart_count; i++)
-    {
-        if (!game->heart[i].active)  // Skip collected hearts
-            continue;
+
+        if (!heart->active)  // Skip collected hearts
+            return;
 
         // 🔄 Increment animation timer
-        game->heart[i].animation_timer++;
+        heart->animation_timer++;
 
         // 🔄 Change frame every 10 game ticks (adjust as needed)
-        if (game->heart[i].animation_timer >= 10)
+        if (heart->animation_timer >= 10)
         {
-            game->heart[i].animation_index = (game->heart[i].animation_index + 1) % 12;
-            game->heart[i].animation_timer = 0;  // Reset timer
+            heart->animation_index = (heart->animation_index + 1) % 12;
+            heart->animation_timer = 0;  // Reset timer
         }
 
         // ✅ Update distance for rendering order
-        game->heart[i].distance = pow(game->player.x - game->heart[i].x, 2) +
-                                  pow(game->player.y - game->heart[i].y, 2);
-    }
+        heart->distance = pow(game->player.x - heart->x, 2) +
+                                  pow(game->player.y - heart->y, 2);
+    
 
-    sort_hearts(game);  // ✅ Sort hearts by distance (farther ones first)
+    // sort_hearts(game);  // ✅ Sort hearts by distance (farther ones first)
 
-    for (i = 0; i < game->heart_count; i++)
-    {
-        if (!game->heart[i].active) // ✅ Skip collected hearts
-            continue;
+        if (!heart->active) // ✅ Skip collected hearts
+            return;
 
-        sprite_x = game->heart[i].x - game->player.x;
-        sprite_y = game->heart[i].y - game->player.y;
+        sprite_x = heart->x - game->player.x;
+        sprite_y = heart->y - game->player.y;
 
         inv_det = 1.0 / (game->player.plane_x * game->player.dir_y - game->player.dir_x * game->player.plane_y);
         transform_x = inv_det * (game->player.dir_y * sprite_x - game->player.dir_x * sprite_y);
         transform_y = inv_det * (-game->player.plane_y * sprite_x + game->player.plane_x * sprite_y);
 
         if (transform_y <= 0)  // ✅ Skip hearts behind the player
-            continue;
+            return;
 
 // Adjust this scaling factor to control the heart size
 		double scale = 0.15; // 50% smaller
@@ -159,7 +156,7 @@ void render_hearts(t_game *game)
                     continue;
 
                 // ✅ Use the current animated frame
-                int frame = game->heart[i].animation_index;
+                int frame = heart->animation_index;
                 char *pixel = game->heart_tex[frame].addr +
                               (tex_y * game->heart_tex[frame].line_len) +
                               (tex_x * (game->heart_tex[frame].bpp / 8));
@@ -171,7 +168,6 @@ void render_hearts(t_game *game)
                     my_mlx_pixel_put_b(game, x, y, color);
             }
         }
-    }
 }
 
 

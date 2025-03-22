@@ -18,16 +18,16 @@ void render_ammo_bar_b(t_game *game)
 
     if (!game->ammo[index].img || !game->ammo[index].addr)
     {
-        printf(RED"Error: health bar texture %d not loaded properly!\n"RESET, index);
+        printf(RED"Error: ammo bar texture %d not loaded properly!\n"RESET, index);
         return;
     }
-
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < width; x++)
         {
             tex_x = x;
             tex_y = y;
+			
             color = *((int *)(game->ammo[index].addr +
                     (tex_y *  game->ammo[index].line_len + tex_x * (game->ammo[index].bpp / 8))));
 

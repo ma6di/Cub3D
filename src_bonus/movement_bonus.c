@@ -72,28 +72,33 @@ void move_player_b(int direction, t_game *game)
     double new_x;
     double new_y;
     int door_index;
+	int half_size = 1;
 
     new_x = game->player.x;
     new_y = game->player.y;
 
     calculate_new_position_b(direction, game, &new_x, &new_y);
 
-    // ✅ First check if it's a wall
+    // ✅ First check if it's a wall or if a zombie is too close
     if (game->map[(int)new_y][(int)new_x] == '1')
         return;
 
     // ✅ Check if it's a door and whether it's open
-    door_index = which_door(game, (int)new_y, (int)new_x);
-    if (game->map[(int)new_y][(int)new_x] == 'D' && (door_index == -1 || game->door[door_index].door_state == 0))
+    door_index = which_door(game, new_y, new_x);
+    if (game->map[(int)new_y][(int)new_x] == 'D' && 
+        (door_index == -1 || game->door[door_index].door_state == 0))
         return;
+
     // ✅ Move the player if it's a valid position
     game->player.x = new_x;
     game->player.y = new_y;
-	check_collect_hearts(game); // ✅ Check if player collects a heart
-	check_collect_ammo(game);
-	check_collect_key(game);
 
+    // ✅ Check for collectibles
+    check_collect_hearts(game);
+    check_collect_ammo(game);
+    check_collect_key(game);
 }
+
 
 int	mouse_rotate_b(int x, int y, t_game *game)
 {
@@ -105,7 +110,7 @@ int	mouse_rotate_b(int x, int y, t_game *game)
 
 	last_x = SCREEN_WIDTH / 2;
 	dx = x - last_x;
-	rotation_speed = ROTATE_SPEED * 0.5 * dx / 60.0;
+	rotation_speed = ROTATE_SPEED * dx / 60.0;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	game->player.dir_x = game->player.dir_x * cos(rotation_speed) - \

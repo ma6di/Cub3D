@@ -67,7 +67,7 @@ void render_health_bar_b(t_game *game)
     width = game->health_bar[index].width;
     height = game->health_bar[index].height;
 
-    if (!game->health_bar[index].img || !game->ammo[index].addr)
+    if (!game->health_bar[index].img || !game->health_bar[index].addr)
     {
         printf(RED"Error: health bar texture %d not loaded properly!\n"RESET, index);
         return;

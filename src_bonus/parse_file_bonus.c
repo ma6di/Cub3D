@@ -50,6 +50,7 @@ char	*str_start_b(char *str)
 
 void	file_data_order_b(t_game *game)
 {
+	int i = 0;
 	if (!game->textures[NORTH].path || \
 		!game->textures[SOUTH].path || \
 		!game->textures[WEST].path || \
@@ -62,6 +63,51 @@ void	file_data_order_b(t_game *game)
 	{
 		print_error(RED"Error: cub file data is not in order\n"RESET);
 		game->file_order = 1;
+	}
+	while(i < 7)
+	{
+		if(!game->ammo[i].path)
+		{
+			print_error(RED"Error: cub file data is not in order\n"RESET);
+			game->file_order = 1;
+		}
+		i++;
+	}
+	while(i < 12)
+	{
+		if(!game->c_ammo_tex[i].path)
+		{
+			print_error(RED"Error: cub file data is not in order\n"RESET);
+			game->file_order = 1;
+		}
+		i++;
+	}
+	while(i < 12)
+	{
+		if(!game->heart_tex[i].path)
+		{
+			print_error(RED"Error: cub file data is not in order\n"RESET);
+			game->file_order = 1;
+		}
+		i++;
+	}
+	while(i < 5)
+	{
+		if(!game->health_bar[i].path)
+		{
+			print_error(RED"Error: cub file data is not in order\n"RESET);
+			game->file_order = 1;
+		}
+		i++;
+	}
+	while(i < 7)
+	{
+		if(!game->key_tex[i].path)
+		{
+			print_error(RED"Error: cub file data is not in order\n"RESET);
+			game->file_order = 1;
+		}
+		i++;
 	}
 }
 

@@ -28,7 +28,7 @@
 # define SCREEN_WIDTH	1000
 # define SCREEN_HEIGHT	600
 # define MOVE_SPEED		0.04
-# define ROTATE_SPEED	0.05
+# define ROTATE_SPEED	0.005
 
 # define NORTH	0
 # define SOUTH	1
@@ -63,6 +63,10 @@
 
 # define PUSH 1
 # define POP 0
+
+
+#define SAFE_DISTANCE 0.5
+
 
 typedef struct s_stack
 {
@@ -417,7 +421,7 @@ void	draw_gun_b(t_game *game);
 void	init_gun_b(t_gun *gun, int dim, int index);
 void	init_mlx_gun_texture_b(t_game *game, int index, char *path);
 void	render_gun_shut_b(t_game *game);
-void	render_sprites(t_game *game);
+void render_sprites(t_game *game, t_sprite *sprites);
 void	set_sprites(t_game *game);
 void	set_sprites_cords(t_game *game);
 void	move_sprites(t_game *game);
@@ -430,7 +434,7 @@ void	init_mlx_health_bar_texture_b(t_game *game);
 void	render_ammo_bar_b(t_game *game);
 void	init_mlx_ammo_bar_texture_b(t_game *game);
 void	init_ammo_b(t_ammo *ammo, int width, int height);
-void	render_hearts(t_game *game);
+void render_hearts(t_game *game, t_heart *heart);
 void	set_heart_cords(t_game *game);
 void	check_collect_hearts(t_game *game);
 void	init_mlx_heart_texture_b(t_game *game);
@@ -438,13 +442,14 @@ void	init_heart_tex_b(t_heart_tex *heart_tex, int dim);
 void	init_c_ammo_tex_b(t_c_ammo_tex *c_ammo_tex, int dim);
 void	init_mlx_c_ammo_texture_b(t_game *game);
 void	set_c_ammo_cords(t_game *game);
-void	render_c_ammo(t_game *game);
+void	render_c_ammo(t_game *game, t_c_ammo *c_ammo);
 void	check_collect_ammo(t_game *game);
 void	init_key_tex_b(t_key_tex *key_tex, int width, int height);
 void	init_mlx_key_texture_b(t_game *game);
 void	set_key_cords(t_game *game);
-void	render_key(t_game *game);
+void render_key(t_game *game, t_key *key);
 void	check_collect_key(t_game *game);
-
+int		is_zombie_near(t_game *game, double new_x, double new_y);
+int		is_player_near(t_game *game, double new_x, double new_y);
 
 #endif
