@@ -38,7 +38,7 @@ void perform_dda_b(t_ray *ray, t_game *game)
         if (game->map[ray->mapy][ray->mapx] == 'D')
         {
             door_index = which_door(game, ray->mapy, ray->mapx);
-            if (door_index != -1 && game->door[door_index].door_state == 0)  // If door is closed
+            if (door_index != -1)  // If door is closed
             {
                 ray->door = 1;  // Mark the ray as encountering a door
                 break;  // Exit the loop if we encounter a door

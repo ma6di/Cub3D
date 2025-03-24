@@ -79,7 +79,6 @@ int render_b(t_game *game)
         else if (renderables[i].type == 4)
             render_key(game, (t_key *)renderables[i].object);
     }
-
     // ✅ Step 6: Move & update other elements
     move_sprites(game);
     render_health_bar_b(game);

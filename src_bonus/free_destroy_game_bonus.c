@@ -60,8 +60,8 @@ static void	free_tex1(t_game *game)
 		free(game->textures[WEST].path);
 	if (game->textures[EAST].path)
 		free(game->textures[EAST].path);
-	if (game->textures[DOOR].path)
-		free(game->textures[DOOR].path);
+	// if (game->textures[DOOR].path)
+	// 	free(game->textures[DOOR].path);
 	if (game->color[FLOOR].col_tex_str)
 		free(game->color[FLOOR].col_tex_str);
 	if (game->color[CEILING].col_tex_str)

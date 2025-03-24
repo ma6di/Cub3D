@@ -13,6 +13,7 @@
 # include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <sys/time.h>
 
 # define TILE_SIZE 32
 
@@ -34,8 +35,12 @@
 # define SOUTH	1
 # define WEST	2
 # define EAST	3
-# define DOOR	4
-# define ZOMBIE 5
+# define ZOMBIE 4
+# define DOOR_1	5
+# define DOOR_2	6
+# define DOOR_3	7
+# define DOOR_4	8
+# define DOOR_5	9
 
 # define FLOOR	0
 # define CEILING	1
@@ -147,6 +152,7 @@ typedef struct s_door
 	int	x;		  // Door's X position
 	int	y;		  // Door's Y position
 	int	door_state; // 0 (close), 1, 2, 3, 4, 5(open)
+    int transition_time;  // ⏳ Counts frames to control animation speed
 } t_door;
 
 typedef struct s_sprite
@@ -347,7 +353,7 @@ typedef struct s_game
 	void			*addr;
 	int				keys[7];
 	t_player		player;			  // Player data
-	t_texture	  	textures[6];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
+	t_texture	  	textures[10];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
 	t_color			color[3];
 	t_minimap		minimap;
 	t_door			*door;	 // Floor RGB color
@@ -473,5 +479,6 @@ void	check_collect_key(t_game *game);
 int		is_zombie_near(t_game *game, double new_x, double new_y);
 int		is_player_near(t_game *game, double new_x, double new_y);
 int		update_distance(t_game *game, double x, double y);
+void	update_doors(t_game *game);
 
 #endif

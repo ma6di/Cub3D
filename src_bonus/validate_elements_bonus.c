@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_elements_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:19:59 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:19:30 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:22:04 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	validate_colors_b(t_color *color)
 static int	validate_textures_b(t_texture *textures)
 {
 	if (!textures[NORTH].path || !textures[SOUTH].path || \
-		!textures[WEST].path || !textures[EAST].path || !textures[DOOR].path)
+		!textures[WEST].path || !textures[EAST].path)
 	{
 		print_error(RED"Error: Missing one or more textures\n"RESET);
 		return (0);
@@ -60,7 +60,6 @@ static int	validate_textures_b(t_texture *textures)
 		!is_valid_texture_path_b(textures[SOUTH].path) \
 		|| !is_valid_texture_path_b(textures[WEST].path) \
 		|| !is_valid_texture_path_b(textures[EAST].path) \
-		|| !is_valid_texture_path_b(textures[DOOR].path) \
 		|| !is_valid_texture_path_b(textures[ZOMBIE].path))
 		return (0);
 	return (1);

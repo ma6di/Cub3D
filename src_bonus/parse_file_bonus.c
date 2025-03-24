@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:05:38 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:55:24 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,8 +207,16 @@ static int	check_line_b(char *line, t_game *game)
 		game->key_tex[5].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "K7 ", 3) == 0)
 		game->key_tex[6].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "D ", 2) == 0)
-		game->textures[DOOR].path = ft_strdup(str_start_b(line + 1));
+	else if (line && ft_strncmp(line, "D1 ", 3) == 0)
+		game->textures[DOOR_1].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "D2 ", 3) == 0)
+		game->textures[DOOR_2].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "D3 ", 3) == 0)
+		game->textures[DOOR_3].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "D4 ", 3) == 0)
+		game->textures[DOOR_4].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "D5 ", 3) == 0)
+		game->textures[DOOR_5].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "Z ", 2) == 0)
 		game->textures[ZOMBIE].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "G ", 2) == 0)

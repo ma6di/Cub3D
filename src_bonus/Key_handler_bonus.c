@@ -110,6 +110,70 @@ static void	shoot_gun(t_game *game)
 	}
 }
 
+// static void change_door_state(t_game *game, int index)
+// {
+//     printf("Changing state of door at index %d.\n", index);
+
+//     // Continue transitioning until the door reaches state 5
+//     while (game->door[index].transition_time > 0)
+//     {
+//         // Calculate the intermediate state based on the remaining transition time
+//         int progress = 10000 - game->door[index].transition_time; // Progress from 0 to 1000
+//         game->door[index].door_state = 1 + ((progress * 4) / 10000); // Map progress to states 1 to 5
+
+//         printf("Door state during transition: %d (progress: %d).\n", game->door[index].door_state, progress);
+
+//         game->door[index].transition_time--; // Decrease the timer
+//     }
+// 	game->door[index].door_state = 5;
+//     // Reset the transition time for the next interaction
+//     game->door[index].transition_time = 10000;
+//     printf("Door fully opened. State: %d.\n", game->door[index].door_state);
+// }
+
+// static void change_door_state(t_game *game, int index)
+// {
+//     printf("Changing state of door at index %d.\n", index);
+
+//     // Continue transitioning until the door reaches state 5
+//     while (game->door[index].door_state < 6)
+//     {
+// 		game->door[index].transition_time --;
+// 		if(game->door[index].transition_time == 0)
+// 		{
+//         	game->door[index].door_state ++;; // Map progress to states 1 to 5
+// 			game->door[index].transition_time = 6000;
+// 		}
+//     }
+// 	game->door[index].door_state = 5;
+// }
+long get_time_of_the_day(void)
+{
+    struct timeval tv;
+
+    // Get the current time
+    if (gettimeofday(&tv, NULL) == -1)
+    {
+        perror("gettimeofday failed");
+        return -1;
+    }
+
+    // Return the time in milliseconds
+    return (tv.tv_sec * 1000L) + (tv.tv_usec / 1000L);
+}
+
+static void change_door_state(t_game *game, int index)
+{
+    if (game->door[index].door_state == 5)
+    {
+        printf("Door is already fully open at index %d.\n", index);
+        return;
+    }
+
+    printf("Starting door transition at index %d.\n", index);
+    game->door[index].transition_time = get_time_of_the_day(); // Record the starting time
+}
+
 int	press_key_b(int keycode, t_game *game)
 {
 	int	index;
@@ -134,7 +198,8 @@ int	press_key_b(int keycode, t_game *game)
 	{
 		index = is_door_b(game);
 		if (index != -1 && !is_zombie_inside_door(game, index))
-			game->door[index].door_state = !game->door[index].door_state;
+			change_door_state(game, index);
+			//game->door[index].door_state = !game->door[index].door_state;
 	}
 	return (0);
 }

@@ -10,7 +10,7 @@ void print_struct_b(t_game *game)
 	printf("SO %s\n", game->textures[SOUTH].path);
 	printf("WE %s\n", game->textures[WEST].path);
 	printf("EA %s\n", game->textures[EAST].path);
-	printf("D %s\n", game->textures[DOOR].path);
+	// printf("D %s\n", game->textures[DOOR].path);
 	printf("\n\nFloor and Ceiling Color:::\n---------------------------- \n");
 	if(game->color[FLOOR].mode == 1)
 	{

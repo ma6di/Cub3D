@@ -13,7 +13,8 @@ void set_doors_cords(int count, t_door **door, char **map)
             {
                 (*door)[i].x = x;  // ✅ Use `i` as index
                 (*door)[i].y = y;
-                (*door)[i].door_state = 0;
+                (*door)[i].door_state = 1;
+				(*door)[i].transition_time = 60;
                 i++;  // ✅ Increment `i`, not `count`
             }
             x++;
@@ -66,4 +67,25 @@ void set_doors(t_game *game)
     }
 
     set_doors_cords(game->door_count, &game->door, game->map);
+}
+
+void update_doors(t_game *game)
+{
+    long current_time;
+    int i;
+
+    current_time = get_time_of_the_day();
+    for (i = 0; i < game->door_count; i++)
+    {
+        if (game->door[i].door_state < 5) // If the door is not fully open
+        {
+            // Check if 200ms have passed since the last state change
+            if (current_time - game->door[i].transition_time >= 200) // 500ms delay
+            {
+                game->door[i].door_state++; // Increment the door state
+                game->door[i].transition_time = current_time; // Reset the timer
+                printf("Door state changed to %d at index %d.\n", game->door[i].door_state, i);
+            }
+        }
+    }
 }

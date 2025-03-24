@@ -19,7 +19,11 @@ static void	init_all_mlx_textures_b(t_game *game)
 	init_mlx_wall_texture_b(game, SOUTH, game->textures[SOUTH].path);
 	init_mlx_wall_texture_b(game, WEST, game->textures[WEST].path);
 	init_mlx_wall_texture_b(game, EAST, game->textures[EAST].path);
-	init_mlx_wall_texture_b(game, DOOR, game->textures[DOOR].path);
+	init_mlx_wall_texture_b(game, DOOR_1, game->textures[DOOR_1].path);
+	init_mlx_wall_texture_b(game, DOOR_2, game->textures[DOOR_2].path);
+	init_mlx_wall_texture_b(game, DOOR_3, game->textures[DOOR_3].path);
+	init_mlx_wall_texture_b(game, DOOR_4, game->textures[DOOR_4].path);
+	init_mlx_wall_texture_b(game, DOOR_5, game->textures[DOOR_5].path);
 	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
 	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
 	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);

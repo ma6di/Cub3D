@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:08 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:18:38 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,22 @@ int	two_dim_len_b(char **arr)
 
 int	select_texture_b(t_ray *ray, t_game *game)
 {
+	int door_index;
+	
 	if (ray->door == 1)
 	{
+		door_index = which_door(game, ray->mapy, ray->mapx);
 		ray->door = 0;
-		return (DOOR);
+		if (game->door[door_index].door_state == 1)
+			return (DOOR_1);
+		else if (game->door[door_index].door_state == 2)
+			return (DOOR_2);
+		else if (game->door[door_index].door_state == 3)
+			return (DOOR_3);
+		else if (game->door[door_index].door_state == 4)
+			return (DOOR_4);			
+		else if (game->door[door_index].door_state == 5)
+			return (DOOR_5);
 	}
 	if (ray->zombie == 1)
 	{
