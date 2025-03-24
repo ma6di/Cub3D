@@ -173,7 +173,23 @@ static void change_door_state(t_game *game, int index)
     printf("Starting door transition at index %d.\n", index);
     game->door[index].transition_time = get_time_of_the_day(); // Record the starting time
 }
+int is_final_door(t_game *game)
+{
+	if(game->map[(int)game->player.y + 1][(int)game->player.x + 1] == 'F')
+		return 1;
+	if(game->map[(int)game->player.y][(int)game->player.x + 1] == 'F')
+		return 1;
+	if(game->map[(int)game->player.y + 1][(int)game->player.x] == 'F')
+		return 1;
+	if(game->map[(int)game->player.y - 1][(int)game->player.x - 1] == 'F')
+		return 1;
+	if(game->map[(int)game->player.y][(int)game->player.x - 1] == 'F')
+		return 1;
+	if(game->map[(int)game->player.y - 1][(int)game->player.x] == 'F')
+		return 1;
+	return 0;
 
+}
 int	press_key_b(int keycode, t_game *game)
 {
 	int	index;
@@ -199,7 +215,14 @@ int	press_key_b(int keycode, t_game *game)
 		index = is_door_b(game);
 		if (index != -1 && !is_zombie_inside_door(game, index))
 			change_door_state(game, index);
-			//game->door[index].door_state = !game->door[index].door_state;
+		if(is_final_door(game) && game->player.key > 0)
+		{
+			printf("VICTORY\n");
+			printf("VICTORY\n");
+			printf("VICTORY\n");
+			close_window_b(game);
+		}
+		
 	}
 	return (0);
 }

@@ -58,9 +58,10 @@ int	select_texture_b(t_ray *ray, t_game *game)
 		else if (game->door[door_index].door_state == 5)
 			return (DOOR_5);
 	}
-	if (ray->zombie == 1)
+	if (ray->final_door == 1)
 	{
-		ray->zombie = 0;
+		ray->final_door = 0;
+		return (FINAL_DOOR);
 	}
 	if (ray->side == 0)
 	{

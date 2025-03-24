@@ -5,7 +5,7 @@ int	get_wall_texture_pixel_b(t_texture *texture, int x, int y, int tex_id)
 	char	*dst;
 	int		color;
 
-	if (!texture || tex_id < 0 || tex_id >= 10)
+	if (!texture || tex_id < 0 || tex_id >= 11)
 	{
 		print_error(RED"Error: Invalid texture ID %d\n"RESET, tex_id);
 		return (-1);
@@ -85,7 +85,7 @@ static void	render_wall_slice_b(t_game *game, t_ray *ray, int x, int tex_id)
 		params.tex_pos += params.step;
 		color = get_wall_texture_pixel_b(game->textures, params.tex_x, \
 										tex_y, tex_id);
-		if ((color & 0x00FFFFFF) != 0)					
+		if ((color & 0xFF000000) == 0x00000000)					
 			my_mlx_pixel_put_b(game, x, y, color);
 		y++;
 	}

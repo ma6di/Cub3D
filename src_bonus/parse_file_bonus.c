@@ -217,6 +217,8 @@ static int	check_line_b(char *line, t_game *game)
 		game->textures[DOOR_4].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "D5 ", 3) == 0)
 		game->textures[DOOR_5].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "END ", 4) == 0)
+		game->textures[FINAL_DOOR].path = ft_strdup(str_start_b(line + 3));
 	else if (line && ft_strncmp(line, "Z ", 2) == 0)
 		game->textures[ZOMBIE].path = ft_strdup(str_start_b(line + 1));
 	else if (line && ft_strncmp(line, "G ", 2) == 0)

@@ -82,6 +82,7 @@ void	init_game_b(t_game *game)
 	init_texture_b(game->textures, DOOR_3, 128);
 	init_texture_b(game->textures, DOOR_4, 128);
 	init_texture_b(game->textures, DOOR_5, 128);
+	init_texture_b(game->textures, FINAL_DOOR, 128);
 	init_texture_b(game->textures, ZOMBIE, 220);
 	init_gun_b(game->gun, 150, GUN);
 	init_gun_b(game->gun, 40, GUN_SHUT);

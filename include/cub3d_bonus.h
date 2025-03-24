@@ -41,6 +41,8 @@
 # define DOOR_3	7
 # define DOOR_4	8
 # define DOOR_5	9
+# define FINAL_DOOR	10
+
 
 # define FLOOR	0
 # define CEILING	1
@@ -329,6 +331,7 @@ typedef struct	s_ray
 	int		drawend;
 	int		door;
 	int		zombie;
+	int		final_door;
 }				t_ray;
 /* 🎮 Game Structure */
 
@@ -353,7 +356,7 @@ typedef struct s_game
 	void			*addr;
 	int				keys[7];
 	t_player		player;			  // Player data
-	t_texture	  	textures[10];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
+	t_texture	  	textures[11];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
 	t_color			color[3];
 	t_minimap		minimap;
 	t_door			*door;	 // Floor RGB color

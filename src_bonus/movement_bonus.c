@@ -82,6 +82,8 @@ void move_player_b(int direction, t_game *game)
     // ✅ First check if it's a wall or if a zombie is too close
     if (game->map[(int)new_y][(int)new_x] == '1')
         return;
+	if (game->map[(int)new_y][(int)new_x] == 'F')
+        return;
 
     // ✅ Check if it's a door and whether it's open
     door_index = which_door(game, new_y, new_x);
@@ -125,4 +127,3 @@ int	mouse_rotate_b(int x, int y, t_game *game)
 	(void)y;
 	return (0);
 }
-
