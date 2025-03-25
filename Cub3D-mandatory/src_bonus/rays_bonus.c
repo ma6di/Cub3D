@@ -106,32 +106,30 @@ void perform_dda_b(t_ray *ray, t_game *game)
                     ray->door = 1;
                     break;
                 }
-				if(door_state >= 2 && door_state <= 4)
-				{
-					// ✅ Compute the exact hit position
-					if (ray->side == 0)  // Vertical wall hit
-						hit_pos = game->player.y + ray->walldist * ray->diry;
-					else  // Horizontal wall hit
-						hit_pos = game->player.x + ray->walldist * ray->dirx;
 
-					hit_pos -= floor(hit_pos); // Extract fractional part
+                // ✅ Compute the exact hit position
+                if (ray->side == 0)  // Vertical wall hit
+                    hit_pos = game->player.y + ray->walldist * ray->diry;
+                else  // Horizontal wall hit
+                    hit_pos = game->player.x + ray->walldist * ray->dirx;
 
-					// ✅ Compute texture X coordinate
-					tex_x = (int)(hit_pos * game->textures[tex_id].width) % game->textures[tex_id].width;
-					tex_y = (int)(ray->mapy * game->textures[tex_id].height) % game->textures[tex_id].height;
+                hit_pos -= floor(hit_pos); // Extract fractional part
 
-					// ✅ Get pixel color
-					color = *((int *)(game->textures[tex_id].addr +
-									(tex_y * game->textures[tex_id].line_len) +
-									(tex_x * (game->textures[tex_id].bpp / 8))));
+                // ✅ Compute texture X coordinate
+                tex_x = (int)(hit_pos * game->textures[tex_id].width) % game->textures[tex_id].width;
+                tex_y = (int)(ray->mapy * game->textures[tex_id].height) % game->textures[tex_id].height;
 
-					// ✅ Check transparency (MiniLibX Alpha Channel)
-					if ((color & 0xFF000000) == 0x00000000) // If **NOT** fully transparent, stop ray
-					{
-						ray->door = 1;
-						break;
-					}
-				}
+                // ✅ Get pixel color
+                color = *((int *)(game->textures[tex_id].addr +
+                                  (tex_y * game->textures[tex_id].line_len) +
+                                  (tex_x * (game->textures[tex_id].bpp / 8))));
+
+                // ✅ Check transparency (MiniLibX Alpha Channel)
+                if ((color & 0xFF000000) == 0x00000000) // If **NOT** fully transparent, stop ray
+                {
+                    ray->door = 1;
+                    break;
+                }
             }
         }
 		if (game->map[ray->mapy][ray->mapx] == 'F')
