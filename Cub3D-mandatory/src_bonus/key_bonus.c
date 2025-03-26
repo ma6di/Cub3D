@@ -187,7 +187,6 @@ void	check_collect_key(t_game *game)
 		if ((int)game->player.x == key_x && (int)game->player.y == key_y)
 		{
 			game->player.key += 1;
-			printf("Player total keys: %d\n", game->player.key);
 			game->key[i].active = 0;
 		}
 	}

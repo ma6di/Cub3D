@@ -1,4 +1,3 @@
-
 #include "cub3D.h"
 
 void	draw_ceiling_pixel(t_game *game)
@@ -38,8 +37,9 @@ void	draw_floor_pixel(t_game *game)
 }
 
 
-void	draw_floor_and_ceiling(t_game *game)
+void	draw_floor_and_ceiling(t_game *game, int index)
 {
+	(void)(index);
 	draw_ceiling_pixel(game);
 	draw_floor_pixel(game);
 }

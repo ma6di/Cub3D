@@ -58,7 +58,8 @@ t_sprite	*get_zombie_in_front(t_game *game)
 		distance = sqrtf(dx * dx + dy * dy);
 		if (distance < range)
 		{
-			dot = (dx * game->player.dir_x + dy * game->player.dir_y) / distance;
+			dot = (dx * game->player.dir_x + dy * \
+						game->player.dir_y) / distance;
 			if (dot > min_shoot_angle && !is_obstructed(game,
 					game->player.x, game->player.y,
 					game->sprites[i].x, game->sprites[i].y))
@@ -71,14 +72,17 @@ t_sprite	*get_zombie_in_front(t_game *game)
 
 
 
-void remove_zombie(t_game *game, int index)
+void	remove_zombie(t_game *game, int index)
 {
-    if (index < 0 || index >= game->sprite_count)
-        return;
+	int	i;
 
-    // ✅ Shift all zombies after the index forward
-    for (int i = index; i < game->sprite_count - 1; i++)
-       		game->sprites[i] = game->sprites[i + 1];
-
-    game->sprite_count--;  // ✅ Reduce total count
+	i = index;
+	if (index < 0 || index >= game->sprite_count)
+		return;
+	while (i < game->sprite_count - 1)
+	{
+		game->sprites[i] = game->sprites[i + 1];
+		i++;
+	}
+	game->sprite_count--;
 }

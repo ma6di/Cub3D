@@ -1,3 +1,4 @@
+
 #include "cub3d_bonus.h"
 
 static int	is_valid_char_b(char c)

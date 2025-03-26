@@ -29,17 +29,14 @@ void	calculate_step_b(t_ray *ray, t_game *game)
 
 void	perform_dda_b(t_ray *ray, t_game *game)
 {
-	while (ray->mapx >= 0 && ray->mapx < game->width
-		&& ray->mapy >= 0 && ray->mapy < game->height
-		&& game->map[ray->mapy][ray->mapx] != '1')
+	while (ray->mapx >= 0 && ray->mapx < game->width && ray->mapy >= 0 && \
+		ray->mapy < game->height && game->map[ray->mapy][ray->mapx] != '1')
 	{
-		if (game->map[ray->mapy][ray->mapx] == 'D')
+		if (game->map[ray->mapy][ray->mapx] == 'D' || \
+			game->map[ray->mapy][ray->mapx] == 'F')
+		{
 			if (handle_door_hit(ray, game))
 				break ;
-		if (game->map[ray->mapy][ray->mapx] == 'F')
-		{
-			ray->final_door = 1;
-			break ;
 		}
 		if (ray->side_distx < ray->side_disty)
 		{

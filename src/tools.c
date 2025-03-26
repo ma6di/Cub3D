@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_bonus.c                                      :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:08 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:43:47 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	free_two_dim(char **arr)
 {
@@ -39,31 +39,44 @@ int	two_dim_len(char **arr)
 	return (count);
 }
 
-int	select_texture(t_ray *ray, t_game *game)
+/**
+ * select_texture - Determines which texture to use for a wall
+ * @ray: Pointer to the ray structure
+ *
+ * This function selects the appropriate texture based on the direction
+ * the ray was traveling when it hit a wall.
+ * Returns: The texture index (NORTH, SOUTH, EAST, or WEST).
+ */
+int select_texture(t_ray *ray, t_game *game)
 {
-	if (ray->side == 0)
-	{
-		if (ray->dirx > 0)
-			return (EAST);
-		else
-			return (WEST);
-	}
-	else
-	{
-		if (ray->diry > 0)
-			return (SOUTH);
-		else
-			return (NORTH);
-	}
-	return (EAST);
+
+    // Select texture based on wall side
+    if (ray->side == 0)  // Vertical walls
+        return (ray->dirx > 0) ? EAST : WEST;
+    else                 // Horizontal walls
+        return (ray->diry > 0) ? SOUTH : NORTH;
+
+    // Default case (should never happen, but prevents warnings)
+    return EAST;  // You can return any valid texture
 }
 
 
-int	rgb_to_hex(int r, int g, int b)
+int rgb_to_hex(int r, int g, int b)
 {
-	int	color;
+    // ✅ Ensure RGB values are within the valid range (0-255)
+    if (r < 0)
+		r = 0;
+	if (r > 255)
+		r = 255;
+    if (g < 0)
+		g = 0;
+	if (g > 255)
+		g = 255;
+    if (b < 0)
+		b = 0;
+	if (b > 255)
+		b = 255;
 
-	color = (r << 16) | (g << 8) | b;
-	return (color);
+    // ✅ Combine RGB into a single 24-bit hex color (0xRRGGBB)
+    return (r << 16) | (g << 8) | b;
 }
-

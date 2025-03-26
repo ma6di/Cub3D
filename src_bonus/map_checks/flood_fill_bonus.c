@@ -1,3 +1,4 @@
+
 #include "cub3d_bonus.h"
 
 static int	stack_op_b(t_stack *stack, int *x, int *y, int op)

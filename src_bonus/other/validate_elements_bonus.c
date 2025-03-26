@@ -60,7 +60,8 @@ static int	validate_textures_b(t_texture *textures)
 		|| !is_valid_texture_path_b(textures[DOOR_2].path) \
 		|| !is_valid_texture_path_b(textures[DOOR_3].path) \
 		|| !is_valid_texture_path_b(textures[DOOR_4].path) \
-		|| !is_valid_texture_path_b(textures[DOOR_5].path))
+		|| !is_valid_texture_path_b(textures[DOOR_5].path) \
+		|| !is_valid_texture_path_b(textures[FINAL_DOOR].path))
 		return (0);
 	return (1);
 }
@@ -82,7 +83,7 @@ int	validate_map_b(t_game *game)
 
 int	validate_cub_elements_b(t_game *game)
 {
-	if (validate_textures_b(game->textures) && \
+	if (validate_textures_b(game->textures) && validate_objects(game) && \
 		validate_colors_b(game->color) && validate_map_b(game))
 		return (1);
 	else

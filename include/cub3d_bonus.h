@@ -43,6 +43,9 @@
 # define DOOR_5	9
 # define FINAL_DOOR	10
 
+#define DOOR_CLOSED 1
+#define DOOR_PARTIAL 2
+#define DOOR_OPEN 3
 
 # define FLOOR	0
 # define CEILING	1
@@ -74,6 +77,9 @@
 # define SKY_ROTATION_FACTOR 0.1
 # define SAFE_DISTANCE 0.5
 
+#define MAX_MINIMAP_WIDTH  35
+#define MAX_MINIMAP_HEIGHT 15
+
 typedef struct s_renderable
 {
     double distance;  // Distance from player
@@ -91,6 +97,22 @@ typedef struct s_draw
     int width;     // Width of the sprite on screen
     int height;    // Height of the sprite on screen
 } t_draw;
+
+typedef struct s_sprite_draw
+{
+    double  sprite_x;
+    double  sprite_y;
+    double  transform_x;
+    double  transform_y;
+    int     screen_x;
+    int     start_x;
+    int     end_x;
+    int     start_y;
+    int     end_y;
+    int     width;
+    int     height;
+}   t_sprite_draw;
+
 
 
 typedef struct s_stack
@@ -154,8 +176,9 @@ typedef struct s_door
 	int	x;		  // Door's X position
 	int	y;		  // Door's Y position
 	int	door_state; // 0 (close), 1, 2, 3, 4, 5(open)
-    int transition_time;
+    long transition_time;
 	int	trigger;  // ⏳ Counts frames to control animation speed
+	int		transition_speed;
 } t_door;
 
 typedef struct s_sprite
@@ -505,6 +528,17 @@ void	init_win_b(t_game *game);
 void	init_mlx_ray_b(t_ray *ray, t_game *game, int x);
 void	init_all_mlx_textures_b(t_game *game);
 
+
+///		validating Parsed data		///
+int		validate_objects(t_game *game);
+int		validate_ammo_paths(t_game *game, int start, int end, t_ammo *assets);
+int		validate_c_ammo_paths(t_game *game, int start, int end, \
+										t_c_ammo_tex *assets);
+int		validate_heart_paths(t_game *game, int start, int end, t_heart_tex *assets);
+int		validate_health_paths(t_game *game, int start, int end, t_health *assets);
+int		validate_key_paths(t_game *game, int start, int end, t_key_tex *assets);
+
+
 ///		Ray Casting		///
 int		handle_door_hit(t_ray *ray, t_game *game);
 void	calculate_wall_height_b(t_ray *ray, t_game *game, int x);
@@ -559,6 +593,9 @@ long	get_time_of_the_day(void);
 void	draw_view_angle_b(t_game *game, int px, int py);
 void	draw_player_b(t_game *game);
 void	draw_tile_b(t_game *game, int x, int y, int color);
+void	calculate_minimap_bounds(t_game *game, int *start_x, int *end_x, \
+									int *start_y, int *end_y);
+
 
 ///		Parsing		///
 int		pars_file_b(const char *filename, t_game *game, char **argv);
@@ -586,5 +623,15 @@ void	store_objects_in_array(t_game *game, t_renderable *renderables);
 void	free_textures_path_b(t_game *game);
 void	free_mlx_b(t_game *game);
 int		close_window_b(t_game *game);
+
+
+/// Sprite		///
+int		can_move_sprite(t_game *game, double new_x, double new_y);
+void	sort_sprites(t_game *game);
+int		get_tex_x(t_game *game, t_sprite_draw *draw, int x);
+int		get_tex_y(t_game *game, t_sprite_draw *draw, int y);
+int		transform_sprite(t_game *game, t_sprite *sprite, \
+							t_sprite_draw *draw);
+
 
 #endif

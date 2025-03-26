@@ -57,62 +57,48 @@ int	assign_ammo_texture(char *line, t_game *game)
 
 int	assign_heart_texture(char *line, t_game *game)
 {
-	if (line && ft_strncmp(line, "R1 ", 3) == 0)
-		game->heart_tex[0].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R2 ", 3) == 0)
-		game->heart_tex[1].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R3 ", 3) == 0)
-		game->heart_tex[2].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R4 ", 3) == 0)
-		game->heart_tex[3].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R5 ", 3) == 0)
-		game->heart_tex[4].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R6 ", 3) == 0)
-		game->heart_tex[5].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R7 ", 3) == 0)
-		game->heart_tex[6].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R8 ", 3) == 0)
-		game->heart_tex[7].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R9 ", 3) == 0)
-		game->heart_tex[8].path = ft_strdup(str_start_b(line + 2));
-	else if (line && ft_strncmp(line, "R10 ", 3) == 0)
-		game->heart_tex[9].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "R11 ", 4) == 0)
-		game->heart_tex[10].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "R12 ", 4) == 0)
-		game->heart_tex[11].path = ft_strdup(str_start_b(line + 3));
-	else
+	char	prefix[6];
+	int		i;
+
+	if (!line)
 		return (0);
-	return (1);
+	i = 1;
+	while (i <= 12)
+	{
+
+		snprintf(prefix, sizeof(prefix), "R%d ", i);
+
+		if (ft_strncmp(line, prefix, strlen(prefix)) == 0)
+		{
+			game->heart_tex[i - 1].path = \
+				ft_strdup(str_start_b(line + strlen(prefix)));
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	assign_c_ammo_texture(char *line, t_game *game)
 {
-	if (line && ft_strncmp(line, "CA1 ", 4) == 0)
-		game->c_ammo_tex[0].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA2 ", 4) == 0)
-		game->c_ammo_tex[1].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA3 ", 4) == 0)
-		game->c_ammo_tex[2].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA4 ", 4) == 0)
-		game->c_ammo_tex[3].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA5 ", 4) == 0)
-		game->c_ammo_tex[4].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA6 ", 4) == 0)
-		game->c_ammo_tex[5].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA7 ", 4) == 0)
-		game->c_ammo_tex[6].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA8 ", 4) == 0)
-		game->c_ammo_tex[7].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA9 ", 4) == 0)
-		game->c_ammo_tex[8].path = ft_strdup(str_start_b(line + 3));
-	else if (line && ft_strncmp(line, "CA10 ", 5) == 0)
-		game->c_ammo_tex[9].path = ft_strdup(str_start_b(line + 4));
-	else if (line && ft_strncmp(line, "CA11 ", 5) == 0)
-		game->c_ammo_tex[10].path = ft_strdup(str_start_b(line + 4));
-	else if (line && ft_strncmp(line, "CA12 ", 5) == 0)
-		game->c_ammo_tex[11].path = ft_strdup(str_start_b(line + 4));
-	else
+	char	prefix[6];
+	int		i;
+
+	if (!line)
 		return (0);
-	return (1);
+	i = 1;
+	while (i <= 12)
+	{
+
+		snprintf(prefix, sizeof(prefix), "CA%d ", i);
+
+		if (ft_strncmp(line, prefix, strlen(prefix)) == 0)
+		{
+			game->c_ammo_tex[i - 1].path = \
+				ft_strdup(str_start_b(line + strlen(prefix)));
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

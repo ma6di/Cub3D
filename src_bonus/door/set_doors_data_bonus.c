@@ -7,23 +7,22 @@ void	set_doors_cords(int count, t_door **door, char **map)
 	int	x;
 
 	i = 0;
-	y = 0;
-	while (map[y] && i < count)
+	y = -1;
+	while (map[++y] && i < count)
 	{
-		x = 0;
-		while (map[y][x])
+		x = -1;
+		while (map[y][++x])
 		{
 			if (map[y][x] == 'D')
 			{
 				(*door)[i].x = x;
 				(*door)[i].y = y;
 				(*door)[i].door_state = 1;
-				(*door)[i].transition_time = 60;
+				(*door)[i].transition_time = get_time_of_the_day();
+				(*door)[i].trigger = 1;
 				i++;
 			}
-			x++;
 		}
-		y++;
 	}
 }
 

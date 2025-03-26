@@ -1,3 +1,4 @@
+
 #include "cub3d_bonus.h"
 
 void	init_directions_b(int *dxy)

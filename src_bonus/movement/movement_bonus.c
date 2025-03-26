@@ -83,7 +83,7 @@ void	move_player_b(int direction, t_game *game)
 	if (game->map[(int)new_y][(int)new_x] == 'F')
 		return ;
 	door_index = which_door(game, new_y, new_x);
-	if (game->map[(int)new_y][(int)new_x] == 'D' && 
+	if (game->map[(int)new_y][(int)new_x] == 'D' && \
 		(door_index == -1 || game->door[door_index].door_state == 1))
 		return ;
 	game->player.x = new_x;

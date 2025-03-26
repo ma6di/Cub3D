@@ -1,3 +1,4 @@
+
 #include "cub3d_bonus.h"
 
 static int	assign_key_texture(char *line, t_game *game)
@@ -74,12 +75,11 @@ int	check_line_b(char *line, t_game *game)
 		assign_door_texture(line, game) || assign_gun_texture(line, game) || \
 		assign_color_texture(line, game))
 	{
-		printf("hello\n");
 		return (1);
 	}
-	else if (ft_strnstr(line, "1111", ft_strlen(line)) && game->map_statred == 0)
+	else if (ft_strnstr(line, "1111", ft_strlen(line)) && \
+					game->map_statred == 0)
 	{
-		printf("map st\n");
 		file_data_order_b(game);
 		game->map_statred = 1;
 		append_map_line_b(game, line);

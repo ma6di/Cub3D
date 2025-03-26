@@ -17,18 +17,14 @@ void	change_door_state(t_game *game, int index)
 {
 	if (game->door[index].door_state == 1)
 	{
-		printf("Door is fully closed at index %d.\n", index);
 		game->door[index].transition_time = get_time_of_the_day();
 		game->door[index].trigger = 0;
-		printf("Starting door transition at index %d.\n", index);
 		return ;
 	}
 	if (game->door[index].door_state == 5)
 	{
-		printf("Door is fully open at index %d.\n", index);
 		game->door[index].transition_time = get_time_of_the_day();
 		game->door[index].trigger = 1;
-		printf("Starting door transition at index %d.\n", index);
 		return ;
 	}
 }

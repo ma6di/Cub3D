@@ -43,25 +43,16 @@ static int	door_tex_index(t_ray *ray, t_game *game)
 {
 	int	door_index;
 
-	if (ray->door == 1)
-	{
-		door_index = which_door(game, ray->mapy, ray->mapx);
-		ray->door = 0;
-		if (game->door[door_index].door_state == 1)
-			return (DOOR_1);
-		else if (game->door[door_index].door_state == 2)
-			return (DOOR_2);
-		else if (game->door[door_index].door_state == 3)
-			return (DOOR_3);
-		else if (game->door[door_index].door_state == 4)
-			return (DOOR_4);
-	}
-	if (ray->final_door == 1)
-	{
-		ray->final_door = 0;
-		return (FINAL_DOOR);
-	}
-	return (-1);
+	door_index = which_door(game, ray->mapy, ray->mapx);
+	ray->door = 0;
+	if (game->door[door_index].door_state == 1)
+		return (DOOR_1);
+	else if (game->door[door_index].door_state == 2)
+		return (DOOR_2);
+	else if (game->door[door_index].door_state == 3)
+		return (DOOR_3);
+	else if (game->door[door_index].door_state == 4)
+		return (DOOR_4);
 }
 
 
@@ -69,10 +60,12 @@ int	select_texture_b(t_ray *ray, t_game *game)
 {
 	int	door_index;
 
-	if (ray->door == 1 || ray->final_door == 1)
+	if (ray->door == 1)
+		return (door_tex_index(ray, game));
+	if (ray->final_door == 1)
 	{
-		if (door_tex_index(ray, game) != -1)
-			return (door_tex_index(ray, game));
+		ray->final_door = 0;
+		return (FINAL_DOOR);
 	}
 	if (ray->side == 0)
 	{

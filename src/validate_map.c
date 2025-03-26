@@ -3,48 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:12:24 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/17 15:40:25 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:21:52 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int check_walls(t_game *game, char **map)
-{
-    int height = game->height;
-    int width = game->width;
-
-    // Controlla la penultima riga
-    for (int x = 1; x < width - 1; x++)
-    {
-        if (map[height - 2][x] == '0')
-        {
-            if (map[height - 1][x - 1] != '1' || map[height - 1][x] != '1' || map[height - 1][x + 1] != '1')
-            {
-                print_error("Error: Map not enclosed at the last line near (%d, %d)\n", x, height - 1);
-                return 0;
-            }
-        }
-    }
-
-    // Controlla la seconda riga
-    for (int x = 1; x < width - 1; x++)
-    {
-        if (map[1][x] == '0')
-        {
-            if (map[0][x - 1] != '1' || map[0][x] != '1' || map[0][x + 1] != '1')
-            {
-                print_error("Error: Map not enclosed at the first line near (%d, %d)\n", x, 0);
-                return 0;
-            }
-        }
-    }
-
-    return 1;
-}
 
 //calculate map dimentions and fills the struct width and height
 void cal_map_dim(t_game **game)
@@ -146,60 +113,128 @@ static int validate_map_chars(t_game *game)
     }
     return (1);
 }
+void	init_directions(int *dxy)
+{
+	dxy[0] = 1;
+	dxy[1] = 0;
+	dxy[2] = -1;
+	dxy[3] = 0;
+	dxy[4] = 0;
+	dxy[5] = 1;
+	dxy[6] = 0;
+	dxy[7] = -1;
+}
+
+t_stack	*init_stack(int size)
+{
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->x = malloc(size * sizeof(int));
+	stack->y = malloc(size * sizeof(int));
+	if (!stack->x || !stack->y)
+	{
+		free(stack->x);
+		free(stack->y);
+		free(stack);
+		return (NULL);
+	}
+	stack->size = size;
+	stack->top = -1;
+	return (stack);
+}
+
+
+void	free_stack(t_stack *stack)
+{
+	free(stack->x);
+	free(stack->y);
+	free(stack);
+}
 
 //perfroms a floodfill based on on coonected zero's (0) on the map and saves them in **visited 
-static void flood_fill(t_game *game, int **visited)
+static int	stack_op(t_stack *stack, int *x, int *y, int op)
 {
-    int *stack_x, *stack_y;
-    int top, x, y, stack_size;
-
-    stack_size = game->width * game->height;
-    stack_x = malloc(stack_size * sizeof(int));
-    stack_y = malloc(stack_size * sizeof(int));
-    if (!stack_x || !stack_y)
-    {
-        free(stack_x);
-        free(stack_y);
-        return;
-    }
-
-    top = 0;
-    stack_x[top] = game->player.x;
-    stack_y[top] = game->player.y;
-
-    while (top >= 0)
-    {
-        x = stack_x[top];
-        y = stack_y[top--];
-
-        if (x < 0 || y < 0 || x >= game->width || y >= game->height)
-        {
-            print_error("Skipping invalid access at (%d, %d)\n", x, y);
-            continue;
-        }
-
-        if (visited[y][x] || game->map[y][x] == '1' || game->map[y][x] == '\n')
-            continue;
-
-        visited[y][x] = 1;
-
-        int dx[] = {1, -1, 0, 0};
-        int dy[] = {0, 0, 1, -1};
-        for (int i = 0; i < 4; i++)
-        {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (nx >= 0 && ny >= 0 && nx < game->width && ny < game->height)
-            {
-                stack_x[++top] = nx;
-                stack_y[top] = ny;
-            }
-        }
-    }
-    free(stack_x);
-    free(stack_y);
+	if (op == PUSH && stack->top + 1 < stack->size)
+	{
+		stack->top++;
+		stack->x[stack->top] = *x;
+		stack->y[stack->top] = *y;
+		return (1);
+	}
+	if (op == POP && stack->top >= 0)
+	{
+		*x = stack->x[stack->top];
+		*y = stack->y[stack->top];
+		stack->top--;
+		return (1);
+	}
+	return (0);
 }
+
+static int	is_valid(t_game *game, int **visited, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= game->width || y >= game->height)
+		return (0);
+	if (!visited[y] || !game->map[y])
+		return (0);
+	if (visited[y][x] || (game->map[y][x] && game->map[y][x] == '1' ) \
+		|| (game->map[y][x] && game->map[y][x] == 'D'))
+		return (0);
+	return (1);
+}
+
+static void	process_flood_fill(t_game *game, int **visited, \
+								t_stack *stack, int *dxy)
+{
+	int	x;
+	int	y;
+	int	nx;
+	int	ny;
+	int	i;
+
+	init_directions(dxy);
+	while (stack_op(stack, &x, &y, POP))
+	{
+		if (!is_valid(game, visited, x, y))
+			continue ;
+		visited[y][x] = 1;
+		i = 0;
+		while (i < 8)
+		{
+			nx = x + dxy[i];
+			ny = y + dxy[i + 1];
+			if (ny < game->height && nx < ft_strlen(game->map[ny]))
+			{
+				if (is_valid(game, visited, nx, ny))
+					stack_op(stack, &nx, &ny, PUSH);
+			}
+			i += 2;
+		}
+	}
+}
+
+void	flood_fill(t_game *game, int **visited)
+{
+	t_stack	*stack;
+	int		x;
+	int		y;
+	int		dxy[8];
+
+	stack = init_stack(game->width * game->height);
+	if (!stack)
+		return ;
+	x = game->player.x;
+	y = game->player.y;
+	stack_op(stack, &x, &y, PUSH);
+	process_flood_fill(game, visited, stack, dxy);
+	free_stack(stack);
+}
+
+
+
 
 static void free_visited(int **visited, int height)
 {
@@ -303,26 +338,29 @@ int last_pos_col(char **map, int col, int height)
 
 //since map is not rectangular and space in map is valid, it checks all 90 degree corners
 //for unclose map
-static int check_corners(t_game *game, char **map)
+int	check_corners(t_game *game, char **map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
-    while (y < game->height - 1)
-    {
-		if(!case_one(game, map, y) || !case_two(game, map, y))
+	while (y < game->height - 1)
+	{
+		if (!case_one(game, map, y, game->height) || \
+			!case_two(game, map, y, game->height))
 			return (0);
-        y++;
+		y++;
 	}
 	x = 0;
-	while (x < game->width)
+	while (x < game->width - 1)
 	{
-		if(!case_three(game, map, x) || !case_four(game, map, x) || !case_four(game, map, x))
+		if (!case_three(game, map, x, game->height) || \
+			!case_four(game, map, x, game->height) \
+			|| !case_five(game, map, x, game->height))
 			return (0);
 		x++;
 	}
-    return (1);
+	return (1);
 }
 
 //check the srounding postions of 01NSEW for unclosed map
@@ -386,8 +424,7 @@ int is_map_closed_and_accessible(t_game *game, char **map, int height, int width
 	}
     flood_fill(game, visited);
     if (!check_accessibility(game, visited) || !check_enclosure(game, map) || 
-		!check_corners(game, map) || \
-		!check_walls(game, map))
+		!check_corners(game, map))
     {
         free_visited(visited, height);
         return (0);

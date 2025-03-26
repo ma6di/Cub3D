@@ -1,3 +1,4 @@
+
 #include "cub3d_bonus.h"
 
 static void	set_gun_shot_pos(t_game *game)

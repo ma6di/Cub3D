@@ -58,6 +58,7 @@
              src_bonus/ray_casting/render_walls_bonus.c \
              src_bonus/render_order_bonus/render_order_bonus.c \
              src_bonus/render_order_bonus/store_objects_in_array_bonus.c \
+			 src_bonus/set_game_data/set_game_data2_bonus.c \
              src_bonus/set_game_data/set_game_data_bonus.c \
              src_bonus/set_game_data/set_mlx_tex_bonus.c \
              src_bonus/sky_and_floor/render_ceiling_and_floor_bonus.c \
@@ -90,7 +91,7 @@ LIBFT_INC = -I$(LIBFTDIR)/include
 MLX_INC  = -I$(MLXDIR)
 
 # Source Files
-SRCS := $(wildcard $(SRCDIR)/**/*.c)
+SRCS := $(wildcard $(SRCDIR)/*.c)
 BONUS_SRCS := $(wildcard $(BONUSDIR)/**/*.c)
 
 # Object Files (Flattened)

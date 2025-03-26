@@ -1,6 +1,7 @@
+/* ************************************************************************** */
 
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	update_player(t_game *game)
 {
@@ -80,4 +81,30 @@ void	move_player(int direction, t_game *game)
 		game->player.x = new_x;
 		game->player.y = new_y;
 	}
+}
+
+int	mouse_rotate(int x, int y, t_game *game)
+{
+	static int	last_x;
+	int			dx;
+	double		rotation_speed;
+	double		old_dir_x;
+	double		old_plane_x;
+
+	last_x = SCREEN_WIDTH / 2;
+	dx = x - last_x;
+	rotation_speed = ROTATE_SPEED * 0.5 * dx / 60.0;
+	old_dir_x = game->player.dir_x;
+	old_plane_x = game->player.plane_x;
+	game->player.dir_x = game->player.dir_x * cos(rotation_speed) - \
+						game->player.dir_y * sin(rotation_speed);
+	game->player.dir_y = old_dir_x * sin(rotation_speed) + game->player.dir_y * \
+						cos(rotation_speed);
+	game->player.plane_x = game->player.plane_x * cos(rotation_speed) - \
+						game->player.plane_y * sin(rotation_speed);
+	game->player.plane_y = old_plane_x * sin(rotation_speed) + \
+			game->player.plane_y * cos(rotation_speed);
+	last_x = SCREEN_WIDTH / 2;
+	(void)y;
+	return (0);
 }

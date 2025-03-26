@@ -54,11 +54,12 @@ static void	check_texture_paths(t_game *game)
 		!game->textures[WEST].path || !game->textures[EAST].path || \
 		!game->color[FLOOR].col_tex_str || \
 		(!game->color[CEILING].col_tex_str && !game->color[SKY].col_tex_str) || \
-		!game->gun[GUN].path || !game->textures[DOOR_1].path || \
-		!game->textures[DOOR_2].path || !game->textures[DOOR_3].path || \
-		!game->textures[DOOR_4].path || !game->textures[FINAL_DOOR].path)
+		!game->gun[GUN].path || !game->gun[GUN_SHUT].path || \
+		!game->textures[DOOR_1].path || !game->textures[DOOR_2].path || \
+		!game->textures[DOOR_3].path || !game->textures[DOOR_4].path || \
+		!game->textures[FINAL_DOOR].path || !game->textures[ZOMBIE].path || \
+		!game->textures[DOOR_5].path)
 	{
-		print_error(RED"Error: cub file data is not in order\n"RESET);
 		game->file_order = 1;
 	}
 }
@@ -71,6 +72,11 @@ void	file_data_order_b(t_game *game)
 	check_heart_paths(game, 0, 12, game->heart_tex);
 	check_health_paths(game, 0, 5, game->health_bar);
 	check_key_paths(game, 0, 7, game->key_tex);
+	if(game->file_order == 1)
+	{
+		print_error(RED"Error: cub file data is not in order or one/more texture is missing\n"RESET);
+		close_window_b(game);
+	}
 }
 
 int	pars_file_b(const char *filename, t_game *game, char **argv)
