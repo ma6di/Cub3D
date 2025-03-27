@@ -19,7 +19,7 @@ static void	free_mlx_wall_tex_color_b(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 13)
 	{
 		if (game->textures[i].img)
 			mlx_destroy_image(game->mlx, game->textures[i].img);

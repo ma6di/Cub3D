@@ -19,7 +19,7 @@ void	init_ray_b(t_ray *ray)
 	ray->drawend = 0;
 	ray->camera_x = 0;
 	ray->door = 0;
-	ray->zombie = 0;
+	ray->final_door = 0;
 }
 
 void	init_mlx_ray_b(t_ray *ray, t_game *game, int x)

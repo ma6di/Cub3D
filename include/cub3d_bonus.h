@@ -107,8 +107,8 @@ typedef struct s_draw
 //Variables to draw sprites
 typedef struct s_sprite_draw
 {
-	double	prite_x;
-	double	prite_y;
+	double	sprite_x;
+	double	sprite_y;
 	double	transform_x;
 	double	transform_y;
 	int		screen_x;
