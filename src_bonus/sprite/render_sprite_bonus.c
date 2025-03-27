@@ -33,12 +33,14 @@ static void	draw_sprite_column(t_game *game, t_sprite_draw *draw, \
 	int		tex_x;
 	int		tex_y;
 	int		color;
+	int		texture;
 
-	tex_x = get_tex_x(game, draw, x);
+	texture = ZOMBIE_0 + frame % 3;
+	tex_x = get_tex_x(game, draw, x, texture);
 	y = draw->start_y;
 	while (y < draw->end_y)
 	{
-		tex_y = get_tex_y(game, draw, y);
+		tex_y = get_tex_y(game, draw, y, texture);
 		color = get_pixel_color(game, tex_x, tex_y, frame);
 		if ((color & 0x00FFFFFF) != 0)
 			my_mlx_pixel_put_b(game, x, y, color);
@@ -68,9 +70,8 @@ void	render_sprites(t_game *game, t_sprite *sprite)
 	static int		frame;
 	static int		animation_counter;
 	int				animation_speed;
+	int				texture;
 
-	frame = 0;
-	animation_counter = 0;
 	animation_speed = 50;
 	if (!transform_sprite(game, sprite, &draw))
 		return ;
@@ -80,6 +81,7 @@ void	render_sprites(t_game *game, t_sprite *sprite)
 		animation_counter = 0;
 		frame = (frame + 1) % 3;
 	}
+	texture = ZOMBIE_0 + (frame % 3);
 	calculate_sprite_dims(&draw);
-	render_sprite_pixels(game, &draw, frame);
+	render_sprite_pixels(game, &draw, texture);
 }

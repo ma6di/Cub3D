@@ -24,14 +24,14 @@ void	sort_sprites(t_game *game)
 	}
 }
 
-int	get_tex_x(t_game *game, t_sprite_draw *draw, int x)
+int	get_tex_x(t_game *game, t_sprite_draw *draw, int x, int index)
 {
-	return ((x - draw->start_x) * game->textures[ZOMBIE].width / draw->width);
+	return ((x - draw->start_x) * game->textures[index].width / draw->width);
 }
 
-int	get_tex_y(t_game *game, t_sprite_draw *draw, int y)
+int	get_tex_y(t_game *game, t_sprite_draw *draw, int y, int index)
 {
-	return ((y - draw->start_y) * game->textures[ZOMBIE].height / draw->height);
+	return ((y - draw->start_y) * game->textures[index].height / draw->height);
 }
 
 int	transform_sprite(t_game *game, t_sprite *sprite, \
