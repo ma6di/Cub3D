@@ -30,8 +30,12 @@ static void	free_tex3(t_game *game)
 		free(game->color[CEILING].col_tex_str);
 	if (game->color[SKY].col_tex_str)
 		free(game->color[SKY].col_tex_str);
-	if (game->textures[ZOMBIE].path)
-		free(game->textures[ZOMBIE].path);
+	if (game->textures[ZOMBIE_0].path)
+		free(game->textures[ZOMBIE_0].path);
+	if (game->textures[ZOMBIE_1].path)
+		free(game->textures[ZOMBIE_1].path);
+	if (game->textures[ZOMBIE_2].path)
+		free(game->textures[ZOMBIE_2].path);
 	if (game->gun[GUN].path)
 		free(game->gun[GUN].path);
 	if (game->gun[GUN_SHUT].path)

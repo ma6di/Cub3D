@@ -10,8 +10,12 @@ int	assign_texture(char *line, t_game *game)
 		game->textures[WEST].path = ft_strdup(str_start_b(line + 2));
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		game->textures[EAST].path = ft_strdup(str_start_b(line + 2));
-	else if (ft_strncmp(line, "Z ", 2) == 0)
-		game->textures[ZOMBIE].path = ft_strdup(str_start_b(line + 1));
+	else if (ft_strncmp(line, "Z0 ", 3) == 0)
+		game->textures[ZOMBIE_0].path = ft_strdup(str_start_b(line + 2));
+	else if (ft_strncmp(line, "Z1 ", 3) == 0)
+		game->textures[ZOMBIE_1].path = ft_strdup(str_start_b(line + 2));
+	else if (ft_strncmp(line, "Z2 ", 3) == 0)
+		game->textures[ZOMBIE_2].path = ft_strdup(str_start_b(line + 2));
 	else
 		return (0);
 	return (1);

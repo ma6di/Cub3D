@@ -17,7 +17,9 @@ void	set_mlx_wall_door_tex(t_game *game)
 void	init_all_mlx_textures_b(t_game *game)
 {
 	set_mlx_wall_door_tex(game);
-	init_mlx_wall_texture_b(game, ZOMBIE, game->textures[ZOMBIE].path);
+	init_mlx_wall_texture_b(game, ZOMBIE_0, game->textures[ZOMBIE_0].path);
+	init_mlx_wall_texture_b(game, ZOMBIE_1, game->textures[ZOMBIE_1].path);
+	init_mlx_wall_texture_b(game, ZOMBIE_2, game->textures[ZOMBIE_2].path);
 	init_mlx_gun_texture_b(game, GUN, game->gun[GUN].path);
 	init_mlx_gun_texture_b(game, GUN_SHUT, game->gun[GUN_SHUT].path);
 	init_mlx_health_bar_texture_b(game);

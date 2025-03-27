@@ -56,7 +56,8 @@ static void	check_texture_paths(t_game *game)
 		!game->gun[GUN].path || !game->gun[GUN_SHUT].path || \
 		!game->textures[DOOR_1].path || !game->textures[DOOR_2].path || \
 		!game->textures[DOOR_3].path || !game->textures[DOOR_4].path || \
-		!game->textures[FINAL_DOOR].path || !game->textures[ZOMBIE].path || \
+		!game->textures[FINAL_DOOR].path || !game->textures[ZOMBIE_0].path || \
+		!game->textures[ZOMBIE_1].path || !game->textures[ZOMBIE_2].path || \
 		!game->textures[DOOR_5].path)
 	{
 		game->file_order = 1;

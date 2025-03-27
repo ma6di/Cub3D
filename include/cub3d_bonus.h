@@ -35,13 +35,15 @@
 # define SOUTH	1
 # define WEST	2
 # define EAST	3
-# define ZOMBIE 4
-# define DOOR_1	5
-# define DOOR_2	6
-# define DOOR_3	7
-# define DOOR_4	8
-# define DOOR_5	9
-# define FINAL_DOOR	10
+# define ZOMBIE_0 4
+# define ZOMBIE_1 5
+# define ZOMBIE_2 6
+# define DOOR_1	7
+# define DOOR_2	8
+# define DOOR_3	9
+# define DOOR_4	10
+# define DOOR_5	11
+# define FINAL_DOOR	12
 
 #define DOOR_CLOSED 1
 #define DOOR_PARTIAL 2
@@ -435,7 +437,7 @@ typedef struct s_game
 	void			*addr;
 	int				keys[7];
 	t_player		player;			  // Player data
-	t_texture	  	textures[11];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
+	t_texture	  	textures[13];		 // Textures: [0]NO, [1]SO, [2]EA, [3]WE
 	t_color			color[3];
 	t_minimap		minimap;
 	t_door			*door;	 // Floor RGB color

@@ -12,19 +12,22 @@ static void	calculate_sprite_dims(t_sprite_draw *draw)
 	draw->end_x = draw->screen_x + draw->width / 2;
 }
 
-static int	get_pixel_color(t_game *game, int tex_x, int tex_y)
+static int	get_pixel_color(t_game *game, int tex_x, int tex_y, int frame)
 {
 	char	*pixel;
 	int		color;
+	int		texture;
 
-	pixel = game->textures[ZOMBIE].addr + \
-			(tex_y * game->textures[ZOMBIE].line_len) \
-			+ (tex_x * (game->textures[ZOMBIE].bpp / 8));
+	texture = ZOMBIE_0 + frame % 3;
+	pixel = game->textures[texture].addr + \
+			(tex_y * game->textures[texture].line_len) \
+			+ (tex_x * (game->textures[texture].bpp / 8));
 	ft_memcpy(&color, pixel, sizeof(int));
 	return (color);
 }
 
-static void	draw_sprite_column(t_game *game, t_sprite_draw *draw, int x)
+static void	draw_sprite_column(t_game *game, t_sprite_draw *draw, \
+									int x, int frame)
 {
 	int		y;
 	int		tex_x;
@@ -36,23 +39,25 @@ static void	draw_sprite_column(t_game *game, t_sprite_draw *draw, int x)
 	while (y < draw->end_y)
 	{
 		tex_y = get_tex_y(game, draw, y);
-		color = get_pixel_color(game, tex_x, tex_y);
+		color = get_pixel_color(game, tex_x, tex_y, frame);
 		if ((color & 0x00FFFFFF) != 0)
 			my_mlx_pixel_put_b(game, x, y, color);
 		y++;
 	}
 }
 
-static void	render_sprite_pixels(t_game *game, t_sprite_draw *draw)
+void	render_sprite_pixels(t_game *game, t_sprite_draw *draw, int frame)
 {
 	int	x;
 
 	x = draw->start_x;
 	while (x < draw->end_x)
 	{
-		if (x >= 0 && x < SCREEN_WIDTH && \
-				draw->transform_y <= game->z_buffer[x])
-			draw_sprite_column(game, draw, x);
+		if (x >= 0 && x < SCREEN_WIDTH && draw->transform_y \
+								<= game->z_buffer[x])
+		{
+			draw_sprite_column(game, draw, x, frame);
+		}
 		x++;
 	}
 }
@@ -60,9 +65,21 @@ static void	render_sprite_pixels(t_game *game, t_sprite_draw *draw)
 void	render_sprites(t_game *game, t_sprite *sprite)
 {
 	t_sprite_draw	draw;
+	static int		frame;
+	static int		animation_counter;
+	int				animation_speed;
 
+	frame = 0;
+	animation_counter = 0;
+	animation_speed = 50;
 	if (!transform_sprite(game, sprite, &draw))
 		return ;
+	animation_counter++;
+	if (animation_counter > animation_speed)
+	{
+		animation_counter = 0;
+		frame = (frame + 1) % 3;
+	}
 	calculate_sprite_dims(&draw);
-	render_sprite_pixels(game, &draw);
+	render_sprite_pixels(game, &draw, frame);
 }
