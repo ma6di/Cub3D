@@ -43,7 +43,6 @@ void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-
 static void	calculate_texture_params_b(t_game *game, t_ray *ray, int tex_id, \
 									t_texture_params *params)
 {

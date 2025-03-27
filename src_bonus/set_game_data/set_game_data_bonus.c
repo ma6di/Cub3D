@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	init_mlx_wall_texture_b(t_game *game, int index, char *path)
@@ -84,7 +83,6 @@ void	init_mlx_ammo_bar_texture_b(t_game *game)
 		index++;
 	}
 }
-
 
 void	init_mlx_heart_texture_b(t_game *game)
 {

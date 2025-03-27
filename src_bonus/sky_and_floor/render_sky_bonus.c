@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	draw_sky_tile_b(t_game *game, t_tile_coords *coords)

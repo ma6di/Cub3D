@@ -44,7 +44,6 @@ char	*str_start_b(char *str)
 {
 	while (*str == ' ' || *str == '\t')
 		str++;
-
 	return (str);
 }
 
@@ -72,9 +71,10 @@ void	file_data_order_b(t_game *game)
 	check_heart_paths(game, 0, 12, game->heart_tex);
 	check_health_paths(game, 0, 5, game->health_bar);
 	check_key_paths(game, 0, 7, game->key_tex);
-	if(game->file_order == 1)
+	if (game->file_order == 1)
 	{
-		print_error(RED"Error: cub file data is not in order or one/more texture is missing\n"RESET);
+		print_error(RED"Error: cub file data is not in order or"RESET);
+		print_error(RED" one/more texture is missing\n"RESET);
 		close_window_b(game);
 	}
 }

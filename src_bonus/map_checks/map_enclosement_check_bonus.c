@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	check_corners_b(t_game *game, char **map)
@@ -26,10 +25,12 @@ int	check_corners_b(t_game *game, char **map)
 	return (1);
 }
 
-static int	is_not_enclosed_b(t_game *game, char **map, int x, int y, int row_len)
+static int	is_not_enclosed_b(t_game *game, int x, int y, int row_len)
 {
 	char	tile;
+	char	**map;
 
+	map = game->map;
 	tile = map[y][x];
 	if ((tile == '0' || tile == 'N' || tile == 'S' || tile == 'E' \
 		|| tile == 'H' || tile == 'W' || tile == 'D' || tile == 'Z' \
@@ -63,7 +64,7 @@ int	check_enclosure_b(t_game *game, char **map)
 		x = 0;
 		while (x < row_len)
 		{
-			if (is_not_enclosed_b(game, map, x, y, row_len))
+			if (is_not_enclosed_b(game, x, y, row_len))
 				return (0);
 			x++;
 		}
@@ -71,5 +72,3 @@ int	check_enclosure_b(t_game *game, char **map)
 	}
 	return (1);
 }
-
-

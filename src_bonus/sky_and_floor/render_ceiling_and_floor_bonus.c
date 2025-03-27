@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	get_cf_texture_pixel_b(t_color *color, int x, int y, int tex_id)

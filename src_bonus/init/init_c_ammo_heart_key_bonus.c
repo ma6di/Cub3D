@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	init_heart_tex_b(t_heart_tex *heart_tex, int dim)

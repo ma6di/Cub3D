@@ -113,7 +113,11 @@ typedef struct s_sprite_draw
     int     height;
 }   t_sprite_draw;
 
-
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
 typedef struct s_stack
 {
@@ -208,6 +212,7 @@ typedef struct s_player
 	int		key;
 } t_player;
 
+// ✅ Struct to store minimap-related properties
 typedef struct s_minimap
 {
 	int	tile_size;
@@ -215,8 +220,13 @@ typedef struct s_minimap
 	int	offset_y;
 	int	player_x;
 	int	player_y;
-}       t_minimap;
+	int	start_x;
+	int	end_x;
+	int	start_y;
+	int	end_y;
+}	t_minimap;
 
+// ✅ Struct for line drawing
 typedef struct s_line
 {
 	int	x0;
@@ -229,6 +239,8 @@ typedef struct s_line
 	int	e2;
 }	t_line;
 
+
+// ✅ Struct to iterate through minimap tiles
 typedef struct s_minimap_vars
 {
 	int	x;
@@ -237,6 +249,14 @@ typedef struct s_minimap_vars
 	int	map_y;
 	char tile;
 }	t_minimap_vars;
+
+typedef struct s_bounds
+{
+	int	start_x;
+	int	end_x;
+	int	start_y;
+	int	end_y;
+}		t_bounds;
 
 typedef struct s_view
 {
@@ -468,7 +488,6 @@ void	set_colors_b(t_game *game, t_color *color, int index);
 void	my_mlx_pixel_put_b(t_game *game, int x, int y, int color);
 int		get_cf_texture_pixel_b(t_color *color, int x, int y, int tex_id);
 int		mouse_rotate_b(int x, int y, t_game *game);
-void	minimap_b(t_game *game);
 int		release_key_b(int keycode, t_game *game);
 void	update_player_b(t_game *game);
 bool	is_empty_line_b(const char *line);
@@ -590,11 +609,11 @@ long	get_time_of_the_day(void);
 
 
 ///		Mini Map	///
+void	minimap_b(t_game *game);
 void	draw_view_angle_b(t_game *game, int px, int py);
 void	draw_player_b(t_game *game);
 void	draw_tile_b(t_game *game, int x, int y, int color);
-void	calculate_minimap_bounds(t_game *game, int *start_x, int *end_x, \
-									int *start_y, int *end_y);
+void	set_minimap_limits(t_bounds *bounds, int max_w, int max_h);
 
 
 ///		Parsing		///

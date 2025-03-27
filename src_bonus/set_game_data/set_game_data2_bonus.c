@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	init_mlx_key_texture_b(t_game *game)
@@ -109,4 +108,3 @@ void	set_colors_b(t_game *game, t_color *color, int index)
 	if (color[index].mode == 2)
 		init_mlx_fc_texture_b(game, index, color[index].col_tex_str);
 }
-

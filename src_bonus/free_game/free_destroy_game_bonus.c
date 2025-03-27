@@ -1,4 +1,3 @@
-
 #include "../../include/cub3d_bonus.h"
 
 int	close_window_b(t_game *game)

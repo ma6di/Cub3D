@@ -55,7 +55,6 @@ static int	door_tex_index(t_ray *ray, t_game *game)
 		return (DOOR_4);
 }
 
-
 int	select_texture_b(t_ray *ray, t_game *game)
 {
 	int	door_index;

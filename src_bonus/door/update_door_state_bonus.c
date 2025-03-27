@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 long	get_time_of_the_day(void)
@@ -44,5 +43,4 @@ int	is_final_door(t_game *game)
 	if (game->map[(int)game->player.y - 1][(int)game->player.x] == 'F')
 		return (1);
 	return (0);
-
 }

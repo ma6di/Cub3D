@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static int	assign_key_texture(char *line, t_game *game)

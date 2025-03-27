@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	count_c_ammo(char **map)

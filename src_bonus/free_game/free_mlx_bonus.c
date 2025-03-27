@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	free_mlx_gun_sprite_b(t_game *game)
@@ -35,7 +34,6 @@ static void	free_mlx_wall_tex_color_b(t_game *game)
 	}
 }
 
-
 static void	free_mlx_heart_health_b(t_game *game)
 {
 	int	i;
@@ -54,7 +52,6 @@ static void	free_mlx_heart_health_b(t_game *game)
 			mlx_destroy_image(game->mlx, game->heart_tex[i].img);
 		i++;
 	}
-
 }
 
 static void	free_mlx_ammo_key_b(t_game *game)

@@ -86,5 +86,3 @@ void	init_ammo_b(t_ammo *ammo, int width, int height)
 		i++;
 	}
 }
-
-

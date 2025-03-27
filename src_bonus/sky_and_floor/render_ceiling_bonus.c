@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	draw_ceiling_pixel_b(t_game *game)

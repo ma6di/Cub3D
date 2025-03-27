@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	validate_ammo_paths(t_game *game, int start, int end, t_ammo *assets)

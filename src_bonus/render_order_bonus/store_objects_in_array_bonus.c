@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	store_sprites_in_array(t_game *game, \
@@ -16,7 +15,6 @@ static void	store_sprites_in_array(t_game *game, \
 		i++;
 	}
 }
-
 
 static void	store_hearts_in_array(t_game *game, \
 			t_renderable *renderables, int *index)

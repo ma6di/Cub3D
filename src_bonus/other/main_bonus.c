@@ -1,5 +1,3 @@
-
-
 #include "cub3d_bonus.h"
 
 int	main(int argc, char **argv)

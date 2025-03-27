@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static int	is_wall_or_closed_door(t_game *game, int x, int y)

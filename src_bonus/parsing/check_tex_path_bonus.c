@@ -1,4 +1,3 @@
-
 #include "../../include/cub3d_bonus.h"
 
 void	check_ammo_paths(t_game *game, int start, int end, t_ammo *assets)

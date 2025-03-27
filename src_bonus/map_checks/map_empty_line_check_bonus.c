@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 bool	is_empty_line_b(const char *line)
@@ -8,7 +7,6 @@ bool	is_empty_line_b(const char *line)
 	i = 0;
 	if (!line)
 		return (true);
-
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '\t')
@@ -51,10 +49,8 @@ int	check_empty_line_b(char **map)
 		x = 0;
 		while (map[y][x] && (map[y][x] == ' ' || map[y][x] == '\t'))
 			x++;
-
 		if (map[y][x] == '\0')
 			return (0);
-
 		y++;
 	}
 	return (1);

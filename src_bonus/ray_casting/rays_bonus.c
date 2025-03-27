@@ -1,5 +1,3 @@
-
-
 #include "cub3d_bonus.h"
 
 void	calculate_step_b(t_ray *ray, t_game *game)
@@ -25,7 +23,6 @@ void	calculate_step_b(t_ray *ray, t_game *game)
 		ray->side_disty = (ray->mapy + 1.0 - game->player.y) * ray->deltadisty;
 	}
 }
-
 
 void	perform_dda_b(t_ray *ray, t_game *game)
 {
@@ -53,7 +50,6 @@ void	perform_dda_b(t_ray *ray, t_game *game)
 	}
 }
 
-
 void	calculate_wall_height_b(t_ray *ray, t_game *game, int x)
 {
 	if (!game->z_buffer)
@@ -69,7 +65,6 @@ void	calculate_wall_height_b(t_ray *ray, t_game *game, int x)
 		ray->walldist = (ray->side_distx - ray->deltadistx);
 	else
 		ray->walldist = (ray->side_disty - ray->deltadisty);
-
 	if (ray->walldist <= 0.001)
 		ray->walldist = 0.001;
 	game->z_buffer[x] = ray->walldist;

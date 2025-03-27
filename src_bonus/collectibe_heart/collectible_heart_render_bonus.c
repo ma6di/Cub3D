@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	update_heart_animation(t_heart *heart)
@@ -85,4 +84,3 @@ void	render_hearts(t_game *game, t_heart *heart)
 									&heart->draw);
 	render_heart_pixels(game, heart, &heart->draw, transform_y);
 }
-

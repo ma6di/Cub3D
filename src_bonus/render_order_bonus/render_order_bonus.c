@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static int	compare_renderables(const void *a, const void *b)
@@ -76,5 +75,3 @@ int	render_b(t_game *game)
 	free(renderables);
 	return (0);
 }
-
-

@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	sort_sprites(t_game *game)

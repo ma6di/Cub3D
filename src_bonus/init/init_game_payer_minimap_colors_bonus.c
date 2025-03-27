@@ -56,7 +56,6 @@ static void	init_game_vars(t_game *game)
 	game->heart_count = 0;
 	game->c_ammo_count = 0;
 	game->key_count = 0;
-
 }
 
 void	init_game_b(t_game *game)

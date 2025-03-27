@@ -1,74 +1,81 @@
 #include "cub3d_bonus.h"
 
-//prints the data parsed from the .cub file
-void print_struct_b(t_game *game)
+static void	print_textures(const t_texture textures[])
 {
-	int i = 0;
-	int j = 0;
 	printf("Textures:::\n---------------------------- \n");
-	printf("NO %s\n", game->textures[NORTH].path);
-	printf("SO %s\n", game->textures[SOUTH].path);
-	printf("WE %s\n", game->textures[WEST].path);
-	printf("EA %s\n", game->textures[EAST].path);
-	// printf("D %s\n", game->textures[DOOR].path);
-	printf("\n\nFloor and Ceiling Color:::\n---------------------------- \n");
-	if(game->color[FLOOR].mode == 1)
-	{
-		printf("floor color r: %d\n", game->color[FLOOR].r);
-		printf("floor color g: %d\n", game->color[FLOOR].g);
-		printf("floor color b: %d\n", game->color[FLOOR].b);
-	}
-	else if(game->color[FLOOR].mode == 2)
-		printf("floor texture: %s\n", game->color[FLOOR].col_tex_str);
-	if(game->color[CEILING].mode == 1)
-	{
-		printf("ceiling color r: %d\n", game->color[CEILING].r);
-		printf("ceiling color g: %d\n", game->color[CEILING].g);
-		printf("ceiling color b: %d\n", game->color[CEILING].b);
-	}
-	else if(game->color[CEILING].mode == 2)
-		printf("ceiling texture: %s\n", game->color[CEILING].col_tex_str);
-	printf("\n\nPlayer Position:::\n---------------------------- \n");
-	printf("player x: %f\n", game->player.x);
-	printf("player y: %f\n", game->height - game->player.y - 1);
-	printf("player direction: %s\n", game->player.ini_dir);
-	printf("\n\nGame Width and Height:::\n---------------------------- \n");
-	printf("Game max width: %d\n", game->width);
-	printf("Game height: %d\n", game->height);
-	printf("\n\nMAP:::\n---------------------------- \n");
-	while (game->map[i] && i < game->height)
-	{
-		// Print Y-coordinates in green
-		printf(GREEN);
-		if (game->height - i - 1 <= 9)
-			printf("%d ", game->height - i - 1);
-		else
-			printf("%d", game->height - i - 1);
-		printf(RESET); // Reset color
+	printf("NO %s\n", textures[NORTH].path);
+	printf("SO %s\n", textures[SOUTH].path);
+	printf("WE %s\n", textures[WEST].path);
+	printf("EA %s\n", textures[EAST].path);
+}
 
-		j = 0;
-		while (game->map[i][j])
-		{
-			printf(" %c ", game->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
+static void	print_color_info(const t_color *color, const char *type)
+{
+	if (color->mode == 1)
+	{
+		printf("%s color r: %d\n", type, color->r);
+		printf("%s color g: %d\n", type, color->g);
+		printf("%s color b: %d\n", type, color->b);
 	}
+	else if (color->mode == 2)
+		printf("%s texture: %s\n", type, color->col_tex_str);
+}
 
-	// Print X-coordinates in red
-	printf(GREEN"^\n");
-	printf(RED " > 0  " RESET);
+static void	print_map_coordinates(const t_game *game)
+{
+	int	i;
+	int	j;
 
+	printf(GREEN"^\n"RED" > 0  "RESET);
 	i = 1;
 	j = 0;
 	while (j < game->width)
 	{
 		if (i > 9)
 			i = 0;
-		printf(RED "%d  " RESET, i);
+		printf(RED"%d  "RESET, i);
 		i++;
 		j++;
 	}
 	printf("\n\n");
+}
+
+static void	print_map_grid(const t_game *game)
+{
+	int	i;
+	int	j;
+	int	width;
+
+	i = 0;
+	while (game->map[i] && i < game->height)
+	{
+		printf(GREEN);
+		width = 0;
+		if (game->height - i - 1 <= 9)
+			width = 2;
+		printf("%*d ", width, game->height - i - 1);
+		printf(RESET);
+		j = 0;
+		while (game->map[i][j])
+			printf(" %c ", game->map[i][j++]);
+		printf("\n");
+		i++;
+	}
+}
+
+void	print_struct_b(t_game *game)
+{
+	print_textures(game->textures);
+	printf("\n\nFloor and Ceiling Color:::\n---------------------------- \n");
+	print_color_info(&game->color[FLOOR], "floor");
+	print_color_info(&game->color[CEILING], "ceiling");
+	printf("\n\nPlayer Position:::\n---------------------------- \n");
+	printf("player x: %f\n", game->player.x);
+	printf("player y: %f\n", game->height - game->player.y - 1);
+	printf("player direction: %s\n", game->player.ini_dir);
+	printf("\n\nGame Dimensions:::\n---------------------------- \n");
+	printf("Width: %d\nHeight: %d\n", game->width, game->height);
+	printf("\n\nMAP:::\n---------------------------- \n");
+	print_map_grid(game);
+	print_map_coordinates(game);
 }

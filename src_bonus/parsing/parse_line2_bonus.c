@@ -65,9 +65,7 @@ int	assign_heart_texture(char *line, t_game *game)
 	i = 1;
 	while (i <= 12)
 	{
-
 		snprintf(prefix, sizeof(prefix), "R%d ", i);
-
 		if (ft_strncmp(line, prefix, strlen(prefix)) == 0)
 		{
 			game->heart_tex[i - 1].path = \
@@ -89,9 +87,7 @@ int	assign_c_ammo_texture(char *line, t_game *game)
 	i = 1;
 	while (i <= 12)
 	{
-
 		snprintf(prefix, sizeof(prefix), "CA%d ", i);
-
 		if (ft_strncmp(line, prefix, strlen(prefix)) == 0)
 		{
 			game->c_ammo_tex[i - 1].path = \

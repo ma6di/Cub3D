@@ -12,40 +12,38 @@
 
 #include "cub3d_bonus.h"
 
-int	check_walls_b(t_game *game, char **map)
+// Helper function to avoid code duplication
+static int	check_edge(t_game *g, char **m, int check_row, int edge_row)
 {
-	int	height;
-	int	width;
 	int	x;
+	int	width;
 
 	x = 1;
-	height = game->height;
-	width = game->width;
+	width = g->width;
 	while (x < width - 1)
 	{
-		if (map[height - 2][x] == '0')
+		if (m[check_row][x] == '0')
 		{
-			if (map[height - 1][x - 1] != '1' || map[height - 1][x] != '1' || map[height - 1][x + 1] != '1')
+			if (m[edge_row][x - 1] != '1' || m[edge_row][x] != '1'
+				|| m[edge_row][x + 1] != '1')
 			{
-				print_error("Error: Map not enclosed at the last line near (%d, %d)\n", x, height - 1);
+				print_error("Error: Unlcosed map near (%d, %d)\n", x, edge_row);
 				return (0);
 			}
 		}
 		x++;
 	}
-	x = 1;
-	while (x < width - 1)
-	{
-		if (map[1][x] == '0')
-		{
-			if (map[0][x - 1] != '1' || map[0][x] != '1' || map[0][x + 1] != '1')
-			{
-				print_error("Error: Map not enclosed at the first line near (%d, %d)\n", x, 0);
-				return (0);
-			}
-		}
-		x++;
-	}
+	return (1);
+}
+
+int	check_walls_b(t_game *game, char **map)
+{
+	const int	height = game->height;
+
+	if (!check_edge(game, map, height - 2, height - 1))
+		return (0);
+	if (!check_edge(game, map, 1, 0))
+		return (0);
 	return (1);
 }
 
@@ -127,4 +125,3 @@ int	is_map_closed_and_accessible_b(t_game *game, char **map, \
 	free_visited_b(visited, height);
 	return (1);
 }
-

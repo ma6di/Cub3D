@@ -54,7 +54,6 @@ void	set_doors(t_game *game)
 {
 	if (!game || !game->map)
 		return ;
-
 	game->door_count = count_doors(game->map);
 	if (game->door_count == 0)
 	{

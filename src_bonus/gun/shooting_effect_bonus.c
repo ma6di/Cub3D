@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	set_gun_shot_pos(t_game *game)
@@ -62,4 +61,3 @@ void	render_gun_shut_b(t_game *game)
 			draw_shot_pixel(game, x, y);
 	}
 }
-

@@ -46,7 +46,6 @@ static int	player_health_index(t_player player)
 		return (3);
 	else
 		return (4);
-
 }
 
 static void	draw_health_pixel(t_game *game, int index, int x, int y)

@@ -35,9 +35,3 @@ void	draw_gun_b(t_game *game)
 			draw_gun_pixel(game, x, y);
 	}
 }
-
-
-
-
-
-

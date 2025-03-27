@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	free_tex4(t_game *game)

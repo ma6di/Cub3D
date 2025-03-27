@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	update_c_ammo_animation(t_c_ammo *c_ammo)

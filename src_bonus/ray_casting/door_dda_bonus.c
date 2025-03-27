@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static int	select_door_texture_b(t_ray *ray, t_game *game)

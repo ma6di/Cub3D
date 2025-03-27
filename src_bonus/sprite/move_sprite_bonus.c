@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	normalize_dir(double *dir_x, double *dir_y)

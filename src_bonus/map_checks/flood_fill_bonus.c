@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static int	stack_op_b(t_stack *stack, int *x, int *y, int op)
@@ -77,5 +76,3 @@ void	flood_fill_b(t_game *game, int **visited)
 	process_flood_fill_b(game, visited, stack, dxy);
 	free_stack_b(stack);
 }
-
-

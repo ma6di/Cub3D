@@ -1,76 +1,72 @@
-
 #include "cub3d_bonus.h"
 
-static int	is_obstructed(t_game *game, double x1, double y1, double x2, double y2)
+static int	is_wall_or_closed_door(t_game *game, double x, double y)
 {
-	double	dx;
-	double	dy;
-	double	step;
-	double	cur_x;
-	double	cur_y;
-	int		steps;
-	int		i;
+	const int	map_x = (int)x;
+	const int	map_y = (int)y;
 
-	dx = x2 - x1;
-	dy = y2 - y1;
-	step = fmax(fabs(dx), fabs(dy));
-	steps = (int)step;
-	dx /= step;
-	dy /= step;
-	cur_x = x1;
-	cur_y = y1;
+	if (game->map[map_y][map_x] == '1')
+		return (1);
+	if (game->map[map_y][map_x] == 'D')
+		return (game->door[which_door(game, map_y, map_x)].door_state == 0);
+	return (0);
+}
+
+static int	is_obstructed(t_game *game, t_point start, t_point end)
+{
+	const t_point	step = {
+		.x = end.x - start.x,
+		.y = end.y - start.y
+	};
+	const double	max_step = fmax(fabs(step.x), fabs(step.y));
+	t_point			current;
+	int				i;
+
+	current = start;
 	i = 0;
-	while (i <= steps)
+	while (i <= (int)max_step)
 	{
-		if (game->map[(int)cur_y][(int)cur_x] == '1' ||
-			(game->map[(int)cur_y][(int)cur_x] == 'D' &&
-			game->door[which_door(game, cur_y, cur_x)].door_state == 0))
+		if (is_wall_or_closed_door(game, current.x, current.y))
 			return (1);
-		cur_x += dx;
-		cur_y += dy;
+		current.x += step.x / max_step;
+		current.y += step.y / max_step;
 		i++;
 	}
 	return (0);
 }
 
+static int	is_zombie_visible(t_game *game, t_point player, \
+							t_point zombie, int idx)
+{
+	const double	range = 7.0;
+	const double	min_angle = 0.3;
+	const double	dx = zombie.x - player.x;
+	const double	dy = zombie.y - player.y;
+	const double	distance = sqrt(dx * dx + dy * dy);
+
+	return (distance < range
+		&& ((dx * game->player.dir_x + dy * game->player.dir_y) / \
+			distance) > min_angle && !is_obstructed(game, player, zombie));
+}
+
 t_sprite	*get_zombie_in_front(t_game *game)
 {
-	int		i;
-	double	range;
-	double	min_shoot_angle;
-	double	dx;
-	double	dy;
-	double	distance;
-	double	dot;
+	int			i;
+	t_point		player_pos;
+	t_point		zombie_pos;
 
-	range = 7.0;
-	min_shoot_angle = 0.3;
-	i = 0;
-	while (i < game->sprite_count)
+	player_pos = (t_point){game->player.x, game->player.y};
+	i = -1;
+	while (++i < game->sprite_count)
 	{
 		if (!game->sprites[i].active)
-		{
-			i++;
 			continue ;
-		}
-		dx = game->sprites[i].x - game->player.x;
-		dy = game->sprites[i].y - game->player.y;
-		distance = sqrtf(dx * dx + dy * dy);
-		if (distance < range)
-		{
-			dot = (dx * game->player.dir_x + dy * \
-						game->player.dir_y) / distance;
-			if (dot > min_shoot_angle && !is_obstructed(game,
-					game->player.x, game->player.y,
-					game->sprites[i].x, game->sprites[i].y))
-				return (&game->sprites[i]);
-		}
-		i++;
+		zombie_pos = (t_point){game->sprites[i].x, game->sprites[i].y};
+		if (is_zombie_visible(game, player_pos, zombie_pos, i))
+			return (&game->sprites[i]);
 	}
 	return (NULL);
 }
-
-
 
 void	remove_zombie(t_game *game, int index)
 {
@@ -78,7 +74,7 @@ void	remove_zombie(t_game *game, int index)
 
 	i = index;
 	if (index < 0 || index >= game->sprite_count)
-		return;
+		return ;
 	while (i < game->sprite_count - 1)
 	{
 		game->sprites[i] = game->sprites[i + 1];

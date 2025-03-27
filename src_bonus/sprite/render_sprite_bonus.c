@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	calculate_sprite_dims(t_sprite_draw *draw)
@@ -58,15 +57,12 @@ static void	render_sprite_pixels(t_game *game, t_sprite_draw *draw)
 	}
 }
 
-
 void	render_sprites(t_game *game, t_sprite *sprite)
 {
 	t_sprite_draw	draw;
 
 	if (!transform_sprite(game, sprite, &draw))
 		return ;
-
 	calculate_sprite_dims(&draw);
 	render_sprite_pixels(game, &draw);
 }
-

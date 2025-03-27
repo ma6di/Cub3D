@@ -1,5 +1,3 @@
-
-
 #include "cub3d_bonus.h"
 
 void	update_player_b(t_game *game)

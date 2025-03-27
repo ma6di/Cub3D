@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 static void	loop_hook_b(t_game *game)

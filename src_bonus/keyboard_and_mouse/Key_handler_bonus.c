@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 int	press_key_b(int keycode, t_game *game)

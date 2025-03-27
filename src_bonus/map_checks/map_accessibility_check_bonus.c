@@ -1,4 +1,3 @@
-
 #include "cub3d_bonus.h"
 
 void	free_visited_b(int **visited, int height)
@@ -52,4 +51,3 @@ int	check_accessibility_b(t_game *game, int **visited)
 	}
 	return (1);
 }
-
