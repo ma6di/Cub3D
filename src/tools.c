@@ -47,36 +47,38 @@ int	two_dim_len(char **arr)
  * the ray was traveling when it hit a wall.
  * Returns: The texture index (NORTH, SOUTH, EAST, or WEST).
  */
-int select_texture(t_ray *ray, t_game *game)
+int	select_texture(t_ray *ray, t_game *game)
 {
-
-    // Select texture based on wall side
-    if (ray->side == 0)  // Vertical walls
-        return (ray->dirx > 0) ? EAST : WEST;
-    else                 // Horizontal walls
-        return (ray->diry > 0) ? SOUTH : NORTH;
-
-    // Default case (should never happen, but prevents warnings)
-    return EAST;  // You can return any valid texture
+	if (ray->side == 0)
+	{
+		if (ray->dirx > 0)
+			return (EAST);
+		else
+			return (WEST);
+	}
+	else
+	{
+		if (ray->diry > 0)
+			return (SOUTH);
+		else
+			return (NORTH);
+	}
+	return (EAST);
 }
 
-
-int rgb_to_hex(int r, int g, int b)
+int	rgb_to_hex(int r, int g, int b)
 {
-    // ✅ Ensure RGB values are within the valid range (0-255)
-    if (r < 0)
+	if (r < 0)
 		r = 0;
 	if (r > 255)
 		r = 255;
-    if (g < 0)
+	if (g < 0)
 		g = 0;
 	if (g > 255)
 		g = 255;
-    if (b < 0)
+	if (b < 0)
 		b = 0;
 	if (b > 255)
 		b = 255;
-
-    // ✅ Combine RGB into a single 24-bit hex color (0xRRGGBB)
-    return (r << 16) | (g << 8) | b;
+	return ((r << 16) | (g << 8) | b);
 }

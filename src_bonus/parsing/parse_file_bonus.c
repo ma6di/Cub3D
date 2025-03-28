@@ -76,7 +76,6 @@ void	file_data_order_b(t_game *game)
 	{
 		print_error(RED"Error: cub file data is not in order or"RESET);
 		print_error(RED" one/more texture is missing\n"RESET);
-		close_window_b(game);
 	}
 }
 

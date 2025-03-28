@@ -12,22 +12,26 @@
 
 #include "cub3d_bonus.h"
 
-// Helper function to avoid code duplication
-static int	check_edge(t_game *g, char **m, int check_row, int edge_row)
+static int	check_edge_b(t_game *g, char **m, int check_row, int edge_row)
 {
 	int	x;
-	int	width;
+	int	row_len;
 
 	x = 1;
-	width = g->width;
-	while (x < width - 1)
+	row_len = ft_strlen(m[edge_row]);
+	while (x < row_len - 1)
 	{
 		if (m[check_row][x] == '0')
 		{
+			if (x - 1 < 0 || x + 1 >= row_len)
+			{
+				print_error("Error: Unclosed map near (%d, %d)\n", x, edge_row);
+				return (0);
+			}
 			if (m[edge_row][x - 1] != '1' || m[edge_row][x] != '1'
 				|| m[edge_row][x + 1] != '1')
 			{
-				print_error("Error: Unlcosed map near (%d, %d)\n", x, edge_row);
+				print_error("Error: Unclosed map near (%d, %d)\n", x, edge_row);
 				return (0);
 			}
 		}
@@ -40,9 +44,9 @@ int	check_walls_b(t_game *game, char **map)
 {
 	const int	height = game->height;
 
-	if (!check_edge(game, map, height - 2, height - 1))
+	if (!check_edge_b(game, map, height - 2, height - 1))
 		return (0);
-	if (!check_edge(game, map, 1, 0))
+	if (!check_edge_b(game, map, 1, 0))
 		return (0);
 	return (1);
 }

@@ -12,7 +12,22 @@
 
 #include "cub3D.h"
 
-static void	append_map_line(t_game *game, char *line)
+void	file_data_order(t_game *game)
+{
+	if (!game->textures[NORTH].path || \
+		!game->textures[SOUTH].path || \
+		!game->textures[WEST].path || \
+		!game->textures[EAST].path || \
+		!game->color[FLOOR].col_tex_str || \
+		!game->color[CEILING].col_tex_str)
+	{
+		print_error(RED"Error: cub file data is not in order or"RESET);
+		print_error(RED" one/more texture is missing\n"RESET);
+		game->file_order = 1;
+	}
+}
+
+void	append_map_line(t_game *game, char *line)
 {
 	int		i;
 	char	**new_map;
@@ -30,15 +45,22 @@ static void	append_map_line(t_game *game, char *line)
 		i++;
 	}
 	new_map[i] = ft_strdup(line);
+	if (!new_map[i])
+	{
+		free(new_map);
+		return ;
+	}
 	new_map[i + 1] = NULL;
 	free(game->map);
 	game->map = new_map;
 }
 
-static void*	str_start(char *str)
+static void	*str_start(char *str)
 {
-	int  i = 0;
-	while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 	{
 		*str++;
 	}
@@ -59,14 +81,16 @@ static void	check_line(char *line, t_game *game)
 		game->color[FLOOR].col_tex_str = ft_strdup(str_start(line + 1));
 	else if (line && ft_strncmp(line, "C ", 2) == 0)
 		game->color[CEILING].col_tex_str = ft_strdup(str_start(line + 1));
-	else if (line && (ft_strchr("10NSWE", line[0]) || ft_strchr(" ", line[0])))
+	else if (ft_strnstr(line, "1111", ft_strlen(line)) && \
+		game->map_started == 0)
 	{
-		if (line[0] == '\0') {
-			return;
-		}
-		game->height = 1;
+		file_data_order(game);
+		game->map_started = 1;
 		append_map_line(game, line);
 	}
+	else if (ft_strchr("10NSWE \t", line[0]) && game->map_started == 1)
+		append_map_line(game, line);
+	return ;
 }
 
 int	pars_file(const char *filename, t_game *game, char **argv)
@@ -79,7 +103,7 @@ int	pars_file(const char *filename, t_game *game, char **argv)
 		return (print_error("Error: Could not open file %s\n", filename), 0);
 	if (validate_file(argv[1]) == -1)
 	{
-		close_window(game);
+		close(fd);
 		return (1);
 	}
 	line = get_next_line(fd);
@@ -90,7 +114,7 @@ int	pars_file(const char *filename, t_game *game, char **argv)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!validate_cub_elements(game))
+	if (game->file_order || !validate_cub_elements(game))
 		return (0);
 	return (1);
 }

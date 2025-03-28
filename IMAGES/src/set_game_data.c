@@ -1,5 +1,5 @@
 
-#include "cub3d.h"
+#include "../../include/cub3D.h"
 
 void	init_mlx_wall_texture(t_game *game, int index, char *path)
 {

@@ -77,13 +77,13 @@ int	check_line_b(char *line, t_game *game)
 		return (1);
 	}
 	else if (ft_strnstr(line, "1111", ft_strlen(line)) && \
-					game->map_statred == 0)
+					game->map_started == 0)
 	{
 		file_data_order_b(game);
-		game->map_statred = 1;
+		game->map_started = 1;
 		append_map_line_b(game, line);
 	}
-	else if (ft_strchr("10NSWEDZ \t", line[0]) && game->map_statred == 1)
+	else if (ft_strchr("10NSWEDZ \t", line[0]) && game->map_started == 1)
 		append_map_line_b(game, line);
 	return (1);
 }

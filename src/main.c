@@ -1,11 +1,9 @@
-
-
 #include "cub3D.h"
 
 int	render(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->win);
-	draw_floor_and_ceiling(game, FLOOR);
+	draw_floor_and_ceiling(game);
 	cast_rays(game);
 	update_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
@@ -27,7 +25,6 @@ int	main(int argc, char *argv[])
 	init_game(game);
 	if (!pars_file(argv[1], game, argv))
 	{
-		print_struct(game);
 		close_window(game);
 		return (1);
 	}

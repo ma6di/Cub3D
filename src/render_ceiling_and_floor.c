@@ -36,10 +36,8 @@ void	draw_floor_pixel(t_game *game)
 	}
 }
 
-
-void	draw_floor_and_ceiling(t_game *game, int index)
+void	draw_floor_and_ceiling(t_game *game)
 {
-	(void)(index);
 	draw_ceiling_pixel(game);
 	draw_floor_pixel(game);
 }

@@ -1,5 +1,3 @@
-
-
 #include "cub3D.h"
 
 void	calculate_step(t_ray *ray, t_game *game)
@@ -28,8 +26,8 @@ void	calculate_step(t_ray *ray, t_game *game)
 
 void	perform_dda(t_ray *ray, t_game *game)
 {
-	while (ray->mapx >= 0 && ray->mapx < game->width &&
-			ray->mapy >= 0 && ray->mapy < game->height &&
+	while (ray->mapx >= 0 && ray->mapx < game->width && \
+			ray->mapy >= 0 && ray->mapy < game->height && \
 			(game->map[ray->mapy][ray->mapx] != '1'))
 	{
 		if (ray->side_distx < ray->side_disty)
@@ -50,16 +48,16 @@ void	perform_dda(t_ray *ray, t_game *game)
 void	calculate_wall_height(t_ray *ray, t_game *game)
 {
 	if (ray->side == 0)
-		 ray->walldist = (ray->side_distx - ray->deltadistx);
+		ray->walldist = (ray->side_distx - ray->deltadistx);
 	else
-		 ray->walldist = (ray->side_disty - ray->deltadisty);
+		ray->walldist = (ray->side_disty - ray->deltadisty);
 	if (ray->walldist <= 0.001)
-		 ray->walldist = 0.001;
+		ray->walldist = 0.001;
 	ray->lineheight = (int)(SCREEN_HEIGHT / ray->walldist);
 	ray->drawstart = -ray->lineheight / 2 + SCREEN_HEIGHT / 2;
 	if (ray->drawstart < 0)
-		 ray->drawstart = 0;
+		ray->drawstart = 0;
 	ray->drawend = ray->lineheight / 2 + SCREEN_HEIGHT / 2;
 	if (ray->drawend >= SCREEN_HEIGHT)
-		 ray->drawend = SCREEN_HEIGHT - 1;
+		ray->drawend = SCREEN_HEIGHT - 1;
 }

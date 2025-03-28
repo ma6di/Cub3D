@@ -49,7 +49,7 @@ static void	init_game_vars(t_game *game)
 	game->heart = NULL;
 	game->c_ammo = NULL;
 	game->key = NULL;
-	game->map_statred = 0;
+	game->map_started = 0;
 	game->file_order = 0;
 	game->door_count = 0;
 	game->sprite_count = 0;

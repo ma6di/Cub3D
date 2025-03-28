@@ -415,7 +415,7 @@ typedef struct s_ray
 //Main Game Structure
 typedef struct s_game
 {
-	int				map_statred;
+	int				map_started;
 	int				file_order;
 	int				bpp;
 	int				line_len;
@@ -432,7 +432,7 @@ typedef struct s_game
 	void			*win;
 	void			*img;
 	void			*addr;
-	int				keys[7];
+	int				keys[8];
 	t_player		player;
 	t_texture		textures[13];
 	t_color			color[3];
@@ -473,11 +473,9 @@ void		init_mlx_health_bar_texture_b(t_game *game);
 void		init_health_bar_b(t_health *health_bar, int width, int height);
 void		init_mlx_gun_texture_b(t_game *game, int index, char *path);
 void		init_gun_b(t_gun *gun, int dim, int index);
-void		init_directions_b(int *dxy);
 void		init_ray_b(t_ray *ray);
 void		init_mlx_wall_texture_b(t_game *game, int index, char *path);
 void		init_mlx_fc_texture_b(t_game *game, int index, char *path);
-void		init_win_b(t_game *game);
 void		init_mlx_ray_b(t_ray *ray, t_game *game, int x);
 void		init_all_mlx_textures_b(t_game *game);
 void		load_player_b(t_game *game);
@@ -523,6 +521,7 @@ void		free_visited_b(int **visited, int height);
 int			check_accessibility_b(t_game *game, int **visited);
 void		free_stack_b(t_stack *stack);
 t_stack		*init_stack_b(int size);
+void		init_directions_b(int *dxy);
 
 ///			Ray Casting			///
 int			handle_door_hit(t_ray *ray, t_game *game);
@@ -596,7 +595,6 @@ void		draw_view_angle_b(t_game *game, int px, int py);
 void		draw_player_b(t_game *game);
 void		draw_tile_b(t_game *game, int x, int y, int color);
 void		set_minimap_limits(t_bounds *bounds, int max_w, int max_h);
-
 
 ///			Parsing			///
 int			pars_file_b(const char *filename, t_game *game, char **argv);

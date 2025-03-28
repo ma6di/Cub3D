@@ -43,7 +43,7 @@ void	init_game(t_game *game)
 	game->map = NULL;
 	game->img = NULL;
 	game->addr = NULL;
-	game->map_statred = 0;
+	game->map_started = 0;
 	game->file_order = 0;
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player(&game->player);

@@ -77,14 +77,14 @@ static int	check_line(char *line, t_game *game)
 	else if (line && ft_strncmp(line, "C ", 2) == 0)
 		game->color[CEILING].col_tex_str = ft_strdup(str_start(line + 1));
 	else if (line && (ft_strnstr(line, "1111", ft_strlen(line))) && \
-			game->map_statred == 0)
+			game->map_started == 0)
 	{
 		file_data_order(game);
-		game->map_statred = 1;
+		game->map_started = 1;
 		append_map_line(game, line);
 	}
 	else if (line && (ft_strchr("10NSWE \t", line[0])) && \
-			game->map_statred == 1)
+			game->map_started == 1)
 		append_map_line(game, line);
 	return (1);
 }
