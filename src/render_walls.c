@@ -109,8 +109,6 @@ void	cast_rays(t_game *game)
 {
 	t_ray	ray;
 	int		x;
-	int		y;
-	int		color;
 	int		tex_id;
 
 	x = 0;
@@ -120,8 +118,8 @@ void	cast_rays(t_game *game)
 		init_mlx_ray(&ray, game, x);
 		calculate_step(&ray, game);
 		perform_dda(&ray, game);
-		calculate_wall_height(&ray, game);
-		tex_id = select_texture(&ray, game);
+		calculate_wall_height(&ray);
+		tex_id = select_texture(&ray);
 		render_wall_slice(game, &ray, x, tex_id);
 		x++;
 	}

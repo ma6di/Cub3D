@@ -80,7 +80,7 @@ void	render_hearts(t_game *game, t_heart *heart)
 		return ;
 	if (!calculate_transform_heart(game, heart, &transform_x, &transform_y))
 		return ;
-	calculate_draw_positions_heart(game, transform_x, transform_y, \
+	calculate_draw_positions_heart(transform_x, transform_y, \
 									&heart->draw);
 	render_heart_pixels(game, heart, &heart->draw, transform_y);
 }

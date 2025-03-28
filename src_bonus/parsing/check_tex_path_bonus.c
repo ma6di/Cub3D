@@ -1,6 +1,6 @@
 #include "../../include/cub3d_bonus.h"
 
-void	check_ammo_paths(t_game *game, int start, int end, t_ammo *assets)
+void	check_ammo_paths(t_game *game, int start, int end)
 {
 	int	i;
 
@@ -15,8 +15,7 @@ void	check_ammo_paths(t_game *game, int start, int end, t_ammo *assets)
 	}
 }
 
-void	check_c_ammo_paths(t_game *game, int start, int end, \
-			t_c_ammo_tex *assets)
+void	check_c_ammo_paths(t_game *game, int start, int end)
 {
 	int	i;
 
@@ -31,7 +30,7 @@ void	check_c_ammo_paths(t_game *game, int start, int end, \
 	}
 }
 
-void	check_heart_paths(t_game *game, int start, int end, t_heart_tex *assets)
+void	check_heart_paths(t_game *game, int start, int end)
 {
 	int	i;
 
@@ -46,7 +45,7 @@ void	check_heart_paths(t_game *game, int start, int end, t_heart_tex *assets)
 	}
 }
 
-void	check_health_paths(t_game *game, int start, int end, t_health *assets)
+void	check_health_paths(t_game *game, int start, int end)
 {
 	int	i;
 
@@ -61,7 +60,7 @@ void	check_health_paths(t_game *game, int start, int end, t_health *assets)
 	}
 }
 
-void	check_key_paths(t_game *game, int start, int end, t_key_tex *assets)
+void	check_key_paths(t_game *game, int start, int end)
 {
 	int	i;
 

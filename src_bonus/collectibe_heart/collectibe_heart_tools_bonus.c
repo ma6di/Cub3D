@@ -20,7 +20,7 @@ int	calculate_transform_heart(t_game *game, t_heart *heart, \
 	return (1);
 }
 
-void	calculate_draw_positions_heart(t_game *game, double transform_x, \
+void	calculate_draw_positions_heart( double transform_x, \
 	double transform_y, t_draw *draw)
 {
 	double	scale;

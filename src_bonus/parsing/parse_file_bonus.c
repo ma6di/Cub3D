@@ -67,11 +67,11 @@ static void	check_texture_paths(t_game *game)
 void	file_data_order_b(t_game *game)
 {
 	check_texture_paths(game);
-	check_ammo_paths(game, 0, 7, game->ammo);
-	check_c_ammo_paths(game, 0, 12, game->c_ammo_tex);
-	check_heart_paths(game, 0, 12, game->heart_tex);
-	check_health_paths(game, 0, 5, game->health_bar);
-	check_key_paths(game, 0, 7, game->key_tex);
+	check_ammo_paths(game, 0, 7);
+	check_c_ammo_paths(game, 0, 12);
+	check_heart_paths(game, 0, 12);
+	check_health_paths(game, 0, 5);
+	check_key_paths(game, 0, 7);
 	if (game->file_order == 1)
 	{
 		print_error(RED"Error: cub file data is not in order or"RESET);

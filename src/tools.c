@@ -47,7 +47,7 @@ int	two_dim_len(char **arr)
  * the ray was traveling when it hit a wall.
  * Returns: The texture index (NORTH, SOUTH, EAST, or WEST).
  */
-int	select_texture(t_ray *ray, t_game *game)
+int	select_texture(t_ray *ray)
 {
 	if (ray->side == 0)
 	{

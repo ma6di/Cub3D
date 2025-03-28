@@ -50,7 +50,7 @@ static void	process_flood_fill(t_game *game, int **visited, \
 		{
 			nx = x + dxy[i];
 			ny = y + dxy[i + 1];
-			if (ny < game->height && nx < ft_strlen(game->map[ny]))
+			if (ny < game->height && nx < (int)ft_strlen(game->map[ny]))
 			{
 				if (is_valid(game, visited, nx, ny))
 					stack_op(stack, &nx, &ny, PUSH);

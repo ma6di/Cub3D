@@ -15,7 +15,6 @@
 int	is_valid_texture_path(char *path)
 {
 	int	len;
-	int	fd;
 
 	len = ft_strlen(path);
 	if (!path || len == 0)

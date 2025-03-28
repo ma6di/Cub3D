@@ -45,7 +45,6 @@ void	render_c_ammo_pixels(t_game *game, t_c_ammo *c_ammo,
 {
 	int	x;
 	int	tex_x;
-	int	tex_y;
 
 	x = draw->start_x;
 	while (x < draw->end_x)
@@ -81,7 +80,7 @@ void	render_c_ammo(t_game *game, t_c_ammo *c_ammo)
 		return ;
 	if (!calculate_transform_c_ammo(game, c_ammo, &transform_x, &transform_y))
 		return ;
-	calculate_draw_positions_c_ammo(game, transform_x, transform_y, \
+	calculate_draw_positions_c_ammo(transform_x, transform_y, \
 									&c_ammo->draw);
 	render_c_ammo_pixels(game, c_ammo, &c_ammo->draw, transform_y);
 }

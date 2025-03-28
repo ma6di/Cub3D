@@ -165,11 +165,11 @@ int			pars_file(const char *filename, t_game *game, char **argv);
 ///			validating parsed data		////
 int			is_map_closed_and_accessible(t_game *game, char **map, \
 										int height, int width);
-int			case_one(t_game *game, char **map, int y, int height);
-int			case_two(t_game *game, char **map, int y, int height);
-int			case_three(t_game *game, char **map, int x, int height);
-int			case_four(t_game *game, char **map, int x, int height);
-int			case_five(t_game *game, char **map, int x, int height);
+int			case_one(char **map, int y, int height);
+int			case_two(char **map, int y, int height);
+int			case_three(char **map, int x, int height);
+int			case_four(char **map, int x, int height);
+int			case_five(char **map, int x, int height);
 int			first_pos_row(char *line);
 int			last_pos_row(char *line);
 int			first_pos_col(char **map, int col);
@@ -200,7 +200,6 @@ void		init_game(t_game *game);
 void		init_all_mlx_textures(t_game *game);
 void		init_mlx_wall_texture(t_game *game, int index, char *path);
 void		load_player(t_game *game);
-void		set_colors(t_game *game, t_color *color, int index);
 void		create_window(t_game *game);
 int			rgb_to_hex(int r, int g, int b);
 
@@ -208,9 +207,9 @@ int			rgb_to_hex(int r, int g, int b);
 int			render(t_game *game);
 void		draw_floor_and_ceiling(t_game *game);
 void		my_mlx_pixel_put(t_game *game, int x, int y, int color);
-int			select_texture(t_ray *ray, t_game *game);
+int			select_texture(t_ray *ray);
 void		calculate_step(t_ray *ray, t_game *game);
-void		calculate_wall_height(t_ray *ray, t_game *game);
+void		calculate_wall_height(t_ray *ray);
 void		perform_dda(t_ray *ray, t_game *game);
 void		cast_rays(t_game *game);
 

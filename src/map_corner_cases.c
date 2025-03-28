@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-int	case_one(t_game *game, char **map, int y, int height)
+int	case_one(char **map, int y, int height)
 {
 	int	first_y;
 	int	first_y_next;
@@ -28,7 +28,7 @@ int	case_one(t_game *game, char **map, int y, int height)
 	return (1);
 }
 
-int	case_two(t_game *game, char **map, int y, int height)
+int	case_two(char **map, int y, int height)
 {
 	int	last_y;
 	int	last_y_next;
@@ -56,7 +56,7 @@ int	case_two(t_game *game, char **map, int y, int height)
 	return (1);
 }
 
-int	case_three(t_game *game, char **map, int x, int height)
+int	case_three(char **map, int x, int height)
 {
 	int	first_x;
 	int	first_x_next;
@@ -85,7 +85,7 @@ int	case_three(t_game *game, char **map, int x, int height)
 	return (1);
 }
 
-int	case_four(t_game *game, char **map, int x, int height)
+int	case_four(char **map, int x, int height)
 {
 	int	last_x;
 	int	last_x_next;
@@ -96,7 +96,7 @@ int	case_four(t_game *game, char **map, int x, int height)
 	{
 		if (last_x_next >= 0 && last_x_next < height && map[last_x_next])
 		{
-			if (x >= 0 && x < strlen(map[last_x_next]) - 1)
+			if (x >= 0 && x < (int)strlen(map[last_x_next]) - 1)
 			{
 				if (map[last_x_next][x] != '1' || \
 					map[last_x_next][x + 1] != '1')
@@ -114,7 +114,7 @@ int	case_four(t_game *game, char **map, int x, int height)
 	return (1);
 }
 
-int	case_five(t_game *game, char **map, int x, int height)
+int	case_five(char **map, int x, int height)
 {
 	int	last_x;
 	int	last_x_next;
@@ -125,7 +125,7 @@ int	case_five(t_game *game, char **map, int x, int height)
 	{
 		if (last_x >= 0 && last_x < height && map[last_x])
 		{
-			if (x >= 0 && x < strlen(map[last_x]) - 1)
+			if (x >= 0 && x < (int)strlen(map[last_x]) - 1)
 			{
 				if (map[last_x][x] != '1' || map[last_x][x + 1] != '1')
 				{

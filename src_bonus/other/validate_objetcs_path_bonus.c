@@ -1,6 +1,6 @@
 #include "cub3d_bonus.h"
 
-int	validate_ammo_paths(t_game *game, int start, int end, t_ammo *assets)
+int	validate_ammo_paths(int start, int end, t_ammo *assets)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ int	validate_ammo_paths(t_game *game, int start, int end, t_ammo *assets)
 	return (1);
 }
 
-int	validate_c_ammo_paths(t_game *game, int start, int end, \
+int	validate_c_ammo_paths(int start, int end, \
 			t_c_ammo_tex *assets)
 {
 	int	i;
@@ -29,7 +29,7 @@ int	validate_c_ammo_paths(t_game *game, int start, int end, \
 	return (1);
 }
 
-int	validate_heart_paths(t_game *game, int start, int end, t_heart_tex *assets)
+int	validate_heart_paths(int start, int end, t_heart_tex *assets)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	validate_heart_paths(t_game *game, int start, int end, t_heart_tex *assets)
 	return (1);
 }
 
-int	validate_health_paths(t_game *game, int start, int end, t_health *assets)
+int	validate_health_paths(int start, int end, t_health *assets)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ int	validate_health_paths(t_game *game, int start, int end, t_health *assets)
 	return (1);
 }
 
-int	validate_key_paths(t_game *game, int start, int end, t_key_tex *assets)
+int	validate_key_paths(int start, int end, t_key_tex *assets)
 {
 	int	i;
 

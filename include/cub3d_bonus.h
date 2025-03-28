@@ -482,16 +482,11 @@ void		load_player_b(t_game *game);
 
 ///		validating Parsed data		///
 int			validate_objects(t_game *game);
-int			validate_ammo_paths(t_game *game, int start, int end, \
-								t_ammo *assets);
-int			validate_c_ammo_paths(t_game *game, int start, int end, \
-										t_c_ammo_tex *assets);
-int			validate_heart_paths(t_game *game, int start, int end, \
-										t_heart_tex *assets);
-int			validate_health_paths(t_game *game, int start, int end, \
-										t_health *assets);
-int			validate_key_paths(t_game *game, int start, int end, \
-								t_key_tex *assets);
+int			validate_ammo_paths(int start, int end, t_ammo *assets);
+int			validate_c_ammo_paths(int start, int end, t_c_ammo_tex *assets);
+int			validate_heart_paths(int start, int end, t_heart_tex *assets);
+int			validate_health_paths(int start, int end, t_health *assets);
+int			validate_key_paths(int start, int end, t_key_tex *assets);
 int			validate_file_b(const char *filename);
 int			validate_cub_elements_b(t_game *game);
 int			is_valid_texture_path_b(char *path);
@@ -499,11 +494,11 @@ int			validate_colors_b(t_color *color);
 int			is_valid_color_texture_b(t_color *color);
 int			is_map_closed_and_accessible_b(t_game *game, char **map, \
 				int height, int width);
-int			case_one_b(t_game *game, char **map, int y, int height);
-int			case_two_b(t_game *game, char **map, int y, int height);
-int			case_three_b(t_game *game, char **map, int x, int height);
-int			case_four_b(t_game *game, char **map, int x, int height);
-int			case_five_b(t_game *game, char **map, int x, int height);
+int			case_one_b(char **map, int y, int height);
+int			case_two_b(char **map, int y, int height);
+int			case_three_b(char **map, int x, int height);
+int			case_four_b(char **map, int x, int height);
+int			case_five_b(char **map, int x, int height);
 int			first_pos_row_b(char *line);
 int			last_pos_row_b(char *line);
 int			first_pos_col_b(char **map, int col);
@@ -553,7 +548,7 @@ void		set_colors_b(t_game *game, t_color *color, int index);
 ///			Collectible Heart	///
 int			calculate_transform_heart(t_game *game, t_heart *heart, \
 							double *transform_x, double *transform_y);
-void		calculate_draw_positions_heart(t_game *game, double transform_x, \
+void		calculate_draw_positions_heart(double transform_x, \
 										double transform_y, t_draw *draw);
 void		render_hearts(t_game *game, t_heart *heart);
 void		set_heart_cords(t_game *game);
@@ -561,7 +556,7 @@ void		set_heart_cords(t_game *game);
 ///			Collectible Ammo 	/////
 int			calculate_transform_c_ammo(t_game *game, t_c_ammo *c_ammo, \
 							double *transform_x, double *transform_y);
-void		calculate_draw_positions_c_ammo(t_game *game, double transform_x, \
+void		calculate_draw_positions_c_ammo(double transform_x, \
 										double transform_y, t_draw *draw);
 void		set_c_ammo_cords(t_game *game);
 void		render_c_ammo(t_game *game, t_c_ammo *c_ammo);
@@ -569,7 +564,7 @@ void		render_c_ammo(t_game *game, t_c_ammo *c_ammo);
 ///			Collectibe_key			/////
 int			calculate_transform_key(t_game *game, t_key *key, \
 							double *transform_x, double *transform_y);
-void		calculate_draw_positions_key(t_game *game, double transform_x, \
+void		calculate_draw_positions_key(double transform_x, \
 										double transform_y, t_draw *draw);
 void		set_key_cords(t_game *game);
 void		render_key(t_game *game, t_key *key);
@@ -599,15 +594,11 @@ void		set_minimap_limits(t_bounds *bounds, int max_w, int max_h);
 ///			Parsing			///
 int			pars_file_b(const char *filename, t_game *game, char **argv);
 int			check_line_b(char *line, t_game *game);
-void		check_ammo_paths(t_game *game, int start, int end, t_ammo *assets);
-void		check_c_ammo_paths(t_game *game, int start, int end, \
-												t_c_ammo_tex *assets);
-void		check_heart_paths(t_game *game, int start, int end, \
-										t_heart_tex *assets);
-void		check_health_paths(t_game *game, int start, int end, \
-								t_health *assets);
-void		check_key_paths(t_game *game, int start, int end, \
-								t_key_tex *assets);
+void		check_ammo_paths(t_game *game, int start, int end);
+void		check_c_ammo_paths(t_game *game, int start, int end);
+void		check_heart_paths(t_game *game, int start, int end);
+void		check_health_paths(t_game *game, int start, int end);
+void		check_key_paths(t_game *game, int start, int end);
 int			assign_c_ammo_texture(char *line, t_game *game);
 int			assign_heart_texture(char *line, t_game *game);
 int			assign_ammo_texture(char *line, t_game *game);

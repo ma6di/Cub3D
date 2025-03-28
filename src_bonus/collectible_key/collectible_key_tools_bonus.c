@@ -42,7 +42,7 @@ int	calculate_transform_key(t_game *game, t_key *key, \
 	return (1);
 }
 
-void	calculate_draw_positions_key(t_game *game, double transform_x, \
+void	calculate_draw_positions_key(double transform_x, \
 	double transform_y, t_draw *draw)
 {
 	double	scale;

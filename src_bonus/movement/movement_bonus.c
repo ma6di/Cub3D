@@ -70,9 +70,7 @@ void	move_player_b(int direction, t_game *game)
 	double	new_x;
 	double	new_y;
 	int		door_index;
-	int		half_size;
 
-	half_size = 1;
 	new_x = game->player.x;
 	new_y = game->player.y;
 	calculate_new_position_b(direction, game, &new_x, &new_y);

@@ -53,12 +53,11 @@ static int	door_tex_index(t_ray *ray, t_game *game)
 		return (DOOR_3);
 	else if (game->door[door_index].door_state == 4)
 		return (DOOR_4);
+	return (DOOR_4);
 }
 
 int	select_texture_b(t_ray *ray, t_game *game)
 {
-	int	door_index;
-
 	if (ray->door == 1)
 		return (door_tex_index(ray, game));
 	if (ray->final_door == 1)

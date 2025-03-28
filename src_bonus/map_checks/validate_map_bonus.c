@@ -12,7 +12,7 @@
 
 #include "cub3d_bonus.h"
 
-static int	check_edge_b(t_game *g, char **m, int check_row, int edge_row)
+static int	check_edge_b(char **m, int check_row, int edge_row)
 {
 	int	x;
 	int	row_len;
@@ -44,9 +44,9 @@ int	check_walls_b(t_game *game, char **map)
 {
 	const int	height = game->height;
 
-	if (!check_edge_b(game, map, height - 2, height - 1))
+	if (!check_edge_b(map, height - 2, height - 1))
 		return (0);
-	if (!check_edge_b(game, map, 1, 0))
+	if (!check_edge_b(map, 1, 0))
 		return (0);
 	return (1);
 }

@@ -8,16 +8,16 @@ int	check_corners(t_game *game, char **map)
 	y = 0;
 	while (y < game->height - 1)
 	{
-		if (!case_one(game, map, y, game->height) || \
-			!case_two(game, map, y, game->height))
+		if (!case_one(map, y, game->height) || \
+			!case_two(map, y, game->height))
 			return (0);
 		y++;
 	}
 	x = 0;
 	while (x < game->width - 1)
 	{
-		if (!case_four(game, map, x, game->height) \
-			|| !case_five(game, map, x, game->height))
+		if (!case_four(map, x, game->height) \
+			|| !case_five(map, x, game->height))
 			return (0);
 		x++;
 	}

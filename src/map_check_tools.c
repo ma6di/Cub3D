@@ -40,10 +40,8 @@ int	first_pos_row(char *line)
 
 int	last_pos_row(char *line)
 {
-	int	i;
 	int	len;
 
-	i = 0;
 	len = ft_strlen(line);
 	while (len > 0 && line[len - 1] == ' ')
 	{

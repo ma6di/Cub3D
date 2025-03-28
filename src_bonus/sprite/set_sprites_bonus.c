@@ -49,7 +49,7 @@ void	set_sprites_cords(t_game *game)
 	while (y < game->height)
 	{
 		x = 0;
-		while (x < ft_strlen(game->map[y]))
+		while (x < (int)ft_strlen(game->map[y]))
 		{
 			if (game->map[y][x] == 'Z')
 			{

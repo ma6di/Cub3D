@@ -34,8 +34,6 @@ static void	check_player_health(t_game *game)
 
 static int	player_health_index(t_player player)
 {
-	int	index;
-
 	if (player.health <= 100 && player.health > 80)
 		return (0);
 	else if (player.health <= 80 && player.health > 60)

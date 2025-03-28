@@ -8,17 +8,17 @@ int	check_corners_b(t_game *game, char **map)
 	y = 0;
 	while (y < game->height - 1)
 	{
-		if (!case_one_b(game, map, y, game->height) || \
-			!case_two_b(game, map, y, game->height))
+		if (!case_one_b(map, y, game->height) || \
+			!case_two_b(map, y, game->height))
 			return (0);
 		y++;
 	}
 	x = 0;
 	while (x < game->width - 1)
 	{
-		if (!case_three_b(game, map, x, game->height) || \
-			!case_four_b(game, map, x, game->height) \
-			|| !case_five_b(game, map, x, game->height))
+		if (!case_three_b(map, x, game->height) || \
+			!case_four_b(map, x, game->height) \
+			|| !case_five_b(map, x, game->height))
 			return (0);
 		x++;
 	}

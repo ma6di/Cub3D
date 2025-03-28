@@ -90,8 +90,6 @@ void	cast_rays_b(t_game *game)
 {
 	t_ray	ray;
 	int		x;
-	int		y;
-	int		color;
 	int		tex_id;
 
 	init_ray_b(&ray);

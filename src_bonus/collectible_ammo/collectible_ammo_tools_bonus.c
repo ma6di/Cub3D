@@ -20,7 +20,7 @@ int	calculate_transform_c_ammo(t_game *game, t_c_ammo *c_ammo, \
 	return (1);
 }
 
-void	calculate_draw_positions_c_ammo(t_game *game, double transform_x, \
+void	calculate_draw_positions_c_ammo(double transform_x, \
 	double transform_y, t_draw *draw)
 {
 	double	scale;

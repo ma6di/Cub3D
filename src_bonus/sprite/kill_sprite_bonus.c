@@ -36,7 +36,7 @@ static int	is_obstructed(t_game *game, t_point start, t_point end)
 }
 
 static int	is_zombie_visible(t_game *game, t_point player, \
-							t_point zombie, int idx)
+							t_point zombie)
 {
 	const double	range = 7.0;
 	const double	min_angle = 0.3;
@@ -62,7 +62,7 @@ t_sprite	*get_zombie_in_front(t_game *game)
 		if (!game->sprites[i].active)
 			continue ;
 		zombie_pos = (t_point){game->sprites[i].x, game->sprites[i].y};
-		if (is_zombie_visible(game, player_pos, zombie_pos, i))
+		if (is_zombie_visible(game, player_pos, zombie_pos))
 			return (&game->sprites[i]);
 	}
 	return (NULL);

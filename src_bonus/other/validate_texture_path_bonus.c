@@ -15,7 +15,6 @@
 int	is_valid_texture_path_b(char *path)
 {
 	int	len;
-	int	fd;
 
 	len = ft_strlen(path);
 	if (!path || len == 0)
@@ -34,11 +33,11 @@ int	is_valid_texture_path_b(char *path)
 
 int	validate_objects(t_game *game)
 {
-	if (!validate_ammo_paths(game, 0, 7, game->ammo) || \
-	!validate_c_ammo_paths(game, 0, 12, game->c_ammo_tex) || \
-	!validate_heart_paths(game, 0, 12, game->heart_tex) || \
-	!validate_health_paths(game, 0, 5, game->health_bar) || \
-	!validate_key_paths(game, 0, 7, game->key_tex) || \
+	if (!validate_ammo_paths(0, 7, game->ammo) || \
+	!validate_c_ammo_paths(0, 12, game->c_ammo_tex) || \
+	!validate_heart_paths(0, 12, game->heart_tex) || \
+	!validate_health_paths(0, 5, game->health_bar) || \
+	!validate_key_paths(0, 7, game->key_tex) || \
 	!is_valid_texture_path_b(game->gun[GUN].path) || \
 	!is_valid_texture_path_b(game->gun[GUN_SHUT].path))
 	{

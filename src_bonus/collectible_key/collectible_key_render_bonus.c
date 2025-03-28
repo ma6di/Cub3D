@@ -45,7 +45,6 @@ static void	render_key_pixels(t_game *game, t_key *key,
 {
 	int	x;
 	int	tex_x;
-	int	tex_y;
 
 	x = draw->start_x;
 	while (x < draw->end_x)
@@ -81,6 +80,6 @@ void	render_key(t_game *game, t_key *key)
 		return ;
 	if (!calculate_transform_key(game, key, &transform_x, &transform_y))
 		return ;
-	calculate_draw_positions_key(game, transform_x, transform_y, &key->draw);
+	calculate_draw_positions_key(transform_x, transform_y, &key->draw);
 	render_key_pixels(game, key, &key->draw, transform_y);
 }

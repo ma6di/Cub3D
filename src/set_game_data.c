@@ -73,7 +73,7 @@ void	load_player(t_game *game)
 	}
 }
 
-void	set_colors(t_game *game, t_color *color, int index)
+static void	set_colors(t_color *color, int index)
 {
 	color[index].hex_color = rgb_to_hex(color[index].r, \
 					color[index].g, color[index].b);
@@ -85,6 +85,6 @@ void	init_all_mlx_textures(t_game *game)
 	init_mlx_wall_texture(game, SOUTH, game->textures[SOUTH].path);
 	init_mlx_wall_texture(game, WEST, game->textures[WEST].path);
 	init_mlx_wall_texture(game, EAST, game->textures[EAST].path);
-	set_colors(game, game->color, CEILING);
-	set_colors(game, game->color, FLOOR);
+	set_colors(game->color, CEILING);
+	set_colors(game->color, FLOOR);
 }

@@ -62,7 +62,7 @@ static void	*str_start(char *str)
 	i = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 	{
-		*str++;
+		str++;
 	}
 	return (str);
 }

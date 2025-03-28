@@ -45,7 +45,7 @@ void	perform_dda(t_ray *ray, t_game *game)
 	}
 }
 
-void	calculate_wall_height(t_ray *ray, t_game *game)
+void	calculate_wall_height(t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->walldist = (ray->side_distx - ray->deltadistx);
