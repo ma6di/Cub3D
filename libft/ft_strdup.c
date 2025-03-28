@@ -12,28 +12,25 @@
 
 #include "libft.h"
 
-#include <stdlib.h>
-
 char	*ft_strdup(const char *s1)
 {
 	char	*dst;
 	int		i;
+	int		j;
 
-	if (!s1) // Handle NULL input safely
+	if (!s1)
 		return (NULL);
-
-	// Find length directly in malloc
-	for (i = 0; s1[i]; i++)
-		;
-	
+	i = 0;
+	while (s1[i])
+		i++;
 	dst = malloc(sizeof(char) * (i + 1));
 	if (!dst)
 		return (NULL);
-
-	// Copy string
-	for (int j = 0; j <= i; j++) // Includes null terminator
+	j = 0;
+	while (j <= i)
+	{
 		dst[j] = s1[j];
-
+		j++;
+	}
 	return (dst);
 }
-

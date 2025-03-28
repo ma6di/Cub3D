@@ -18,7 +18,7 @@ static int	check_edge(t_game *g, char **m, int check_row, int edge_row)
 	int	row_len;
 
 	x = 1;
-	row_len = ft_strlen(m[edge_row]);
+	row_len = ft_strlen(m[check_row]);
 	while (x < row_len - 1)
 	{
 		if (m[check_row][x] == '0')

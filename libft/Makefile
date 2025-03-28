@@ -31,7 +31,7 @@ SRC_FILES   = ft_atoi ft_bzero ft_calloc ft_isalnum ft_isalpha ft_isascii ft_isd
               ft_lstadd_front_bonus ft_lstsize_bonus ft_lstlast_bonus ft_lstadd_back_bonus \
               ft_lstdelone_bonus ft_lstclear_bonus ft_lstiter_bonus ft_lstmap_bonus \
               ft_printf ft_print_idsc ft_print_ptr ft_print_unsigned \
-            	ft_print_hex get_next_line_utils get_next_line print_error
+              ft_print_hex get_next_line_utils get_next_line print_error
 
 SRC         = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ         = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

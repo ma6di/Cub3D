@@ -57,8 +57,13 @@ int	first_pos_col(char **map, int col)
 	int	y;
 
 	y = 0;
-	while (map[y] && map[y][col] && map[y][col] == ' ')
+	while (map[y])
 	{
+		if (map[y][col])
+		{
+			if (map[y][col] != ' ')
+				return (y);
+		}
 		y++;
 	}
 	return (y);
