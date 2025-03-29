@@ -21,7 +21,7 @@ static void	update_line_vars(t_line *line)
 	}
 }
 
-static void	draw_line_b(t_game *game, t_line *line, int color)
+void	draw_line_b(t_game *game, t_line *line, int color)
 {
 	line->dx = abs(line->x1 - line->x0);
 	line->dy = abs(line->y1 - line->y0);

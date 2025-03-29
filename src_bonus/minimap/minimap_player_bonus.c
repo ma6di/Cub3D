@@ -1,32 +1,54 @@
 #include "cub3d_bonus.h"
 
-void	set_player_limits(t_bounds *bounds, int map_w, int map_h)
+void	set_player_limits(t_bounds *bounds, int max_w, int max_h)
 {
 	if (bounds->start_x < 0)
-		bounds->start_x = 0;
-	if (bounds->end_x > map_w)
-		bounds->end_x = map_w;
-	if (bounds->end_x - bounds->start_x < MAX_MINIMAP_WIDTH)
 	{
-		if (bounds->end_x - MAX_MINIMAP_WIDTH < 0)
-			bounds->start_x = 0;
-		else
-			bounds->start_x = bounds->end_x - MAX_MINIMAP_WIDTH;
+		bounds->end_x += -bounds->start_x;
+		bounds->start_x = 0;
+	}
+	if (bounds->end_x > max_w)
+	{
+		bounds->start_x -= (bounds->end_x - max_w);
+		bounds->end_x = max_w;
 	}
 	if (bounds->start_y < 0)
-		bounds->start_y = 0;
-	if (bounds->end_y > map_h)
-		bounds->end_y = map_h;
-	if (bounds->end_y - bounds->start_y < MAX_MINIMAP_HEIGHT)
 	{
-		if (bounds->end_y - MAX_MINIMAP_HEIGHT < 0)
-			bounds->start_y = 0;
-		else
-			bounds->start_y = bounds->end_y - MAX_MINIMAP_HEIGHT;
+		bounds->end_y += -bounds->start_y;
+		bounds->start_y = 0;
+	}
+	if (bounds->end_y > max_h)
+	{
+		bounds->start_y -= (bounds->end_y - max_h);
+		bounds->end_y = max_h;
 	}
 }
 
-static void	set_player_bounds(t_game *game, t_bounds *bounds)
+static	void	draw_player_tile_b(t_game *game, int x, int y, int color)
+{
+	int	i;
+	int	j;
+	int	screen_x;
+	int	screen_y;
+	int	tile_size;
+
+	tile_size = game->minimap.tile_size;
+	j = 0;
+	while (j < tile_size)
+	{
+		i = 0;
+		while (i < tile_size)
+		{
+			screen_x = x + i + game->minimap.offset_x;
+			screen_y = y + j + game->minimap.offset_y;
+			my_mlx_pixel_put_b(game, screen_x - 3, screen_y - 3, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+void	set_player_bounds(t_game *game, t_bounds *bounds)
 {
 	int	half_w;
 	int	half_h;
@@ -49,10 +71,32 @@ void	draw_player_b(t_game *game)
 	set_player_bounds(game, &bounds);
 	px = (game->player.x - bounds.start_x) * game->minimap.tile_size;
 	py = (game->player.y - bounds.start_y) * game->minimap.tile_size;
-	if (px >= (MAX_MINIMAP_WIDTH - 1) * game->minimap.tile_size)
-		px = (MAX_MINIMAP_WIDTH - 1) * game->minimap.tile_size;
 	if (py >= (MAX_MINIMAP_HEIGHT - 1) * game->minimap.tile_size)
 		py = (MAX_MINIMAP_HEIGHT - 1) * game->minimap.tile_size;
 	draw_view_angle_b(game, px, py);
-	draw_tile_b(game, px, py, 0xc33ede);
+	draw_player_tile_b(game, px, py, 0xc33ede);
+}
+
+void	draw_tile_b(t_game *game, int x, int y, int color)
+{
+	int	i;
+	int	j;
+	int	screen_x;
+	int	screen_y;
+	int	tile_size;
+
+	tile_size = game->minimap.tile_size;
+	j = 0;
+	while (j < tile_size)
+	{
+		i = 0;
+		while (i < tile_size)
+		{
+			screen_x = x + i + game->minimap.offset_x;
+			screen_y = y + j + game->minimap.offset_y;
+			my_mlx_pixel_put_b(game, screen_x, screen_y, color);
+			i++;
+		}
+		j++;
+	}
 }

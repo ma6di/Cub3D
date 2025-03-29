@@ -15,7 +15,7 @@
 # include <X11/keysym.h>
 # include <sys/time.h>
 
-# define TILE_SIZE 32
+# define TILE_SIZE 40
 # define FOV_FACTOR 0.66
 
 # define RED "\033[1;31m"
@@ -79,7 +79,7 @@
 
 //Minimap size
 # define MAX_MINIMAP_WIDTH  30
-# define MAX_MINIMAP_HEIGHT 15
+# define MAX_MINIMAP_HEIGHT	15
 
 //Rendering order
 // Type: 0 = wall, 1 = sprite, 2 = heart, 3 = ammo, etc.

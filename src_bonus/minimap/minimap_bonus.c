@@ -1,27 +1,41 @@
 #include "cub3d_bonus.h"
 
-void	draw_tile_b(t_game *game, int x, int y, int color)
+void	set_minimap_limits(t_bounds *bounds, int max_w, int max_h)
 {
-	int	i;
-	int	j;
-	int	screen_x;
-	int	screen_y;
-	int	tile_size;
-
-	tile_size = game->minimap.tile_size;
-	j = 0;
-	while (j < tile_size)
+	if (bounds->start_x < 0)
 	{
-		i = 0;
-		while (i < tile_size)
-		{
-			screen_x = x + i + game->minimap.offset_x;
-			screen_y = y + j + game->minimap.offset_y;
-			my_mlx_pixel_put_b(game, screen_x, screen_y, color);
-			i++;
-		}
-		j++;
+		bounds->end_x += -bounds->start_x;
+		bounds->start_x = 0;
 	}
+	if (bounds->end_x > max_w)
+	{
+		bounds->start_x -= (bounds->end_x - max_w);
+		bounds->end_x = max_w;
+	}
+	if (bounds->start_y < 0)
+	{
+		bounds->end_y += -bounds->start_y;
+		bounds->start_y = 0;
+	}
+	if (bounds->end_y > max_h)
+	{
+		bounds->start_y -= (bounds->end_y - max_h);
+		bounds->end_y = max_h;
+	}
+}
+
+void	set_minimap_bounds(t_game *game, t_bounds *bounds)
+{
+	int	half_w;
+	int	half_h;
+
+	half_w = MAX_MINIMAP_WIDTH / 2;
+	half_h = MAX_MINIMAP_HEIGHT / 2;
+	bounds->start_x = (int)game->player.x - half_w;
+	bounds->end_x = (int)game->player.x + half_w;
+	bounds->start_y = (int)game->player.y - half_h;
+	bounds->end_y = (int)game->player.y + half_h;
+	set_minimap_limits(bounds, game->width, game->height);
 }
 
 static void	draw_minimap_tiles_b(t_game *game, t_bounds *bounds)
@@ -41,10 +55,12 @@ static void	draw_minimap_tiles_b(t_game *game, t_bounds *bounds)
 			x = (map_x - bounds->start_x) * game->minimap.tile_size;
 			y = (map_y - bounds->start_y) * game->minimap.tile_size;
 			tile = game->map[map_y][map_x];
-			if (tile == '0' || ft_strchr("NWESZAKH", tile))
+			if (tile == '0' || ft_strchr("NWESZAH", tile))
 				draw_tile_b(game, x, y, 0xbfbbb8);
 			else if (tile == 'D')
 				draw_tile_b(game, x, y, 0x0b73db);
+			else if (tile == 'F' || tile == 'K')
+				draw_tile_b(game, x, y, 0x4df758);
 			map_x++;
 		}
 		map_y++;
@@ -66,34 +82,12 @@ static void	draw_walls_b(t_game *game, t_bounds *bounds)
 		{
 			x = (map_x - bounds->start_x) * game->minimap.tile_size;
 			y = (map_y - bounds->start_y) * game->minimap.tile_size;
-			if (game->map[map_y][map_x] == '1' || \
-					game->map[map_y][map_x] == 'F')
+			if (game->map[map_y][map_x] == '1')
 				draw_tile_b(game, x, y, 0x873b01);
 			map_x++;
 		}
 		map_y++;
 	}
-}
-
-void	set_minimap_bounds(t_game *game, t_bounds *bounds)
-{
-	int	half_w;
-	int	half_h;
-
-	half_w = MAX_MINIMAP_WIDTH / 2;
-	half_h = MAX_MINIMAP_HEIGHT / 2;
-	bounds->start_x = (int)game->player.x - half_w;
-	bounds->end_x = (int)game->player.x + half_w;
-	bounds->start_y = (int)game->player.y - half_h;
-	bounds->end_y = (int)game->player.y + half_h;
-	if (bounds->start_x < 0)
-		bounds->start_x = 0;
-	if (bounds->end_x > game->width)
-		bounds->end_x = game->width;
-	if (bounds->start_y < 0)
-		bounds->start_y = 0;
-	if (bounds->end_y > game->height)
-		bounds->end_y = game->height;
 }
 
 void	minimap_b(t_game *game)
