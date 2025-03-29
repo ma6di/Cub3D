@@ -78,7 +78,7 @@
 # define POP 0
 
 //Minimap size
-# define MAX_MINIMAP_WIDTH  35
+# define MAX_MINIMAP_WIDTH  30
 # define MAX_MINIMAP_HEIGHT 15
 
 //Rendering order

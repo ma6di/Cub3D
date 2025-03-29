@@ -15,11 +15,11 @@ int	main(int argc, char *argv[])
 	t_game	*game;
 
 	if (argc != 2)
-		return (print_error("Error: Please provide a map file\n"), 1);
+		return (print_error(RED"Error: Please provide a map file\n"RESET), 1);
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{
-		print_error("Error: Memory allocation failed\n");
+		print_error(RED"Error: Memory allocation failed\n"RESET);
 		return (1);
 	}
 	init_game(game);

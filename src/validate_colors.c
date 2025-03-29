@@ -74,17 +74,17 @@ int	validate_colors(t_color *color)
 {
 	if (!color[FLOOR].col_tex_str || !color[CEILING].col_tex_str)
 	{
-		print_error("Error: Missing floor or ceiling color (F, C)\n");
+		print_error(RED"Error: Missing floor or ceiling color (F, C)\n"RESET);
 		return (0);
 	}
 	if (!check_rgb(&color[FLOOR]))
 	{
-		print_error("Error: Invalid floor color\n");
+		print_error(RED"Error: Invalid floor color\n"RESET);
 		return (0);
 	}
 	if (!check_rgb(&color[CEILING]))
 	{
-		print_error("Error: Invalid ceiling color\n");
+		print_error(RED"Error: Invalid ceiling color\n"RESET);
 		return (0);
 	}
 	return (1);

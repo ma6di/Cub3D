@@ -43,6 +43,11 @@ int	check_empty_line(char **map)
 	int	x;
 	int	y;
 
+	if (!map)
+	{
+		print_error(RED"Error: Map data missing.\n"RESET);
+		return (0);
+	}
 	y = 0;
 	while (map[y])
 	{

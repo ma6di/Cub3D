@@ -48,12 +48,6 @@ int	validate_file(const char *filename)
 //calls function to validate each texture
 static int	validate_textures(t_texture *textures)
 {
-	if (!textures[NORTH].path || !textures[SOUTH].path || \
-		!textures[WEST].path || !textures[EAST].path)
-	{
-		print_error("Error: Missing one or more textures (NO, SO, WE, EA)\n");
-		return (0);
-	}
 	if (!is_valid_texture_path(textures[NORTH].path) || \
 		!is_valid_texture_path(textures[SOUTH].path) \
 		|| !is_valid_texture_path(textures[WEST].path) \
@@ -80,6 +74,11 @@ int	validate_map(t_game *game)
 //calls function to validate the data saved in the structs
 int	validate_cub_elements(t_game *game)
 {
+	if (!game->map)
+	{
+		print_error(RED"Error: map data is missing.\n"RESET);
+		return (0);
+	}
 	if (validate_textures(game->textures) && \
 		validate_colors(game->color) && validate_map(game))
 		return (1);

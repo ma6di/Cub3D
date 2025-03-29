@@ -1,4 +1,4 @@
-CC      = cc
+CC      = gcc -g
 CFLAGS  = -Wall -Werror -Wextra
 # Directories
 SRCDIR  = src

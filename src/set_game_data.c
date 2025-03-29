@@ -14,7 +14,7 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 {
 	if (!path)
 	{
-		print_error("Texture path is NULL\n");
+		print_error(RED"Texture path is NULL\n"RESET);
 		return ;
 	}
 	game->textures[index].img = mlx_xpm_file_to_image(\
@@ -22,8 +22,8 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 		&(game->textures[index].height));
 	if (!game->textures[index].img)
 	{
-		print_error("Texture file could not be loaded: ");
-		print_error(path);
+		print_error(RED"Texture file could not be loaded: \n");
+		print_error("%s\n"RESET, path);
 		close_window(game);
 	}
 	game->textures[index].addr = mlx_get_data_addr(\
@@ -32,7 +32,7 @@ void	init_mlx_wall_texture(t_game *game, int index, char *path)
 		&game->textures[index].endian);
 	if (!game->textures[index].addr)
 	{
-		print_error("Error: Texture %d address is NULL!\n", index);
+		print_error(RED"Error: Texture %d address is NULL!\n"RESET, index);
 		close_window(game);
 	}
 }

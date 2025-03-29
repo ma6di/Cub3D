@@ -44,7 +44,7 @@ void	set_sprites_cords(t_game *game)
 	game->sprite_count = count_sprites(game->map);
 	game->sprites = malloc(sizeof(t_sprite) * game->sprite_count);
 	if (!game->sprites)
-		print_error("Error: Sprite allocation failed!");
+		print_error(RED"Error: Sprite allocation failed!"RESET);
 	y = 0;
 	while (y < game->height)
 	{

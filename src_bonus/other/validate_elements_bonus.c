@@ -85,6 +85,11 @@ int	validate_map_b(t_game *game)
 
 int	validate_cub_elements_b(t_game *game)
 {
+	if (!game->map)
+	{
+		print_error(RED"Error: map data is missing.\n"RESET);
+		return (0);
+	}
 	if (validate_textures_b(game->textures) && validate_objects(game) && \
 		validate_colors_b(game->color) && validate_map_b(game))
 		return (1);

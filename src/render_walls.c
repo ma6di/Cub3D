@@ -7,18 +7,19 @@ int	get_wall_texture_pixel(t_texture *texture, int x, int y, int tex_id)
 
 	if (!texture || tex_id < 0 || tex_id >= 5)
 	{
-		print_error("Error: Invalid texture ID %d\n", tex_id);
+		print_error(RED"Error: Invalid texture ID %d\n"RESET, tex_id);
 		return (-1);
 	}
 	if (!texture[tex_id].addr)
 	{
-		print_error("Error: texture[%d].addr is NULL\n", tex_id);
+		print_error(RED"Error: texture[%d].addr is NULL\n"RESET, tex_id);
 		return (-1);
 	}
 	if (x < 0 || x >= texture[tex_id].width || y < 0 || \
 				y >= texture[tex_id].height)
 	{
-		print_error("Error: Invalid coordinates for texture[%d]\n", tex_id);
+		print_error(RED"Error: Invalid coordinates for texture[%d]\n"RESET, \
+					tex_id);
 		return (-1);
 	}
 	dst = texture[tex_id].addr + (y * texture[tex_id].line_len + \
@@ -34,12 +35,12 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 	{
-		print_error("Error: Pixel (%d, %d) out of bounds!\n", x, y);
+		print_error(RED"Error: Pixel (%d, %d) out of bounds!\n"RESET, x, y);
 		return ;
 	}
 	if (!game->img || !game->addr)
 	{
-		print_error("Error: Image buffer is not initialized!\n");
+		print_error(RED"Error: Image buffer is not initialized!\n"RESET);
 		return ;
 	}
 	dst = game->addr + (y * game->line_len + x * (game->bpp / 8));

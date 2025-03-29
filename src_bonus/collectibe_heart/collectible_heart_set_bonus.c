@@ -43,7 +43,7 @@ void	set_heart_cords(t_game *game)
 	game->heart_count = count_hearts(game->map);
 	game->heart = malloc(sizeof(t_heart) * game->heart_count);
 	if (!game->heart)
-		print_error("Error: Memory allocation for hearts failed!");
+		print_error(RED"Error: Memory allocation for hearts failed!"RESET);
 	y = 0;
 	while (y < game->height)
 	{

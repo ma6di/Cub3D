@@ -81,7 +81,7 @@ static void	check_line(char *line, t_game *game)
 		game->color[FLOOR].col_tex_str = ft_strdup(str_start(line + 1));
 	else if (line && ft_strncmp(line, "C ", 2) == 0)
 		game->color[CEILING].col_tex_str = ft_strdup(str_start(line + 1));
-	else if (ft_strnstr(line, "1111", ft_strlen(line)) && \
+	else if (ft_strnstr(line, "111", ft_strlen(line)) && \
 		game->map_started == 0)
 	{
 		file_data_order(game);
@@ -100,7 +100,8 @@ int	pars_file(const char *filename, t_game *game, char **argv)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (print_error("Error: Could not open file %s\n", filename), 0);
+		return (print_error(RED"Error: Could not open file %s\n"RESET, \
+				filename), 0);
 	if (validate_file(argv[1]) == -1)
 	{
 		close(fd);

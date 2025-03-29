@@ -39,7 +39,7 @@ void	set_key_cords(t_game *game)
 	game->key_count = count_key(game->map);
 	game->key = malloc(sizeof(t_key) * game->key_count);
 	if (!game->key)
-		print_error("Error: Key allocation failed!");
+		print_error(RED"Error: Key allocation failed!"RESET);
 	y = -1;
 	while (++y < game->height)
 	{

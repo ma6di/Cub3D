@@ -41,7 +41,7 @@ static void	draw_minimap_tiles_b(t_game *game, t_bounds *bounds)
 			x = (map_x - bounds->start_x) * game->minimap.tile_size;
 			y = (map_y - bounds->start_y) * game->minimap.tile_size;
 			tile = game->map[map_y][map_x];
-			if (tile == '0' || ft_strchr("NWESZAKHF", tile))
+			if (tile == '0' || ft_strchr("NWESZAKH", tile))
 				draw_tile_b(game, x, y, 0xbfbbb8);
 			else if (tile == 'D')
 				draw_tile_b(game, x, y, 0x0b73db);
@@ -66,7 +66,8 @@ static void	draw_walls_b(t_game *game, t_bounds *bounds)
 		{
 			x = (map_x - bounds->start_x) * game->minimap.tile_size;
 			y = (map_y - bounds->start_y) * game->minimap.tile_size;
-			if (game->map[map_y][map_x] == '1')
+			if (game->map[map_y][map_x] == '1' || \
+					game->map[map_y][map_x] == 'F')
 				draw_tile_b(game, x, y, 0x873b01);
 			map_x++;
 		}
@@ -85,7 +86,14 @@ void	set_minimap_bounds(t_game *game, t_bounds *bounds)
 	bounds->end_x = (int)game->player.x + half_w;
 	bounds->start_y = (int)game->player.y - half_h;
 	bounds->end_y = (int)game->player.y + half_h;
-	set_minimap_limits(bounds, game->width, game->height);
+	if (bounds->start_x < 0)
+		bounds->start_x = 0;
+	if (bounds->end_x > game->width)
+		bounds->end_x = game->width;
+	if (bounds->start_y < 0)
+		bounds->start_y = 0;
+	if (bounds->end_y > game->height)
+		bounds->end_y = game->height;
 }
 
 void	minimap_b(t_game *game)

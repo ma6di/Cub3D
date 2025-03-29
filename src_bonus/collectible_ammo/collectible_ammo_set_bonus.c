@@ -45,7 +45,7 @@ void	set_c_ammo_cords(t_game *game)
 	game->c_ammo_count = count_c_ammo(game->map);
 	game->c_ammo = malloc(sizeof(t_c_ammo) * game->c_ammo_count);
 	if (!game->c_ammo)
-		print_error("Error: Sprite allocation failed!");
+		print_error(RED"Error: Sprite allocation failed!"RESET);
 	y = 0;
 	while (y < game->height)
 	{

@@ -63,7 +63,7 @@ void	set_doors(t_game *game)
 	game->door = (t_door *)malloc(sizeof(t_door) * game->door_count);
 	if (!game->door)
 	{
-		print_error("Error: Memory allocation for doors failed!");
+		print_error(RED"Error: Memory allocation for doors failed!"RESET);
 		close_window_b(game);
 		return ;
 	}
