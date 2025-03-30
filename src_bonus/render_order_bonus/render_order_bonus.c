@@ -72,6 +72,7 @@ int	render_b(t_game *game)
 	render_health_bar_b(game);
 	render_ammo_bar_b(game);
 	draw_gun_b(game);
+	key_found(game);
 	free(renderables);
 	return (0);
 }

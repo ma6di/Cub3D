@@ -1,5 +1,20 @@
 #include "cub3d_bonus.h"
 
+void	key_found(t_game *game)
+{
+	char	*phrase;
+
+	if (game->player.key > 0)
+	{
+		phrase = "Found the Key";
+		mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 150, \
+			SCREEN_HEIGHT - 20, 0x660000, phrase);
+		mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 150, \
+				SCREEN_HEIGHT - 21, 0x660000, phrase);
+	}
+
+}
+
 void	check_collect_key(t_game *game)
 {
 	int	i;
@@ -16,7 +31,6 @@ void	check_collect_key(t_game *game)
 		if ((int)game->player.x == key_x && (int)game->player.y == key_y)
 		{
 			game->player.key += 1;
-			printf("Player total keys: %d\n", game->player.key);
 			game->key[i].active = 0;
 		}
 	}

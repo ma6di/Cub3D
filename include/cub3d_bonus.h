@@ -568,6 +568,7 @@ void		calculate_draw_positions_key(double transform_x, \
 										double transform_y, t_draw *draw);
 void		set_key_cords(t_game *game);
 void		render_key(t_game *game, t_key *key);
+void		key_found(t_game *game);
 
 ///			Gun			///
 void		shoot_gun(t_game *game);
