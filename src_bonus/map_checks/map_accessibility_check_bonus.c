@@ -19,7 +19,9 @@ static int	is_inaccessible_tile_b(t_game *game, int **visited, int x, int y)
 
 	tile = game->map[y][x];
 	if ((tile == '0' || tile == 'N' || tile == 'S' || \
-		tile == 'E' || tile == 'D' || tile == 'W') && !visited[y][x])
+		tile == 'E' || tile == 'D' || tile == 'W' || tile == 'Z' || \
+		tile == 'A' || tile == 'H' || tile == 'K' || tile == 'F') \
+		&& !visited[y][x])
 	{
 		print_error(RED"Error: Inaccessible area found at ");
 		print_error("(%d, %d)\n"RESET, x, game->height - y - 1);

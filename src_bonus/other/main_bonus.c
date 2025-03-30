@@ -26,3 +26,30 @@ int	main(int argc, char **argv)
 	close_window_b(game);
 	return (0);
 }
+
+void	game_over(void)
+{
+	printf("\033[1;31m");
+	printf("   ██████  █████  ███    ███ ███████     \n");
+	printf("  ██      ██   ██ ████  ████ ██          \n");
+	printf("  ██      ███████ ██ ████ ██ █████       \n");
+	printf("  ██   ██ ██   ██ ██  ██  ██ ██          \n");
+	printf("   ██████ ██   ██ ██      ██ ███████     \n");
+	printf("                                         \n");
+	printf("    ████   ██     ██ ███████ █████       \n");
+	printf("  ██    ██ ██     ██ ██      ██  ██      \n");
+	printf("  ██    ██ ██     ██ █████   ██████      \n");
+	printf("  ██    ██  ██   ██  ██      ██  █       \n");
+	printf("    ████     █████   ███████ ██   █      \n");
+	printf("\033[0m\n");
+}
+
+void	victory(void)
+{
+	printf(GREEN"");
+	printf("\\ \\    / /|_ _||  __||_____| / _ \\ |  _ \\\\  // \n");
+	printf(" \\ \\  / /  | | | |     | |  | | | || |_) \\\\V/  \n");
+	printf("  \\  V /   | | | |___  | |  | |_| ||  _ < ||   \n");
+	printf("   \\__/   |___ \\____|  |_|   \\___/ |_| |_\\||   \n");
+	printf(RESET"");
+}

@@ -98,7 +98,7 @@ void	door_door(t_game *game)
 		change_door_state(game, index);
 	if (is_final_door(game) && game->player.key > 0)
 	{
-		printf("VICTORY\n");
+		victory();
 		close_window_b(game);
 	}
 }

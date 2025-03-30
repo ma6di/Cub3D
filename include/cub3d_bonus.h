@@ -638,6 +638,8 @@ void		free_two_dim_b(char **arr);
 int			two_dim_len_b(char **arr);
 void		cal_map_dim_b(t_game **game);
 void		print_error_b(const char *format, ...);
+void		game_over(void);
+void		victory(void);
 
 ///			Check if a collectible is collected ///
 void		check_collect_key(t_game *game);

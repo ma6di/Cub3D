@@ -27,7 +27,7 @@ static void	check_player_health(t_game *game)
 		game->player.health -= 2;
 	if (game->player.health < 2)
 	{
-		printf(RED"YOU ARE DEAD"RESET);
+		game_over();
 		close_window_b(game);
 	}
 }
