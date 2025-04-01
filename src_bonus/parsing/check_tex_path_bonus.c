@@ -1,4 +1,16 @@
-#include "../../include/cub3d_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_tex_path_bonus.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 17:59:03 by mcheragh          #+#    #+#             */
+/*   Updated: 2025/04/01 17:59:04 by mcheragh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_bonus.h"
 
 void	check_ammo_paths(t_game *game, int start, int end)
 {
