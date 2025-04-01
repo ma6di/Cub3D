@@ -60,21 +60,26 @@ static void	init_game_vars(t_game *game)
 
 void	init_game_b(t_game *game)
 {
+	printf("%s\n", __func__);
 	init_game_vars(game);
+	// printf("1 Selected map is: %s\n", game->selected_map);
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_wall_door_textures(game);
 	init_gun_b(game->gun, 150, GUN);
 	init_gun_b(game->gun, 40, GUN_SHUT);
+	// printf("2 Selected map is: %s\n", game->selected_map);
 	init_health_bar_b(game->health_bar, 128, 32);
 	init_ammo_b(game->ammo, 128, 32);
 	init_heart_tex_b(game->heart_tex, 50);
 	init_c_ammo_tex_b(game->c_ammo_tex, 32);
 	init_key_tex_b(game->key_tex, 10, 27);
-	init_colors_b(game->color, FLOOR, 128);
+	init_colors_b(game->color, FLOOR, 256);
+	// printf("3 Selected map is: %s\n", game->selected_map);
 	if (game->color[CEILING].col_tex_str)
 		init_colors_b(game->color, CEILING, 128);
 	else
 		init_colors_b(game->color, SKY, 128);
 	init_minimap_b(&game->minimap);
+	// printf("4 Selected map is: %s\n", game->selected_map);
 }

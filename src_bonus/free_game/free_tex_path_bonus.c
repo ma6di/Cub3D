@@ -12,6 +12,8 @@ static void	free_tex4(t_game *game)
 		free(game->textures[DOOR_4].path);
 	if (game->textures[DOOR_5].path)
 		free(game->textures[DOOR_5].path);
+	if (game->textures[DOOR_6].path)
+		free(game->textures[DOOR_6].path);
 	if (game->textures[FINAL_DOOR].path)
 		free(game->textures[FINAL_DOOR].path);
 }

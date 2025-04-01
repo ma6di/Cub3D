@@ -79,7 +79,7 @@ void	update_doors(t_game *game)
 	i = 0;
 	while (i < game->door_count)
 	{
-		if (game->door[i].trigger == 0 && game->door[i].door_state < 5)
+		if (game->door[i].trigger == 0 && game->door[i].door_state < 7)
 		{
 			if (current_time - game->door[i].transition_time >= 200)
 			{

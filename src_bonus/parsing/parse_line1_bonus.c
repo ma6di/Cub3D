@@ -33,6 +33,8 @@ static int	assign_door_texture(char *line, t_game *game)
 		game->textures[DOOR_4].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "D5 ", 3) == 0)
 		game->textures[DOOR_5].path = ft_strdup(str_start_b(line + 2));
+	else if (line && ft_strncmp(line, "D6 ", 3) == 0)
+		game->textures[DOOR_6].path = ft_strdup(str_start_b(line + 2));
 	else if (line && ft_strncmp(line, "END ", 4) == 0)
 		game->textures[FINAL_DOOR].path = ft_strdup(str_start_b(line + 3));
 	else

@@ -15,7 +15,11 @@ static int	select_door_texture_b(t_ray *ray, t_game *game)
 		return (DOOR_3);
 	if (game->door[door_index].door_state == 4)
 		return (DOOR_4);
-	return (DOOR_5);
+	if (game->door[door_index].door_state == 5)
+		return (DOOR_5);
+	if (game->door[door_index].door_state == 6)
+		return (DOOR_6);
+	return (7);
 }
 
 static int	handle_door_state(t_game *game, int door_index)
@@ -27,7 +31,7 @@ static int	handle_door_state(t_game *game, int door_index)
 	door_state = game->door[door_index].door_state;
 	if (door_state == 1)
 		return (DOOR_CLOSED);
-	if (door_state >= 2 && door_state <= 4)
+	if (door_state >= 2 && door_state <= 6)
 		return (DOOR_PARTIAL);
 	return (DOOR_OPEN);
 }

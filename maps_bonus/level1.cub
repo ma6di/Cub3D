@@ -1,26 +1,26 @@
+NO assets/walls/wall_white_briks.xpm
+SO assets/walls/wall_white_briks.xpm
+WE assets/walls/wall_white_briks.xpm
+EA assets/walls/wall_white_briks.xpm
+
+C assets/sky_ceiling/ceiling_yellow.xpm
+F assets/floor/floor_wood.xpm
+
+END assets/final_door/final_door.xpm
+G assets/gun/gun.xpm
+GS assets/gun/gun_shut.xpm
+
+Z0 assets/zombies/pc_lateral_sx.xpm
+Z1 assets/zombies/pc_lateral_dx.xpm
+Z2 assets/zombies/pc_central.xpm
 
 
-NO assets/north.xpm
-SO assets/south.xpm
-WE assets/west.xpm
-EA assets/east.xpm
-
-SK assets/Night_Sky.xpm
-F assets/floor.xpm
-
-END assets/final_door.xpm
-G assets/gun.xpm
-GS assets/gun_shut.xpm
-
-Z0 assets/zombie0.xpm
-Z1 assets/zombie1.xpm
-Z2 assets/zombie2.xpm
-
-D1 assets/doors/door_close.xpm
-D2 assets/doors/door_opening1.xpm
-D3 assets/doors/door_opening2.xpm
-D4 assets/doors/door_opening3.xpm
-D5 assets/doors/door_open.xpm
+D1 assets/doors/door_wood_1.xpm
+D2 assets/doors/door_wood_2.xpm
+D3 assets/doors/door_wood_3.xpm
+D4 assets/doors/door_wood_4.xpm
+D5 assets/doors/door_wood_5.xpm
+D6 assets/doors/door_wood_6.xpm
 
 H1 assets/health/h100.xpm
 H2 assets/health/h80.xpm

@@ -43,7 +43,8 @@
 # define DOOR_3	9
 # define DOOR_4	10
 # define DOOR_5	11
-# define FINAL_DOOR	12
+# define DOOR_6	12
+# define FINAL_DOOR	13
 
 # define DOOR_CLOSED 1
 # define DOOR_PARTIAL 2
@@ -434,7 +435,7 @@ typedef struct s_game
 	void			*addr;
 	int				keys[8];
 	t_player		player;
-	t_texture		textures[13];
+	t_texture		textures[14];
 	t_color			color[3];
 	t_minimap		minimap;
 	t_door			*door;
@@ -451,6 +452,17 @@ typedef struct s_game
 	t_key			*key;
 	t_key_tex		key_tex[7];
 }				t_game;
+
+typedef struct s_start_page
+{
+	void			*mlx;
+	void			*win;
+	void			*img;
+	void			*addr;
+	int				width;
+	int				height;
+	char			*selected_map;
+}	t_start_page;
 
 ///		MLX / WINDOW / RENDER ////
 void		my_mlx_pixel_put_b(t_game *game, int x, int y, int color);
@@ -593,7 +605,7 @@ void		draw_tile_b(t_game *game, int x, int y, int color);
 void		set_minimap_limits(t_bounds *bounds, int max_w, int max_h);
 
 ///			Parsing			///
-int			pars_file_b(const char *filename, t_game *game, char **argv);
+int			pars_file_b(const char *filename, t_game *game);
 int			check_line_b(char *line, t_game *game);
 void		check_ammo_paths(t_game *game, int start, int end);
 void		check_c_ammo_paths(t_game *game, int start, int end);

@@ -20,7 +20,7 @@ void	change_door_state(t_game *game, int index)
 		game->door[index].trigger = 0;
 		return ;
 	}
-	if (game->door[index].door_state == 5)
+	if (game->door[index].door_state == 7)
 	{
 		game->door[index].transition_time = get_time_of_the_day();
 		game->door[index].trigger = 1;

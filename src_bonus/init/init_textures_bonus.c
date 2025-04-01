@@ -15,11 +15,12 @@ void	init_wall_door_textures(t_game *game)
 	init_texture_b(game->textures, SOUTH, 64);
 	init_texture_b(game->textures, WEST, 64);
 	init_texture_b(game->textures, EAST, 64);
-	init_texture_b(game->textures, DOOR_1, 128);
-	init_texture_b(game->textures, DOOR_2, 128);
-	init_texture_b(game->textures, DOOR_3, 128);
-	init_texture_b(game->textures, DOOR_4, 128);
-	init_texture_b(game->textures, DOOR_5, 128);
+	init_texture_b(game->textures, DOOR_1, 256);
+	init_texture_b(game->textures, DOOR_2, 256);
+	init_texture_b(game->textures, DOOR_3, 256);
+	init_texture_b(game->textures, DOOR_4, 256);
+	init_texture_b(game->textures, DOOR_5, 256);
+	init_texture_b(game->textures, DOOR_6, 256);
 	init_texture_b(game->textures, FINAL_DOOR, 128);
 	init_texture_b(game->textures, ZOMBIE_0, 220);
 	init_texture_b(game->textures, ZOMBIE_1, 220);

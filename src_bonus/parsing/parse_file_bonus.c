@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/25 18:51:55 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:15:33 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	check_texture_paths(t_game *game)
 		!game->textures[DOOR_3].path || !game->textures[DOOR_4].path || \
 		!game->textures[FINAL_DOOR].path || !game->textures[ZOMBIE_0].path || \
 		!game->textures[ZOMBIE_1].path || !game->textures[ZOMBIE_2].path || \
-		!game->textures[DOOR_5].path)
+		!game->textures[DOOR_5].path || !game->textures[DOOR_6].path)
 	{
 		game->file_order = 1;
 	}
@@ -79,18 +79,19 @@ void	file_data_order_b(t_game *game)
 	}
 }
 
-int	pars_file_b(const char *filename, t_game *game, char **argv)
+int	pars_file_b(const char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
 
+	printf("Filename is: %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		print_error(RED"Error: Could not open file %s\n"RESET, filename);
 		return (0);
 	}
-	if (!validate_file_b(argv[1]))
+	if (!validate_file_b(filename))
 	{
 		close(fd);
 		return (1);
@@ -98,6 +99,7 @@ int	pars_file_b(const char *filename, t_game *game, char **argv)
 	line = get_next_line(fd);
 	while (line)
 	{
+		printf("%s\n", line);
 		check_line_b(line, game);
 		free(line);
 		line = get_next_line(fd);

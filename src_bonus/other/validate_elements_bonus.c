@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_elements_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:19:59 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/25 18:26:46 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:07:36 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	validate_textures_b(t_texture *textures)
 		|| !is_valid_texture_path_b(textures[DOOR_3].path) \
 		|| !is_valid_texture_path_b(textures[DOOR_4].path) \
 		|| !is_valid_texture_path_b(textures[DOOR_5].path) \
+		|| !is_valid_texture_path_b(textures[DOOR_6].path) \
 		|| !is_valid_texture_path_b(textures[FINAL_DOOR].path))
 		return (0);
 	return (1);

@@ -11,6 +11,7 @@ void	set_mlx_wall_door_tex(t_game *game)
 	init_mlx_wall_texture_b(game, DOOR_3, game->textures[DOOR_3].path);
 	init_mlx_wall_texture_b(game, DOOR_4, game->textures[DOOR_4].path);
 	init_mlx_wall_texture_b(game, DOOR_5, game->textures[DOOR_5].path);
+	init_mlx_wall_texture_b(game, DOOR_6, game->textures[DOOR_6].path);
 	init_mlx_wall_texture_b(game, FINAL_DOOR, game->textures[FINAL_DOOR].path);
 }
 
