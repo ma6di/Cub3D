@@ -6,11 +6,11 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:57:37 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/10 12:38:48 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:32:36 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_fputchar(int fd, char c)
 {

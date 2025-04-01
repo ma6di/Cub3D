@@ -6,11 +6,11 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:19:59 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:17:00 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:33:06 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 int	is_valid_texture_path(char *path)
 {
@@ -62,7 +62,7 @@ int	validate_map(t_game *game)
 	if (!check_empty_line(game->map))
 	{
 		print_error(RED"Error: Empty line in map\n"RESET);
-		close_window(game);
+		return (0);
 	}
 	cal_map_dim(&game);
 	if (!game->map || \

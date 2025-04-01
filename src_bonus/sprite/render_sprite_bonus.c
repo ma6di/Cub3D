@@ -70,31 +70,23 @@ void	render_sprites(t_game *game, t_sprite *sprite)
 	static int		frame;
 	static int		animation_counter;
 	static int		direction;
-	int				animation_speed;
 	int				texture;
 
-	animation_speed = 50;
 	if (frame == 0 && animation_counter == 0)
 		direction = 1;
 	if (!transform_sprite(game, sprite, &draw))
 		return ;
 	animation_counter++;
-	if (animation_counter > animation_speed)
+	if (animation_counter > 50)
 	{
 		animation_counter = 0;
-
-		// Update the frame based on the direction
 		frame += direction;
-
-		// Reverse direction if the frame reaches 2 or 0
 		if (frame == 2)
-			direction = -1; // Start going backward
+			direction = -1;
 		else if (frame == 0)
-			direction = 1; // Start going forward
+			direction = 1;
 	}
-
 	texture = ZOMBIE_0 + frame;
 	calculate_sprite_dims(&draw);
 	render_sprite_pixels(game, &draw, texture);
 }
-

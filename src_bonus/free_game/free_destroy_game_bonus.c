@@ -18,6 +18,8 @@ int	close_window_b(t_game *game)
 		free(game->key);
 	if ((game->player.ini_dir))
 		free(game->player.ini_dir);
+	free(game->start_page->selected_map);
+	free(game->start_page);
 	free(game);
 	exit(0);
 }

@@ -6,11 +6,11 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:54:21 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:17:44 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:33:00 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 static int	is_valid_number(char *str)
 {

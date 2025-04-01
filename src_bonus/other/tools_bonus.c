@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 15:18:41 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:41:30 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int	door_tex_index(t_ray *ray, t_game *game)
 	else if (game->door[door_index].door_state == 5)
 		return (DOOR_5);
 	return (DOOR_6);
-
 }
 
 int	select_texture_b(t_ray *ray, t_game *game)

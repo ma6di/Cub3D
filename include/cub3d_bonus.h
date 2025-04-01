@@ -413,6 +413,17 @@ typedef struct s_ray
 	int		final_door;
 }				t_ray;
 
+typedef struct s_start_page
+{
+	void			*mlx;
+	void			*win;
+	void			*img;
+	void			*addr;
+	int				width;
+	int				height;
+	char			*selected_map;
+}	t_start_page;
+
 //Main Game Structure
 typedef struct s_game
 {
@@ -451,18 +462,8 @@ typedef struct s_game
 	t_c_ammo_tex	c_ammo_tex[12];
 	t_key			*key;
 	t_key_tex		key_tex[7];
+	t_start_page	*start_page;
 }				t_game;
-
-typedef struct s_start_page
-{
-	void			*mlx;
-	void			*win;
-	void			*img;
-	void			*addr;
-	int				width;
-	int				height;
-	char			*selected_map;
-}	t_start_page;
 
 ///		MLX / WINDOW / RENDER ////
 void		my_mlx_pixel_put_b(t_game *game, int x, int y, int color);
@@ -659,5 +660,8 @@ void		check_collect_key(t_game *game);
 void		check_collect_ammo(t_game *game);
 void		check_collect_hearts(t_game *game);
 void		print_struct_b(t_game *game);
+
+///			map selection window ///
+void		start(t_start_page *start_page);
 
 #endif

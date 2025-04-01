@@ -6,11 +6,11 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/03/03 15:00:28 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:32:32 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	file_data_order(t_game *game)
 {

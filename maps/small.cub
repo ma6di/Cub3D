@@ -1,14 +1,14 @@
 
 C 52, 174, 235
 
-NO assets/north.xpm
-SO assets/south.xpm
+NO assets/walls/north.xpm
+SO assets/walls/south.xpm
 
 
 F 111, 209, 106
 
-WE           assets/west.xpm
-EA assets/east.xpm
+WE           assets/walls/west.xpm
+EA assets/walls/east.xpm
 
 111
 1E1

@@ -112,6 +112,7 @@ BONUS_SRCS = \
 	$(BONUSDIR)/other/validate_elements_bonus.c \
 	$(BONUSDIR)/other/validate_objetcs_path_bonus.c \
 	$(BONUSDIR)/other/validate_texture_path_bonus.c \
+	$(BONUSDIR)/other/map_select_bonus.c \
 	$(BONUSDIR)/other/main_bonus.c
 
 # Object Files for Main Program (src)

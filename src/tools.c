@@ -6,11 +6,11 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:42:32 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/02/19 11:43:47 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:32:56 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	free_two_dim(char **arr)
 {

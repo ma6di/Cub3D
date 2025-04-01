@@ -12,7 +12,6 @@ void	key_found(t_game *game)
 		mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 150, \
 				SCREEN_HEIGHT - 21, 0x660000, phrase);
 	}
-
 }
 
 void	check_collect_key(t_game *game)

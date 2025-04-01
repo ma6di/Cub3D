@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_elements_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:19:59 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 15:07:36 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:23:06 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	validate_map_b(t_game *game)
 	if (!check_empty_line_b(game->map))
 	{
 		print_error(RED"Error: Empty line in map\n"RESET);
-		close_window_b(game);
+		return (0);
 	}
 	cal_map_dim_b(&game);
 	if (!game->map || \

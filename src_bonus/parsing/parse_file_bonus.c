@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 15:15:33 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:18:16 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	pars_file_b(const char *filename, t_game *game)
 	int		fd;
 	char	*line;
 
-	printf("Filename is: %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -94,18 +93,17 @@ int	pars_file_b(const char *filename, t_game *game)
 	if (!validate_file_b(filename))
 	{
 		close(fd);
-		return (1);
+		return (0);
 	}
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("%s\n", line);
 		check_line_b(line, game);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (game->file_order || !validate_cub_elements_b(game))
-		close_window_b(game);
+		return (0);
 	return (1);
 }
