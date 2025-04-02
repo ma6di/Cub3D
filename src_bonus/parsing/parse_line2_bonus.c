@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:59:15 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/02 13:41:35 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:06:06 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	assign_texture(char *line, t_game *game)
 				free(game->textures[i].path);
 				game->duplicate = 1;
 			}
-			game->textures[i].path = ft_strdup(str_start_b(line + 2));
+			game->textures[i].path = ft_strdup2(str_start_b(line + 2));
 			return (1);
 		}
 		i++;
@@ -58,7 +58,7 @@ int	assign_health_texture(char *line, t_game *game)
 				game->duplicate = 1;
 			}
 			game->health_bar[i - 1].path = \
-				ft_strdup(str_start_b(line + strlen(prefix)));
+				ft_strdup2(str_start_b(line + strlen(prefix)));
 			return (1);
 		}
 		i++;
@@ -84,7 +84,7 @@ int	assign_ammo_texture(char *line, t_game *game)
 				free(game->ammo[i].path);
 				game->duplicate = 1;
 			}
-			game->ammo[i].path = ft_strdup(str_start_b(line + strlen(prefix)));
+			game->ammo[i].path = ft_strdup2(str_start_b(line + strlen(prefix)));
 			return (1);
 		}
 		i++;
@@ -111,7 +111,7 @@ int	assign_heart_texture(char *line, t_game *game)
 				game->duplicate = 1;
 			}
 			game->heart_tex[i - 1].path = \
-				ft_strdup(str_start_b(line + strlen(prefix)));
+				ft_strdup2(str_start_b(line + strlen(prefix)));
 			return (1);
 		}
 		i++;
@@ -138,7 +138,7 @@ int	assign_c_ammo_texture(char *line, t_game *game)
 				game->duplicate = 1;
 			}
 			game->c_ammo_tex[i - 1].path = \
-				ft_strdup(str_start_b(line + strlen(prefix)));
+				ft_strdup2(str_start_b(line + strlen(prefix)));
 			return (1);
 		}
 		i++;

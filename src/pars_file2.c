@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:42:47 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/02 13:42:48 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:51:59 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	assign_texture(char *line, t_game *game)
 				free(game->textures[i].path);
 				game->duplicate = 1;
 			}
-			game->textures[i].path = ft_strdup(str_start(line + 2));
+			game->textures[i].path = ft_strdup2(str_start(line + 2));
 			return (1);
 		}
 		i++;
@@ -48,7 +48,7 @@ int	assign_color(char *line, t_game *game)
 			free(game->color[FLOOR].col_tex_str);
 			game->duplicate = 1;
 		}
-		game->color[FLOOR].col_tex_str = ft_strdup(str_start(line + 1));
+		game->color[FLOOR].col_tex_str = ft_strdup2(str_start(line + 1));
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
@@ -57,7 +57,7 @@ int	assign_color(char *line, t_game *game)
 			free(game->color[CEILING].col_tex_str);
 			game->duplicate = 1;
 		}
-		game->color[CEILING].col_tex_str = ft_strdup(str_start(line + 1));
+		game->color[CEILING].col_tex_str = ft_strdup2(str_start(line + 1));
 	}
 	else
 		return (0);

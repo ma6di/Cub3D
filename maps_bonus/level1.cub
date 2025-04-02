@@ -4,14 +4,14 @@ WE assets/walls/wall_white_briks.xpm
 EA assets/walls/wall_white_briks.xpm
 
 C assets/sky_ceiling/ceiling_yellow.xpm
-F assets/floor/floor_wood.xpm
+F 158, 220, 110
 
 END assets/final_door/final_door.xpm
 G assets/gun/gun.xpm
 GS assets/gun/gun_shut.xpm
 
 Z0 assets/zombies/pc_lateral_sx.xpm
-Z1 assets/zombies/pc_lateral_dx.xpm
+Z1 assets/zombies/pc_lateral_dx.xpm 
 Z2 assets/zombies/pc_central.xpm
 
 D1 assets/doors/door_wood_1.xpm

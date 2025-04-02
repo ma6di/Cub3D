@@ -658,6 +658,9 @@ void		cal_map_dim_b(t_game **game);
 void		print_error_b(const char *format, ...);
 void		game_over(void);
 void		victory(void);
+long		ft_atol(const char *str);
+char		*ft_strdup2(const char *s1);
+int			is_all_space(const char *str);
 
 ///			Check if a collectible is collected ///
 void		check_collect_key(t_game *game);

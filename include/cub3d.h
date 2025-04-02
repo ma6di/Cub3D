@@ -233,5 +233,8 @@ int			two_dim_len(char **arr);
 void		cal_map_dim(t_game **game);
 void		print_error(const char *format, ...);
 void		print_struct(t_game *game);
+long		ft_atol(const char *str);
+char		*ft_strdup2(const char *s1);
+int			is_all_space(const char *str);
 
 #endif

@@ -34,6 +34,7 @@ SRCS = \
 	$(SRCDIR)/set_game_data.c \
 	$(SRCDIR)/map_accessibility_check.c \
 	$(SRCDIR)/tools.c \
+	$(SRCDIR)/tools2.c \
 	$(SRCDIR)/map_char_check.c \
 	$(SRCDIR)/validate_colors.c \
 	$(SRCDIR)/map_check_tools.c \
@@ -111,6 +112,7 @@ BONUS_SRCS = \
 	$(BONUSDIR)/other/window_bonus.c \
 	$(BONUSDIR)/other/debug_bonus.c \
 	$(BONUSDIR)/other/tools_bonus.c \
+	$(BONUSDIR)/other/tools2_bonus.c \
 	$(BONUSDIR)/other/validate_elements_bonus.c \
 	$(BONUSDIR)/other/validate_objetcs_path_bonus.c \
 	$(BONUSDIR)/other/validate_texture_path_bonus.c \

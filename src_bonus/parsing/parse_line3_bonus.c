@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:18 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/02 13:41:19 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:06:26 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	assign_sprite(char *line, t_game *game)
 				free(game->textures[i + 4].path);
 				game->duplicate = 1;
 			}
-			game->textures[i + 4].path = ft_strdup(str_start_b(line + 2));
+			game->textures[i + 4].path = ft_strdup2(str_start_b(line + 2));
 			return (1);
 		}
 		i++;
@@ -47,7 +47,7 @@ int	assign_sky_texture(char *line, t_game *game)
 			free(game->color[SKY].col_tex_str);
 			game->duplicate = 1;
 		}
-		game->color[SKY].col_tex_str = ft_strdup(str_start_b(line + 2));
+		game->color[SKY].col_tex_str = ft_strdup2(str_start_b(line + 2));
 	}
 	else
 		return (0);
@@ -63,7 +63,7 @@ int	assign_final_door_texture(char *line, t_game *game)
 			free(game->textures[FINAL_DOOR].path);
 			game->duplicate = 1;
 		}
-		game->textures[FINAL_DOOR].path = ft_strdup(str_start_b(line + 4));
+		game->textures[FINAL_DOOR].path = ft_strdup2(str_start_b(line + 4));
 		return (1);
 	}
 	return (0);

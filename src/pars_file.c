@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/02 13:16:11 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:00:58 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ static int	check_line(char *line, t_game *game)
 	}
 	else if (ft_strchr("10NSWE \t", line[0]) && game->map_started == 1)
 		append_map_line(game, line);
+	else if (!is_all_space(line))
+	{
+		game->order = 1;
+		printf(RED"Error: Unknown key '%s'\n"RESET, line);
+	}
 	return (1);
 }
 

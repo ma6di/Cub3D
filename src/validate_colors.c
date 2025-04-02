@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:54:21 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:33:00 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:45:32 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ static int	check_rgb(t_color *color)
 	rgb = ft_split(color->col_tex_str, ',');
 	if (!check_rgb_str(rgb))
 		return (0);
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	free_two_dim(rgb);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	r = ft_atol(rgb[0]);
+	g = ft_atol(rgb[1]);
+	b = ft_atol(rgb[2]);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || \
+		!ft_atol(rgb[0]) || !ft_atol(rgb[1]) || !ft_atol(rgb[2]))
 	{
 		print_error(RED"Error: Color values must be between 0 and 255\n"RESET);
 		return (0);
 	}
+	free_two_dim(rgb);
 	color->r = r;
 	color->g = g;
 	color->b = b;
