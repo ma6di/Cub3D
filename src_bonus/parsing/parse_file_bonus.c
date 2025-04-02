@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:58:50 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:18:16 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:38:19 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	check_texture_paths(t_game *game)
 		!game->textures[ZOMBIE_1].path || !game->textures[ZOMBIE_2].path || \
 		!game->textures[DOOR_5].path || !game->textures[DOOR_6].path)
 	{
-		game->file_order = 1;
+		game->order = 1;
 	}
 }
 
@@ -72,7 +72,7 @@ void	file_data_order_b(t_game *game)
 	check_heart_paths(game, 0, 12);
 	check_health_paths(game, 0, 5);
 	check_key_paths(game, 0, 7);
-	if (game->file_order == 1)
+	if (game->order == 1)
 	{
 		print_error(RED"Error: cub file data is not in order or"RESET);
 		print_error(RED" one/more texture is missing\n"RESET);
@@ -86,10 +86,8 @@ int	pars_file_b(const char *filename, t_game *game)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		print_error(RED"Error: Could not open file %s\n"RESET, filename);
-		return (0);
-	}
+		return (print_error(RED"Error: Could not open file %s\n"RESET, \
+				filename), 0);
 	if (!validate_file_b(filename))
 	{
 		close(fd);
@@ -103,7 +101,9 @@ int	pars_file_b(const char *filename, t_game *game)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (game->file_order || !validate_cub_elements_b(game))
+	if (game->duplicate == 1)
+		print_error(RED"Error: Duplicate texture path\n"RESET);
+	if (game->order || game->duplicate || !validate_cub_elements_b(game))
 		return (0);
 	return (1);
 }

@@ -428,7 +428,8 @@ typedef struct s_start_page
 typedef struct s_game
 {
 	int				map_started;
-	int				file_order;
+	int				order;
+	int				duplicate;
 	int				bpp;
 	int				line_len;
 	int				endian;
@@ -621,6 +622,9 @@ int			assign_texture(char *line, t_game *game);
 void		append_map_line_b(t_game *game, char *line);
 char		*str_start_b(char *str);
 void		file_data_order_b(t_game *game);
+int			assign_sprite(char *line, t_game *game);
+int			assign_sky_texture(char *line, t_game *game);
+int			assign_final_door_texture(char *line, t_game *game);
 
 ///			Free	//
 void		free_textures_path_b(t_game *game);

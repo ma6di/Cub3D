@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:38:34 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:38:35 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:33:33 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	main(int argc, char *argv[])
 {
 	t_game	*game;
 
-	if (argc != 2)
+	if (argc < 2)
 		return (print_error(RED"Error: Please provide a map file\n"RESET), 1);
+	if (argc > 2)
+		return (print_error(RED"Error: Multiple arguments\n"RESET), 1);
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{

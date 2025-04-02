@@ -30,7 +30,6 @@
 # define SOUTH	1
 # define WEST	2
 # define EAST	3
-# define DOOR	4
 
 # define FLOOR	0
 # define CEILING	1
@@ -142,7 +141,8 @@ typedef struct s_ray
 typedef struct s_game
 {
 	int				map_started;
-	int				file_order;
+	int				order;
+	int				duplicate;
 	int				bpp;
 	int				line_len;
 	int				endian;
@@ -161,6 +161,10 @@ typedef struct s_game
 
 ///			parsing				////
 int			pars_file(const char *filename, t_game *game, char **argv);
+int			assign_texture(char *line, t_game *game);
+int			assign_color(char *line, t_game *game);
+void		*str_start(char *str);
+void		append_map_line(t_game *game, char *line);
 
 ///			validating parsed data		////
 int			is_map_closed_and_accessible(t_game *game, char **map, \

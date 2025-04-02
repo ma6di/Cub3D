@@ -21,6 +21,7 @@ SRCS = \
 	$(SRCDIR)/movement.c \
 	$(SRCDIR)/debug.c \
 	$(SRCDIR)/pars_file.c \
+	$(SRCDIR)/pars_file2.c \
 	$(SRCDIR)/flood_fill.c \
 	$(SRCDIR)/print_error.c \
 	$(SRCDIR)/flood_fill_tool.c \
@@ -86,6 +87,7 @@ BONUS_SRCS = \
 	$(BONUSDIR)/parsing/parse_file_bonus.c \
 	$(BONUSDIR)/parsing/parse_line1_bonus.c \
 	$(BONUSDIR)/parsing/parse_line2_bonus.c \
+	$(BONUSDIR)/parsing/parse_line3_bonus.c \
 	$(BONUSDIR)/ray_casting/door_dda_bonus.c \
 	$(BONUSDIR)/ray_casting/rays_bonus.c \
 	$(BONUSDIR)/ray_casting/render_walls_bonus.c \

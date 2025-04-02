@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:58:24 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:58:25 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:42:20 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	display_starting_page(t_start_page *start_page, char *start_img)
 	mlx_string_put(start_page->mlx, start_page->win, \
 			450, 500, 0xFFFFFF, "2. Maze Map");
 }
-
 
 static int	init_start_page(t_start_page *start_page)
 {

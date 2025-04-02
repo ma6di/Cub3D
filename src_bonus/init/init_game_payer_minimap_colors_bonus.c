@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:56:56 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:56:57 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:22:03 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	init_game_vars(t_game *game)
 	game->c_ammo = NULL;
 	game->key = NULL;
 	game->map_started = 0;
-	game->file_order = 0;
+	game->order = 0;
+	game->duplicate = 0;
 	game->door_count = 0;
 	game->sprite_count = 0;
 	game->heart_count = 0;

@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:58:19 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:58:20 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:38:54 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@ int	open_game(char *selected_map, t_start_page *start_page)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_start_page	*start_page;
 
+	(void)(argv);
+	if (argc > 1)
+	{
+		print_error(RED"Error: Bonus does not require any arguments\n"RESET);
+		return (1);
+	}
 	start_page = ft_calloc(1, sizeof(t_start_page));
 	if (!start_page)
 	{

@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:41:07 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:41:08 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:44:30 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	rotate_player(int direction, t_game *game)
 	double	old_plane_x;
 	double	angle;
 
-	rotate_speed = 0.05;
+	rotate_speed = 0.01;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	if (direction == LEFT_ROTATE)

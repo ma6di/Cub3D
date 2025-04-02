@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:38:26 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:38:27 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:41:42 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	init_game(t_game *game)
 	game->width = SCREEN_WIDTH;
 	game->map = NULL;
 	game->map_started = 0;
-	game->file_order = 0;
+	game->order = 0;
+	game->duplicate = 0;
 	init_texture(game->textures);
 	init_colors(game->color);
 	game->player.x = 0;

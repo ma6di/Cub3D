@@ -6,7 +6,7 @@
 /*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:38:57 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:38:58 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:01:57 by mcheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	check_corners(t_game *game, char **map)
 {
 	int	y;
-	int	x;
 
 	y = 0;
 	while (y < game->height - 1)
@@ -24,14 +23,6 @@ int	check_corners(t_game *game, char **map)
 			!case_two(map, y, game->height))
 			return (0);
 		y++;
-	}
-	x = 0;
-	while (x < game->width - 1)
-	{
-		if (!case_four(map, x, game->height) \
-			|| !case_five(map, x, game->height))
-			return (0);
-		x++;
 	}
 	return (1);
 }

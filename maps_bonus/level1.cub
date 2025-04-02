@@ -14,7 +14,6 @@ Z0 assets/zombies/pc_lateral_sx.xpm
 Z1 assets/zombies/pc_lateral_dx.xpm
 Z2 assets/zombies/pc_central.xpm
 
-
 D1 assets/doors/door_wood_1.xpm
 D2 assets/doors/door_wood_2.xpm
 D3 assets/doors/door_wood_3.xpm
@@ -88,4 +87,3 @@ K7 assets/key/key7.xpm
 100000000111111111111111111111111111111
 1Z0000000111111111111111111111111111111
 111111111111111111111111111111111111111
-
