@@ -61,7 +61,7 @@ static int	parse_rgb_b(t_color *color)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || \
 		!ft_atol(rgb[0]) || !ft_atol(rgb[1]) || !ft_atol(rgb[2]))
 	{
-		free_two_dim(rgb);
+		free_two_dim_b(rgb);
 		print_error(RED"Error: Color values must be between 0 and 255\n"RESET);
 		return (0);
 	}

@@ -34,6 +34,9 @@ void	draw_gun_b(t_game *game)
 	int				x;
 	int				y;
 
+	game->gun[GUN].screen_x = (SCREEN_WIDTH / 2) - \
+						(game->gun[GUN].width / 2);
+	game->gun[GUN].screen_y = SCREEN_HEIGHT - game->gun[GUN].height;
 	if (!game->gun[GUN].img || !game->gun[GUN].addr)
 		return ((void)printf("Error: Gun texture not loaded!\n"));
 	bob_phase += 0.1;
