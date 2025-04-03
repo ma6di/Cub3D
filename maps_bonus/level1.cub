@@ -4,7 +4,7 @@ WE assets/walls/wall_white_briks.xpm
 EA assets/walls/wall_white_briks.xpm
 
 C assets/sky_ceiling/ceiling_yellow.xpm
-F 158, 220, 110
+F assets/floor/floor_wood.xpm
 
 END assets/final_door/final_door_past.xpm
 G assets/gun/Gun_past.xpm

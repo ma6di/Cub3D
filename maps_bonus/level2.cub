@@ -7,8 +7,8 @@ SK assets/sky_ceiling/Night_Sky.xpm
 F assets/floor/surface_square_future.xpm
 
 END assets/final_door/final_door_future.xpm
-G assets/gun/Gun_future.xpm
-GS assets/gun/shot_future.xpm
+G assets/gun/gun_future_new.xpm
+GS assets/gun/future_blast.xpm
 
 Z0 assets/zombies/robot_left.xpm
 Z1 assets/zombies/robot_right.xpm

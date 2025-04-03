@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game_payer_minimap_colors_bonus.c             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:56:56 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/02 12:22:03 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:22:37 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	init_game_b(t_game *game)
 	memset(game->keys, 0, sizeof(game->keys));
 	init_player_b(&game->player);
 	init_wall_door_textures(game);
-	init_gun_b(game->gun, 150, GUN);
-	init_gun_b(game->gun, 40, GUN_SHUT);
+	init_gun_b(game->gun, 600, GUN);
+	init_gun_b(game->gun, 600, GUN_SHUT);
 	init_health_bar_b(game->health_bar, 128, 32);
 	init_ammo_b(game->ammo, 128, 32);
 	init_heart_tex_b(game->heart_tex, 50);

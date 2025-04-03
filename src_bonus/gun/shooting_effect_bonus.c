@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shooting_effect_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:56:39 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:56:40 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:12:41 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 static void	set_gun_shot_pos(t_game *game)
 {
 	game->gun[GUN_SHUT].screen_x = (SCREEN_WIDTH / 2) - \
-		(game->gun[GUN_SHUT].width / 2) - 10;
-	game->gun[GUN_SHUT].screen_y = SCREEN_HEIGHT - \
-		game->gun[GUN_SHUT].height - 140;
+		(game->gun[GUN_SHUT].width / 2);
+	game->gun[GUN_SHUT].screen_y = SCREEN_HEIGHT / 2 + 50;
 }
 
 void	shoot_gun(t_game *game)
