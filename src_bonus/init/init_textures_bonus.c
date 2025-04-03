@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcheragh <mcheragh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:57:04 by mcheragh          #+#    #+#             */
-/*   Updated: 2025/04/01 17:57:05 by mcheragh         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:30:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_wall_door_textures(t_game *game)
 	init_texture_b(game->textures, DOOR_4, 256);
 	init_texture_b(game->textures, DOOR_5, 256);
 	init_texture_b(game->textures, DOOR_6, 256);
-	init_texture_b(game->textures, FINAL_DOOR, 128);
+	init_texture_b(game->textures, FINAL_DOOR, 256);
 	init_texture_b(game->textures, ZOMBIE_0, 220);
 	init_texture_b(game->textures, ZOMBIE_1, 220);
 	init_texture_b(game->textures, ZOMBIE_2, 220);

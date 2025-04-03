@@ -6,8 +6,8 @@ EA assets/walls/wall_white_briks.xpm
 C assets/sky_ceiling/ceiling_yellow.xpm
 F assets/floor/floor_wood.xpm
 
-END assets/final_door/final_door.xpm
-G assets/gun/gun.xpm
+END assets/final_door/final_door_past.xpm
+G assets/gun/Gun_past.xpm
 GS assets/gun/gun_shut.xpm
 
 Z0 assets/zombies/pc_lateral_sx.xpm
