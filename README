@@ -39,8 +39,8 @@ The game features map exploration, sprite interactions, and an interactive minim
 		* Player ammo displayed at the lower-left corner of the screen.
 
 	🔹 Objective:
-		* Find the key 🔑.
-		* Unlock the final purple door 🚪.
+		* Find the key 🔑. (Gold square in minimap)
+		* Unlock the final door 🚪. (Green square in minimap)
 
 🎮 Controls
 Action			Key
@@ -53,6 +53,7 @@ Door open/close 	Space
 Exit Game		ESC
 
 ![start_page](https://github.com/ma6di/Cub3D/blob/main/program/assets/start.png)
+
 --------------------------------------------------------------------------------------
 
 To run the program on Linux:
