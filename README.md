@@ -82,10 +82,15 @@ Screenshots
 From the first popup/start window, you can select between two maps
 <img src="program/assets/start.png" width="600">
 
+
 First design :
 	Offic design with old computers as enemy.
+ 
 <img src="program/assets/map1.png" width="600">
+
+
 
 Second design :
 	Space/futuristic design with robots as enemy.
+ 
 <img src="program/assets/map2.png" width="600">
