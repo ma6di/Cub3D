@@ -10,6 +10,7 @@ This project was made possible through the collaboration of:
 
 
 RayCastin Tutorial (1): https://lodev.org/cgtutor/raycasting.html
+
 RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
 
 
@@ -75,6 +76,9 @@ To run the program on Linux:
 To clean the program:
 - Execute the `clean.sh` script by running:
   ./clean.sh
+---------------------------------------------------------------------------------------
+GamePlay
+
 
 ----------------------------------------------------------------------------------------
 Screenshots
