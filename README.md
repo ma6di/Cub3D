@@ -79,7 +79,7 @@ To clean the program:
 ---------------------------------------------------------------------------------------
 GamePlay
 
-[![GamePlay](https://github.com/user-attachments/assets/d864d883-88c6-4a13-b693-8a9b2320f368)]
+[![Watch the video](https://github.com/user-attachments/assets/80a92111-522c-4202-a7ad-db695acb5319)](https://github.com/user-attachments/assets/d864d883-88c6-4a13-b693-8a9b2320f368)
 
 ----------------------------------------------------------------------------------------
 Screenshots
