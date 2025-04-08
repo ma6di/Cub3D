@@ -61,8 +61,7 @@ Shoot			Left Control
 Door open/close 	Space
 Exit Game		ESC
 
-![start_page](program/assets/start.png)
-<img src="program/assets/start.png" width="48">
+<img src="program/assets/start.png" width="148">
 --------------------------------------------------------------------------------------
 
 To run the program on Linux:
