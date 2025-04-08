@@ -31,7 +31,7 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 		* Skybox texture for a realistic sky rendering ("SK" identifier in .cub file).
 		* Ceiling texture for immersive indoor environments ("C" identifier in .cub file).
 		* Textured floors for better aesthetics.
-		* Minimap for better bavigation.
+		* Minimap for better navigation.
 		* Rotating with mouse.
 		* Sliding doors.
 
