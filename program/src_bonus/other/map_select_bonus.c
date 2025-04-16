@@ -77,7 +77,7 @@ void	display_starting_page(t_start_page *start_page, char *start_img)
 	mlx_put_image_to_window(start_page->mlx, start_page->win, start_img, 0, 0);
 	mlx_string_put(start_page->mlx, start_page->win, 450, 400, 0xFFFFFF, "Select a Map:");
 	mlx_string_put(start_page->mlx, start_page->win, 450, 450, 0xFFFFFF, "1. Office Map");
-	mlx_string_put(start_page->mlx, start_page->win, 450, 500, 0xFFFFFF, "2. Maze Map");
+	mlx_string_put(start_page->mlx, start_page->win, 450, 500, 0xFFFFFF, "2. Outer Space");
 }
 
 static int	init_start_page(t_start_page *start_page)
