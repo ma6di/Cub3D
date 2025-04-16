@@ -15,17 +15,17 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 
 
 🛠️ Mandatory Features
-        ✅ Basic Rendering
-          Raycasting-based 3D environment.
-          Wall rendering without collision detection.
-          Flat colors for the sky and floor (no textures).
+    ✅ Basic Rendering
+      Raycasting-based 3D environment.
+      Wall rendering without collision detection.
+      Flat colors for the sky and floor (no textures).
 
-        ✅ Player Movement
-          Free movement within the map.
-          Basic rotation and directional movement.
+    ✅ Player Movement
+      Free movement within the map.
+      Basic rotation and directional movement.
 
-        ✅ Map System
-          .cub map file format defines the layout.
+    ✅ Map System
+      .cub map file format defines the layout.
 
 ✨ Bonus Features
     🔹 Enhanced
@@ -76,9 +76,9 @@ Requirements for MacOS
 
 Xquartz
 
-    ➜  ~ Brew install Xquartz
-    ➜  ~ reboot
-    ➜  ~ xeyes
+        Brew install Xquartz
+        reboot
+        xeyes
   
   To run the program on Linux/MacOs
 
