@@ -72,8 +72,14 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 
 
 --------------------------------------------------------------------------------------
+Requirements for MacOS
 
-To run the program on Linux:
+Xquartz
+  ➜  ~ Brew install Xquartz
+  ➜  ~ reboot
+  ➜  ~ xeyes
+  
+  To run the program on Linux/MacOs
 
 - Clone the Git repository.
 - Navigate into the repository folder.
