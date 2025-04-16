@@ -22,10 +22,17 @@
 # include <string.h>
 # include <stdbool.h>
 # include <stdarg.h>
+# include <sys/time.h>
+
+#ifdef __linux__
 # include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <sys/time.h>
+#elif __APPLE__
+# include "../minilibx-mac/mlx.h"
+#endif
+
+
 
 # define TILE_SIZE 40
 # define FOV_FACTOR 0.8
@@ -75,6 +82,29 @@
 
 # define GUN 0
 # define GUN_SHUT 1
+
+
+# ifdef __APPLE__
+# define XK_w 13
+# define XK_s 1
+# define XK_a 0
+# define XK_d 2
+# define XK_Escape 53
+# define XK_Left 123
+# define XK_Right 124
+# define XK_Control_L 256
+# define XK_space 49
+# define KeyPress	2
+# define KeyRelease	3
+# define MotionNotify	6
+# define DestroyNotify	17
+# define KeyPressMask 0
+# define KeyReleaseMask 0
+# define PointerMotionMask 0
+# define ButtonPressMask 0
+# define GL_SILENCE_DEPRECATION
+
+# endif
 
 //Keyboard
 # define KEY_W 0
@@ -683,5 +713,6 @@ void		print_struct_b(t_game *game);
 
 ///			map selection window ///
 void		start(t_start_page *start_page);
+int			open_game(char *selected_map, t_start_page *start_page);
 
 #endif

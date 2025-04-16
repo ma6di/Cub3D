@@ -14,7 +14,7 @@ NAME        = libft.a
 SRC_DIR     = ./
 OBJ_DIR     = obj/
 CC          = cc -fPIC
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      =  -g
 INCLUDE     = -I include
 AR          = ar rcs
 RM          = rm -f
@@ -44,7 +44,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE) -s -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 building_message:
 	@echo "$(GREEN)Compiling Libft...$(RESET)"

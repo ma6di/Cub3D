@@ -105,7 +105,7 @@ void	free_mlx_b(t_game *game)
 		mlx_destroy_image(game->mlx, game->img);
 	if (game->mlx)
 	{
-		mlx_destroy_display(game->mlx);
+		//mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 }

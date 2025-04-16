@@ -1,23 +1,41 @@
-# Variables
+
+# Makefile with macOS and Linux compatibility
+
+# Compiler & Flags
+CC      = cc
+
+
+# Directories
+SRCDIR    = src
+BONUSDIR  = src_bonus
+OBJDIR    = obj
+INCDIR    = include
+LIBFTDIR  = libft
+LIBFT     = $(LIBFTDIR)/libft.a
+LIBFT_INC = -I$(LIBFTDIR)/include
+
+# OS Detection and MLX Setup
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S), Linux)
+	MLXDIR = minilibx
+	MLX       = $(MLXDIR)/libmlx.a
+	MLX_INC   = -I$(MLXDIR)
+	MLX_FLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lXrender -lm
+	CFLAGS  = -Wall -Wextra -Werror
+else ifeq ($(UNAME_S), Darwin)
+	MLXDIR = minilibx-mac
+	MLX       = $(MLXDIR)/libmlx.a
+	MLX_INC   = -I$(MLXDIR)
+	MLX_FLAGS = -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
+	CFLAGS  = -Wall -Wextra -Werror
+endif
+
+# Executable names
 NAME        = cub3D
 BONUS_NAME  = cub3D_bonus
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
-SRCDIR      = src
-BONUSDIR    = src_bonus
-OBJDIR      = obj
-INCDIR      = include
-LIBFTDIR    = libft
-MLXDIR      = minilibx
-LIBFT       = $(LIBFTDIR)/libft.a
-MLX         = $(MLXDIR)/libmlx.a
-MLX_FLAGS   = -L$(MLXDIR) -lmlx -lXext -lX11 -lXrender -lm
-LIBFT_INC   = -I$(LIBFTDIR)/include
-MLX_INC     = -I$(MLXDIR)
-GREEN       = \033[0;32m
-RESET       = \033[0m
 
-# Source files (main program)
+# Source files (main)
 SRCS = \
 	$(SRCDIR)/Key_handler.c \
 	$(SRCDIR)/movement.c \
@@ -47,7 +65,7 @@ SRCS = \
 	$(SRCDIR)/window.c \
 	$(SRCDIR)/map_enclosement_check.c
 
-# Source files (bonus program)
+# Bonus files (example)
 BONUS_SRCS = \
 	$(BONUSDIR)/ammo_bar/ammo_bar_bonus.c \
 	$(BONUSDIR)/collectibe_heart/collectibe_heart_tools_bonus.c \
@@ -121,56 +139,56 @@ BONUS_SRCS = \
 	$(BONUSDIR)/other/map_select_bonus.c \
 	$(BONUSDIR)/other/main_bonus.c
 
+# Object files
 OBJS        = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 BONUS_OBJS  = $(patsubst $(BONUSDIR)/%.c, $(OBJDIR)/%.o, $(BONUS_SRCS))
 
-# Rules
+# Default target
 all: $(LIBFT) $(MLX) $(NAME)
-	@echo "$(GREEN)Program built ✅$(RESET)"
-
-normal: $(LIBFT) $(MLX) $(NAME)
 
 bonus: $(LIBFT) $(MLX) $(BONUS_NAME)
-	@echo "$(GREEN)cub3d game built ✅$(RESET)"
 
+# Build rules
 $(NAME): $(OBJS)
-	@echo "$(GREEN)🔗 Linking $(NAME)...$(RESET)"
-	@$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@echo "\033[0;32mLinking $(NAME)...\033[0m"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@echo "\033[0;32mProgram built ✅\033[0m"
 
 $(BONUS_NAME): $(BONUS_OBJS)
-	@echo "$(GREEN)🔗 Linking $(BONUS_NAME)...$(RESET)"
-	@$(CC) $(BONUS_OBJS) $(LIBFT) $(MLX_FLAGS) -o $(BONUS_NAME)
+	@echo "\033[0;32mLinking $(BONUS_NAME)...\033[0m"
+	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) $(MLX_FLAGS) -o $(BONUS_NAME)
+	@echo "\033[0;32mBonus program built ✅\033[0m"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+# Compilation rule
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
 
-$(OBJDIR)/%.o: $(BONUSDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(BONUSDIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) -I$(INCDIR) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-
+# Build libft if missing
 $(LIBFT):
-	@$(MAKE) -s -C $(LIBFTDIR)
+	@$(MAKE) -C $(LIBFTDIR)
 
+# Build MLX for macOS or Linux
 $(MLX):
-	@chmod +x $(MLXDIR)/configure
-	@$(MAKE) -s -C $(MLXDIR)
+	@$(MAKE) -C $(MLXDIR)
 
+# Clean up
 clean:
 	@rm -rf $(OBJDIR)
-	@$(MAKE) -s -C $(LIBFTDIR) clean
-	@$(MAKE) -s -C $(MLXDIR) clean
-	@echo "$(GREEN)cub3d cleaned ✅$(RESET)"
+	@$(MAKE) -C $(LIBFTDIR) clean
+	@$(MAKE) -C $(MLXDIR) clean
+	@echo "\033[0;33mCleaned object files.\033[0m"
 
 fclean: clean
 	@rm -f $(NAME) $(BONUS_NAME)
-	@$(MAKE) -s -C $(LIBFTDIR) fclean
+	@$(MAKE) -C $(LIBFTDIR) fclean
+	@echo "\033[0;33mRemoved executables and libraries.\033[0m"
 
-re: fclean normal
-
+re: fclean all
 bonus_re: fclean bonus
 
-.PHONY: all normal bonus clean fclean re bonus_re
+.PHONY: all clean fclean re bonus bonus_re

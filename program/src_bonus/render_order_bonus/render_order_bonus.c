@@ -60,7 +60,6 @@ static void	cast_rays_and_update_display(t_game *game)
 	cast_rays_b(game);
 	minimap_b(game);
 	update_player_b(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
 int	render_b(t_game *game)
@@ -69,6 +68,7 @@ int	render_b(t_game *game)
 	t_renderable	*renderables;
 
 	mlx_clear_window(game->mlx, game->win);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	num_renderables = game->sprite_count + game->heart_count + \
 					game->c_ammo_count + game->key_count;
 	renderables = malloc(num_renderables * sizeof(t_renderable));
