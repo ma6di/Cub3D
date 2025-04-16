@@ -8,11 +8,14 @@ The game features map exploration, sprite interactions, and an interactive minim
 This project was made possible through the collaboration of:
   - 🧠 **@Berryfeels**
 
+--------------------------------------------------------------------------------------
 
-RayCastin Tutorial (1): https://lodev.org/cgtutor/raycasting.html
+Tutorials for learning RayCastin
+    Tutorial (1): https://lodev.org/cgtutor/raycasting.html
 
-RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
+    Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
 
+--------------------------------------------------------------------------------------
 
 🛠️ Mandatory Features
     ✅ Basic Rendering
