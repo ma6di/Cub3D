@@ -1,4 +1,4 @@
-Cub3D - Raycasting FPS Game
+__Cub3D - Raycasting FPS Game__
 
 🚀 Overview
 Cub3D is a Wolfenstein 3D-inspired game that utilizes raycasting to create a pseudo-3D environment. 
@@ -10,7 +10,7 @@ This project was made possible through the collaboration of:
 
 --------------------------------------------------------------------------------------
 
-Tutorials for learning RayCastin
+__Tutorials for learning RayCastin__
 
     Tutorial (1): https://lodev.org/cgtutor/raycasting.html
 
@@ -18,7 +18,7 @@ Tutorials for learning RayCastin
 
 --------------------------------------------------------------------------------------
 
-🛠️ Mandatory Features
+__🛠️ Mandatory Features__
     ✅ Basic Rendering
       Raycasting-based 3D environment.
       Wall rendering without collision detection.
@@ -31,7 +31,7 @@ Tutorials for learning RayCastin
     ✅ Map System
       .cub map file format defines the layout.
 
-✨ Bonus Features
+__✨ Bonus Features__
     🔹 Enhanced
         * Skybox texture for a realistic sky rendering ("SK" identifier in .cub file).
         * Ceiling texture for immersive indoor environments ("C" identifier in .cub file).
@@ -60,7 +60,7 @@ Tutorials for learning RayCastin
 
 --------------------------------------------------------------------------------------
 
-🎮 Controls
+__🎮 Controls__
 
 
 | Action                 | Key           |
@@ -76,7 +76,7 @@ Tutorials for learning RayCastin
 
 
 --------------------------------------------------------------------------------------
-Requirements for MacOS
+__Requirements for MacOS__
 
 Xquartz
 
@@ -84,7 +84,7 @@ Xquartz
         reboot
         xeyes
   
-  To run the program on Linux/MacOs
+__To run the program on Linux/MacOs__
 
 - Clone the Git repository.
 - Navigate into the repository folder.
@@ -97,18 +97,20 @@ To clean the program:
 - Execute the `clean.sh` script by running:
   ./clean.sh
 ---------------------------------------------------------------------------------------
-GamePlay
+__GamePlay__
 
 <img src="program/assets/gameplay.gif" width="600">
 
 ----------------------------------------------------------------------------------------
-Screenshots
+__Screenshots__
 
 From the first popup/start window, you can select between two maps
+
 <img src="program/assets/start.png" width="600">
 
 
 First design :
+
     Offic design with old computers as enemy.
  
 <img src="program/assets/map1.png" width="600">
@@ -116,6 +118,7 @@ First design :
 
 
 Second design :
+
     Space/futuristic design with robots as enemy.
  
 <img src="program/assets/map2.png" width="600">
