@@ -52,6 +52,7 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 		* Find the key 🔑. (Gold square in minimap)
 		* Unlock the final door 🚪. (Green square in minimap)
 
+
 🎮 Controls
 Action			Key
 Move Forward		W
@@ -61,6 +62,8 @@ Turn Right		D
 Shoot			Left Control
 Door open/close 	Space
 Exit Game		ESC
+
+
 
 --------------------------------------------------------------------------------------
 
