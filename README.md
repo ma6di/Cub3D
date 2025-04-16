@@ -54,24 +54,18 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 
 --------------------------------------------------------------------------------------
 
-
 🎮 Controls
 
-Action                  Key
 
-Move Forward            W
-
-Move Backward           S
-
-Turn Left               A
-
-Turn Right              D
-
-Shoot                   Left Control
-
-Door open/close         Space
-
-Exit Game               ESC
+| Action                 | Key           |
+|------------------------|---------------|
+| Move Forward           | W             |
+| Move Backward          | S             |
+| Turn Left              | A             |
+| Turn Right             | D             |
+| Shoot                  | Left Control  |
+| Door open/close        | Space         |
+| Exit Game              | ESC           |
 
 
 
