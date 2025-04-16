@@ -19,6 +19,7 @@ __Tutorials for learning RayCastin__
 --------------------------------------------------------------------------------------
 
 __🛠️ Mandatory Features__
+
     ✅ Basic Rendering
       Raycasting-based 3D environment.
       Wall rendering without collision detection.
@@ -32,6 +33,7 @@ __🛠️ Mandatory Features__
       .cub map file format defines the layout.
 
 __✨ Bonus Features__
+
     🔹 Enhanced
         * Skybox texture for a realistic sky rendering ("SK" identifier in .cub file).
         * Ceiling texture for immersive indoor environments ("C" identifier in .cub file).
