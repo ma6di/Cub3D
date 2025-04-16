@@ -15,52 +15,59 @@ RayCastin Tutorial (2): https://permadi.com/1996/05/ray-casting-tutorial-table-o
 
 
 🛠️ Mandatory Features
-		✅ Basic Rendering
-		Raycasting-based 3D environment.
-		Wall rendering without collision detection.
-		Flat colors for the sky and floor (no textures).
+        ✅ Basic Rendering
+        Raycasting-based 3D environment.
+        Wall rendering without collision detection.
+        Flat colors for the sky and floor (no textures).
 
-		✅ Player Movement
-		Free movement within the map.
-		Basic rotation and directional movement.
+        ✅ Player Movement
+        Free movement within the map.
+        Basic rotation and directional movement.
 
-		✅ Map System
-		.cub map file format defines the layout.
+        ✅ Map System
+        .cub map file format defines the layout.
 
 ✨ Bonus Features
-	🔹 Enhanced
-		* Skybox texture for a realistic sky rendering ("SK" identifier in .cub file).
-		* Ceiling texture for immersive indoor environments ("C" identifier in .cub file).
-		* Textured floors for better aesthetics.
-		* Minimap for better navigation.
-		* Rotating with mouse.
-		* Sliding doors.
+    🔹 Enhanced
+        * Skybox texture for a realistic sky rendering ("SK" identifier in .cub file).
+        * Ceiling texture for immersive indoor environments ("C" identifier in .cub file).
+        * Textured floors for better aesthetics.
+        * Minimap for better navigation.
+        * Rotating with mouse.
+        * Sliding doors.
 
-	🔹 Combat & Enemies
-		* Weapon system
-		* Left Control key to shoot.
-		* Bullets deal damage to sprites.
-		* Enemy AI (Sprites)
-		* 2D moving sprites that chase the player.
-		* Enemies cause health damage upon contact.
+    🔹 Combat & Enemies
+        * Weapon system
+        * Left Control key to shoot.
+        * Bullets deal damage to sprites.
+        * Enemy AI (Sprites)
+        * 2D moving sprites that chase the player.
+        * Enemies cause health damage upon contact.
 
-	🔹 Game HUD & Objective
-		* Player health displayed at the lower-left corner of the screen.
-		* Player ammo displayed at the lower-left corner of the screen.
+    🔹 Game HUD & Objective
+        * Player health displayed at the lower-left corner of the screen.
+        * Player ammo displayed at the lower-left corner of the screen.
 
-	🔹 Objective:
-		* Find the key 🔑. (Gold square in minimap)
-		* Unlock the final door 🚪. (Green square in minimap)
+    🔹 Objective:
+        * Find the key 🔑. (Gold square in minimap)
+        * Unlock the final door 🚪. (Green square in minimap)
+
+--------------------------------------------------------------------------------------
 
 🎮 Controls
-Action			Key
-Move Forward		W
-Move Backward		S
-Turn Left		A
-Turn Right		D
-Shoot			Left Control
-Door open/close 	Space
-Exit Game		ESC
+
+
+| Action                 | Key           |
+|------------------------|---------------|
+| Move Forward           | W             |
+| Move Backward          | S             |
+| Turn Left              | A             |
+| Turn Right             | D             |
+| Shoot                  | Left Control  |
+| Door open/close        | Space         |
+| Exit Game              | ESC           |
+
+
 
 --------------------------------------------------------------------------------------
 
@@ -89,13 +96,13 @@ From the first popup/start window, you can select between two maps
 
 
 First design :
-	Offic design with old computers as enemy.
+    Offic design with old computers as enemy.
  
 <img src="program/assets/map1.png" width="600">
 
 
 
 Second design :
-	Space/futuristic design with robots as enemy.
+    Space/futuristic design with robots as enemy.
  
 <img src="program/assets/map2.png" width="600">
