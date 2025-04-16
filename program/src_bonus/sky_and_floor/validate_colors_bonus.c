@@ -12,14 +12,36 @@
 
 #include "cub3d_bonus.h"
 
+static void	trim_trailing_spaces(char **rgb)
+{
+	int		i;
+	int		len;
+
+	if (!rgb)
+		return ;
+	i = 0;
+	while (rgb[i])
+	{
+		len = ft_strlen(rgb[i]);
+		while (len > 0 && ft_isspace((unsigned char)rgb[i][len - 1]))
+		{
+			rgb[i][len - 1] = '\0';
+			len--;
+		}
+		i++;
+	}
+}
+
 static int	is_valid_number_b(char *str)
 {
 	int	i;
 
 	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
 	while (str[i])
 	{
-		if (str[i] < '0' && str[i] > '9')
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
@@ -53,13 +75,13 @@ static int	parse_rgb_b(t_color *color)
 
 	color->mode = 1;
 	rgb = ft_split(color->col_tex_str, ',');
+	trim_trailing_spaces(rgb);
 	if (!check_rgb_str_b(rgb))
 		return (0);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || \
-		!ft_atol(rgb[0]) || !ft_atol(rgb[1]) || !ft_atol(rgb[2]))
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		free_two_dim_b(rgb);
 		print_error(RED"Error: Color values must be between 0 and 255\n"RESET);
