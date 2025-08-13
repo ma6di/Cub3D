@@ -7,7 +7,7 @@ The game features map exploration, sprite interactions, and an interactive minim
 
 🤝 Collaborator
 This project was made possible through the collaboration of:
-  - 🧠 **@Berryfeels**
+  - 🧠 **[@Berryfeels](https://github.com/Berryfeels)**
 
 --------------------------------------------------------------------------------------
 
