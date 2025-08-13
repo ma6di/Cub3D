@@ -1,6 +1,7 @@
 __Cub3D - Raycasting FPS Game__
 
 🚀 Overview
+
 Cub3D is a Wolfenstein 3D-inspired game that utilizes raycasting to create a pseudo-3D environment. 
 The game features map exploration, sprite interactions, and an interactive minimap.
 
