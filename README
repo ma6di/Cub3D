@@ -44,8 +44,8 @@ The game features map exploration, sprite interactions, and an interactive minim
 
 🎮 Controls
 Action			Key
-Move Forward	W
-Move Backward	S
+Move Forward		W
+Move Backward		S
 Turn Left		A
 Turn Right		D
 Shoot			Left Control

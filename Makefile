@@ -43,7 +43,8 @@ SRCS = \
 	$(SRCDIR)/validate_map.c \
 	$(SRCDIR)/map_empty_line_check.c \
 	$(SRCDIR)/window.c \
-	$(SRCDIR)/map_enclosement_check.c
+	$(SRCDIR)/map_enclosement_check.c \
+
 
 # Source Files for Bonus Program (src_bonus)
 BONUS_SRCS = \
@@ -117,7 +118,8 @@ BONUS_SRCS = \
 	$(BONUSDIR)/other/validate_objetcs_path_bonus.c \
 	$(BONUSDIR)/other/validate_texture_path_bonus.c \
 	$(BONUSDIR)/other/map_select_bonus.c \
-	$(BONUSDIR)/other/main_bonus.c
+	$(BONUSDIR)/other/main_bonus.c \
+	$(BONUSDIR)/audio/audio.c
 
 # Object Files for Main Program (src)
 OBJS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
